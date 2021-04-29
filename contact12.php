@@ -64,7 +64,7 @@ End of message
 
 /* Send the message using mail() function */
 
-if( mail($myemail, $subject, $message) ){
+if( !$mail($myemail, $subject, $message) ){
 
 		echo "success";
 
