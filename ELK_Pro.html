@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "socialmediamaster.dwt" -->
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Kumar Dahal</title>
+<link rel="shortcut icon" href="images/kumar.logo.jpg" type="image/png" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="talktokumar.css/talktokumarstylesheet.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<style>
+.example1 {
+  background-image: url(images/background-color.png), url(images/background-color.png);
+  background-position: right bottom, left top;
+  background-repeat: no-repeat, repeat;
+  padding: 15px;
+}
+
+p {
+	font-size:large;
+	padding: 10px;
+}
+img  {
+object-fit:cover;
+	
+}
+
+a.first:link {color:#ff0000;text-decoration:none;}
+a.first:visited {color:#0000ff;text-decoration:none;}
+a.first:hover {text-decoration:underline;}
+
+
+
+.w3-row-padding img {margin-bottom: 12px}
+.bgimg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('images/work_robo.jpg');
+  min-height: 100%;
+}
+
+.container-iframe {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 15.25%; /* 16:9 Aspect Ratio */
+}
+
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+</style>
+</head>
+
+<!--contant starts from here -->
+<body class="example1 w3-black">
+
+<!-- Icon Bar (Sidebar - hidden on small screens) -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <!-- Avatar image in top left corner -->
+  <img src="images/Kumar_2.png" style="width:100%"/>
+  <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-home w3-xxlarge" style="color:#fb6a6a;"></i>
+    <p>HOME</p>
+  </a>
+ <a href="social_media_post_%257893845784.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-reply w3-xxlarge" style="color:#fb6a6a;"></i>
+    <p>GO BACK</p>
+  </a>
+ <!--  <a href="#photos" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-eye w3-xxlarge" style="color:#fb6a6a;"></i>
+    <p>PHOTOS</p>
+  </a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-envelope w3-xxlarge" style="color:#fb6a6a;"></i>
+    <p>CONTACT</p>
+  </a>-->
+</nav>
+
+<!-- Navbar on small screens (Hidden on medium and large screens) -->
+<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+    <a href="index.html" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
+    <a href="social_media_post_%257893845784.html" class="w3-bar-item w3-button" style="width:25% !important">GO BACK</a>
+    <!--<a href="#photos" class="w3-bar-item w3-button" style="width:25% !important">PHOTOS</a>
+    <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>-->
+  </div>
+</div>
+
+<!-- Page Content -->
+<div class="w3-padding-large" id="main">
+
+<!-- Sidebar with image -->
+<nav class="w3-sidebar w3-hide-medium w3-hide-small" style="width:40%">
+      <!-- #BeginEditable "first social" --> 
+  <div class=""> 
+<div class="w3-container w3-margin">
+        <img src="new_image/kumar.PNG" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"/>
+        <span class="w3-right w3-opacity">Jun 30, 2022</span>
+        <h4>Kumar Dahal</h4><br>
+        <hr class="w3-clear"/>
+        <h4>ELK Onboarding application - filebeat</h4>
+
+<p>Generally, frontend application uses beats to send logs directly to Logstash for further process and enhancing the data, 
+    before visualizing it in Kibana. Thre is a spicific API URL to be connected to frontend application to Logstash for transferring or parsing the logs data. 
+    Logstash alwars listens through Beats to incomming logs data through API and processes for further analyses.  
+    </p>
+
+<p>Step 1. Certation of the filter 
+Create a filter using Grok parser or Ruby script implement in the Logstash server which will help process the events.</p>
+
+<p>Sample filter:   </p>
+<div class="w3-panel w3-leftbar w3-light-grey">
+    <p><i>Onboarding application</i></p>
+    <p>input { <br>
+        beats { <br>
+        #host => logstash1. <br>
+        port => 5xxx <br>
+        # Enter 5 series port <br>
+        ssl => true <br>
+        ssl_key => '/app/logstash/cert-file/logstash.pkcs8.key' <br>
+        ssl_certificate => '/app/logstash/cert-file/wildcard' <br>
+        } <br>
+        } <br>
+       filter{ <br>
+        if([fields][log_type] == "xxxx") <br>
+        # Tags of fields and log_type should match the configuration of filebeat <br>
+        { <br>
+       # write the filter <br>
+       } <br>
+       output{ <br>
+        if([fields][log_type] == "xxxx") <br>
+        # tags of fields and log_type should match the configuration of filebeat <br>
+        { <br>
+        elasticsearch { <br>
+        hosts => ["https://elasticsearch1:9200", "https://elasticsearch2:9200"] <br>
+        cacert => '/app/logstash/cert-file/wildcard-ca.crt' <br>
+        user => 'logstash_writer' <br>
+        password => password <br>
+        index =>"xxxx*" <br>
+        } <br>
+        stdout{} <br>
+        } <br>
+        } <br>
+       </p>
+       <p>Step 2. Login to the Logstash server as Logstash user $ su – logstash<br> 
+        Step 3. move to directory /app/logstash/config $ cd /app/logstash/config <br>
+        Step 4. Create a new file (name after your application (we can use any name)) but it should end with extension .conf example: $ vim cs-iislogs.conf <br>
+         Step 5. Copy the filter you have created and paste in the filter (We are using a port ) <br>
+        Step 6. Save and exit $:wq! <br>
+        Step 7. Inorder to open the port in the server we need to restart the Logstash services $ sudo systemctl restart logstash <br>
+        Step 8. To observe the log run the following command $ tail -f /var/log/messages </p><br>
+  </div>
+<p>This document will provide you the guidance for installing filesbeat on each system that you want to monitor.  </p>
+<p>Step: 1 Certificate</p> 
+    <p>Copy the certificate from ELK server to the client that you want to connect.  
+    # scp /etc/ssl/logstach_frwrd.crt root@<Host Name or IP > of client>:/etc/ssl 
+    </p>
+    <div class="w3-padding">
+        <img src="images_3/ELK_image_1.png" class="w3-round w3-image w3-opacity-min" alt="ELK" width="100%"/>
+       </div>
+
+<!--do't go blow this-->
+</div>        
+</div>
+  <!-- #EndEditable first-->
+
+</nav>
+
+<!-- Hidden Sidebar (reveals when clicked on menu icon)
+<nav class="w3-sidebar w3-black w3-animate-right w3-xxlarge" style="display:none;padding-top:150px;right:0;z-index:2" id="mySidebar">
+  <a href="javascript:void(0)" onclick="closeNav()" class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0 12px;">
+    <i class="fa fa-remove"></i>
+  </a>
+  <div class="w3-bar-block w3-center">
+    <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Home</a>
+    <a href="#portfolio" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Portfolio</a>
+    <a href="#about" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">About</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Contact</a>
+  </div>
+</nav>-->
+
+<!-- Page Content -->
+<div class="w3-main w3-padding-large" style="margin-left:45%">
+
+  <!-- Menu icon to open sidebar 
+  <span class="w3-button w3-top w3-white w3-xxlarge w3-text-grey w3-hover-text-black" style="width:auto;right:0;" onclick="openNav()"><i class="fa fa-bars"></i></span>-->
+
+<!-- #BeginEditable "second social" --> 
+<header class="ww3-container w3-center w3-hide-medium w3-hide-small">
+<div class="w3-container w3-margin">
+<h4>Related Topics</h4> 
+</div>
+</header>
+
+
+ <!-- Header media this doesn't make any sence if you put contant here it will show nothing-->
+  <header class="w3-container w3-center  w3-hide-medium w3-hide-large" >
+        <div class="w3-container w3-margin">
+        
+
+
+      </div>  
+      </header>
+<!-- #EndEditable Second-->
+
+<!-- #BeginEditable "third social" --> 
+
+    <!-- Middle Column -->
+<div class="w3-row-padding">
+<div class="w3-col m12">
+<div class="container-iframe"> 
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">What is UI vs. UX design? What’s the difference? by <a href="https://twitter.com/theymakedesign?ref_src=twsrc%5Etfw">@theymakedesign</a> <a href="https://t.co/iQvGUBWcCu">https://t.co/iQvGUBWcCu</a></p>&mdash; Kumar Dahal (@kumdahal) <a href="https://twitter.com/kumdahal/status/1273724911844913152?ref_src=twsrc%5Etfw">June 18, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+</div>
+</div>
+<div class="w3-row-padding">
+<div class="w3-col m12">
+<div class="container-iframe"> 
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0" nonce="DgRSAtxz"></script>
+<div class="fb-post" data-href="https://www.facebook.com/permalink.php?story_fbid=1138917233145402&amp;id=100010814089075" data-show-text="true" data-width=""><blockquote cite="https://developers.facebook.com/permalink.php?story_fbid=1138917233145402&amp;id=100010814089075" class="fb-xfbml-parse-ignore"><p>Both UI and UX are related design disciplines, but are very different in nature. The UI design is more concerned with...</p>Posted by <a href="https://www.facebook.com/people/Kumar-Dahal/100010814089075">Kumar Dahal</a> on&nbsp;<a href="https://developers.facebook.com/permalink.php?story_fbid=1138917233145402&amp;id=100010814089075">Thursday, June 18, 2020</a></blockquote></div>
+</div>
+</div>
+</div>
+<div class="w3-row-padding">
+<div class="w3-col m12">
+<div class="container-iframe"> 
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6679492788196835328" height="600" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+</div>
+</div>
+</div>    
+<!--<div class="w3-row-padding">
+<div class="w3-col m12">
+<div class="container-iframe"> 
+ <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6656395593360961536" height="600" width="500" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>     
+</div>
+</div>
+</div>     
+<div class="w3-row-padding">
+<div class="w3-col m12">
+<div class="container-iframe"> 
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6638051224442720256" height="600" width="500" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+</div>
+</div>
+</div>
+<div class="w3-row-padding">
+<div class="w3-col m12">
+<div class="container-iframe"> 
+ <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6668249733821198336" height="541" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>     
+</div>
+</div>
+</div>
+<div class="w3-row-padding">
+<div class="w3-col m12">
+<div class="container-iframe"> 
+ <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Software for Agriculture <a href="https://t.co/Rs6xRihSlH">https://t.co/Rs6xRihSlH</a></p>&mdash; Kumar Dahal (@kumdahal) <a href="https://twitter.com/kumdahal/status/1248781949264523264?ref_src=twsrc%5Etfw">April 11, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>     
+</div>
+</div>
+</div>-->
+
+
+<!-- #EndEditable third-->
+      
+    <!-- End Middle Column -->
+  
+  
+<!-- END PAGE CONTENT -->
+</div>
+
+
+
+    <!-- Footer -->
+  <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
+    <a href="https://www.facebook.com/profile.php?id=100010814089075"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <a href="https://twitter.com/kumdahal"><i class="fa fa-twitter w3-hover-opacity"></i></a>
+    <a href="https://www.linkedin.com/in/kumar-dahal/"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
+  <!-- End footer -->
+  </footer>
+
+<!-- END PAGE CONTENT -->
+</div>
+
+
+<script src="talktokumar.js/talktokumarstylesheet.js"></script>
+<script>
+// Open and close sidebar
+function openNav() {
+  document.getElementById("mySidebar").style.width = "60%";
+  document.getElementById("mySidebar").style.display = "block";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+
+</body>
+
+<!-- #EndTemplate -->
+
+</html>
+
