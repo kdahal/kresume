@@ -51,6 +51,14 @@ object-fit:cover;
 
 
 
+<script>
+  function myFunction() {
+    const myWindow = window.open("https://www.linkedin.com/in/kumar-dahal/", "", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
+    myWindow.focus();
+  }
+  </script>
+
+
 
 
 
@@ -74,10 +82,11 @@ object-fit:cover;
     <i class="fa fa-envelope w3-xxlarge" style="color:#fb6a6a;"></i>
     <p>CONTACT</p>
   </a>
-  <a href="https://youthful-northcutt-3e66b7.netlify.app/" class="w3-bar-item w3-button w3-padding-large w3-hover-black" target="_blank" >
+  <a href="https://youthful-northcutt-3e66b7.netlify.app/" class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="myFunction()" >
     <i class="fa fa-file-pdf-o w3-xxlarge" style="color:#fb6a6a;"></i>
     <p>RESUME</p>
   </a>
+
 
 
 </nav>
@@ -1258,6 +1267,7 @@ Nepal's most known dishes are probably dal bhat (rice and lentils) and the popul
     <a href="https://twitter.com/kumdahal"><i class="fa fa-twitter w3-hover-opacity"></i></a>
     <a href="https://www.linkedin.com/in/kumar-dahal/"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
   <!-- End footer -->
+  
   </footer>
 
 <!-- END PAGE CONTENT -->
@@ -1268,20 +1278,6 @@ Nepal's most known dishes are probably dal bhat (rice and lentils) and the popul
 
 
 
-<script>
-
-var newUrl = 'https://kresume.herokuapp.com/';
-var newWindow = window.open('https://www.linkedin.com/in/kumar-dahal/','_blank');
-$.ajax({
-  type: "POST",
-  url: form_url,
-  dataType: 'json',
-  data: form_data,
-  success: function(data) {
-    newWindow.location = newUrl;
-  }
-});
-  </script>
 
 </body>
 
