@@ -1269,7 +1269,18 @@ Nepal's most known dishes are probably dal bhat (rice and lentils) and the popul
 
 
 <script>
-var newWindow = window.open('https://www.linkedin.com/in/kumar-dahal/');
+
+var newUrl = 'https://kresume.herokuapp.com/';
+var newWindow = window.open('https://www.linkedin.com/in/kumar-dahal/','_blank');
+$.ajax({
+  type: "POST",
+  url: form_url,
+  dataType: 'json',
+  data: form_data,
+  success: function(data) {
+    newWindow.location = newUrl;
+  }
+});
   </script>
 
 </body>
