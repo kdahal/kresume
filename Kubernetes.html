@@ -5,7 +5,7 @@
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Kumar Dahal</title>
+<title>Kubernetes Architecture Simplified</title>
 <link rel="shortcut icon" href="images/kumar.logo.jpg" type="image/png" />
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat"/>
@@ -88,14 +88,51 @@ a.first:hover {text-decoration:underline;}
 <!-- The blog Section -->
   <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
 
-    <h2 class="w3-wide" style = "text-transform:uppercase;">  <!-- #BeginEditable "subject" -->Kubernetes container and orchestration system <!-- #EndEditable --></h2>
+    <h2 class="w3-wide" style = "text-transform:uppercase;">  <!-- #BeginEditable "subject" -->Kubernetes Architecture Simplified  <!-- #EndEditable --></h2>
     <p class="w3-opacity"><i><!-- #BeginEditable "date" -->Published on April 7, 2022<!-- #EndEditable --></i></p> 
 
-    <!-- #BeginEditable "contant first" --> 
-    <p>Kubernetes is an open-source container-orchestration system for automating computer application deployment, scaling, and management. It was originally designed by Google and is now maintained by the Cloud Native Computing Foundation. It aims to provide a "platform for automating deployment, scaling, and operations of application containers across clusters of hosts". It works with a range of container tools, including Docker.
-    </p>
-    <p>Kubernetes is an open-source container management tools which automates container deployments, container de-scaling and container load balancing. </p>
-    <P>Coming soon....</P>
+    <!-- #BeginEditable "contant first" -->
+    <p>Kubernetes is an open-source container-orchestration system which provides automation for
+       containerized application like Docker for deployments, de-scaling, and management.
+        Originally developed by Google and currently maintained by the Cloud Native Computing 
+        Foundation (CNCF). </p>
+    <h2>What is container?</h2>
+    <p> A container is a runtime instance of images that contain three things, image, an execution environment,
+      and a standard set of instructions. It contains everything that needs to run the code within the operating system.
+       The container has all the code, all the configs, all the processes and all the networking to allow containers to talk
+        to each other.      </p>
+         <p>
+          
+          Containers like Docker have become one of the most popular concepts in IT and software industry in the last ten years.
+           The Docker Engine is comprised of runtime and packaging tools and is required to be installed on the hosts that run Docker.
+            The Docker Store is an online cloud service where users can store and share their Docker images. 
+          
+          </p>
+       <p>Docker Engine: Comprised of the runtime and packaging tool and must be installed on the hosts that run Docker. </p>
+       <p>Docker Store: An online cloud service where users can store and share their Docker images and known as Docker Hub. </p>
+         <h2>What is the difference between a container and a virtual machine?</h2>
+         <p>Containers and VM, are two distinctive technologies. Virtual Machine includes many applications and all the necessary binaries and libraries that would exist on the OS, and the entire gust operating system to interact with them. </p>
+         <p>On the other hand, a container will include the application and all its dependencies but will share the kernel with the other containers. It is not tied to any specific infrastructure other than having the Docker Engine installed on its host. It'll run an isolated process in the user space on the host operating system. This allows containers to run on almost any computer, infrastructure, or cloud. </p>
+         <h2>What is Kubernetes?</h2>
+         <p>The popularity of Docker has skyrocketed since last few years according to Datadog survey. Docker adoption among Datadog’s customers is up by 40%. In addition, Sysdig, conducted reports and the usage of Docker in median number of containers running on the single host is about 10. All this data begins an important question. </p>
+         <p>How do you manage all these running containers on a single host, and more importantly, across your whole infrastructure? This is where the idea of container orchestrators come in. Container orchestration solves the problem of deploying multiple containers either by themselves or as a part of an application across many hosts.</p>
+         <p>From a high level some of the features required are the ability to provision hosts, start containers in a host, be able to restart failing containers, could link containers together so that they can communicate with their peers, expose required containers as services to the world outside the cluster, and scaling the cluster up or down. There are a few solutions in the container orchestrations base.</p>
+         <p>Kubernetes is an open-source platform designed to automate the deployment, scaling, and operation of containers. The real goal of the platform is to foster an ecosystem of components and tools that relieve the burden of running applications in public and private clouds.</p>
+         <p>Kubernetes, often called K8S, is an open-source platform that started at Google. Internally, all the Google infrastructure relies on containers and generates more than two billion container deployments a week, all powered by an internal platform called Borg. Borg was the predecessor to Kubernetes and the lessons learned from developing Borg over the years has become the primary building blocks in the development of Kubernetes.</p>
+         <p>Simply put, using Kubernetes in your infrastructure gives a platform to schedule and run containers on clusters of your machines, whether it's on bare metal, virtual machines, in a private data center, or in the cloud. This means no more golden handcuffs and opens opportunities to have hybrid cloud scenarios for your folks migrating towards the cloud. Because Kubernetes is a container platform, you can use Docker containers to develop and build applications, and then use Kubernetes to run these applications in your infrastructure.</p>
+         <h2>Kubernetes Architecture</h2>
+         <img src="images_3/Kubernetes_Cluster_Architecture.JPG" alt="Kubernetes" style="width:100%; height:100%;"/>
+         <p>First, we have master node. </p>
+         <p>Master node is responsible for management of Kubernetes cluster, it contains three components communication, scheduling, and controllers these are the API server, scheduler, and cluster manager. The Kube API server, as the name states, allows to interact with the Kubernetes API. It’s the front end of the Kubernetes control plane. </p>
+         <p>Next the Scheduler.</p>
+         <p>The Scheduler watches created Pods, who do not have a Node design yet, and designs the Pod to run on a specific Node.</p>
+         <p>The Controller Manager runs controllers. These are background threads that run tasks in a cluster. The controller has a bunch of different roles, but that's all compiled into a single binary. The roles include, the Node Controller, who's responsible for the worker states, the Replication Controller, which is responsible for maintaining the correct number of Pods for the replicated controllers, the End-Point Controller, which joins services and Pods together. Service account and token controllers that handle access management. </p>
+          <p>Finally, there's that CD, which is a simple distributed key value stored. Kubernetes uses etcd as its database and stores all cluster data here. Some of the information that might be stored, is job scheduling info, Pod details, stage information, etc. And that's the Master Node. You interact with the Master Node using the Kubectl application, which is the command line interface for Kubernetes. Kubectl is also also called Kubectl, in some instances. Kubectl has a config file called a Kubeconfig.</p>
+          <p>We wouldn't get anywhere without Worker Nodes, though. These Worker Nodes are the Nodes where your applications operate. The Worker Nodes communicate back with the Master Node. Communication to a Worker Node is handled by the Kubelet Process. It's an agent that communicates with the API Server to see if Pods have been designed to the Nodes. It executes Pod containers via the container engine. It mounts and runs Pod volume and secrets. And finally, is aware of Pod of Node states and responds back to the Master.</p>
+          <p>This is where Docker comes in and works together with Kubelet to run containers on the Node. You could use alternate container platforms, as well, like (mumbles), but not a lot of folks do this anymore.</p>
+          <p>The next process I'll talk about is the Kube-proxy. This process is the Network Proxy and load balancer for the service, on a single Worker Node. It handles the network routing for TCP and UDP Packets, and performs connection forwarding. Alright, we're in homestretch. Having the Docker Demon allows you to run containers. Containers of an application are tightly coupled together in a Pod. By definition, a Pod is the smallest unit that can be scheduled as a deployment in Kubernetes. This group of containers share storage, Linux name space, IP addresses, amongst other things. They're also call located and share resources that are always scheduled together.</p>
+          <p>Once Pods have been deployed, and are running, the Kubelet process communicates with the Pods to check on state and health, and the Kube-proxy routes any packets to the Pods from other resources that might be wanting to communicate with them. Worker Nodes can be exposed to the internet via load balancer. And traffic coming into the Nodes is also handled by the Kube-proxy, which is how an End-user ends up talking to a Kubernetes application.</p>
+    <P><b>Next</b> will install Kubernetes and run Hello World. Coming soon....</P>
 
 
 
