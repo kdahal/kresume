@@ -89,14 +89,29 @@ a.first:hover {text-decoration:underline;}
 <!-- The blog Section -->
   <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
 
-    <h2 class="w3-wide" style = "text-transform:uppercase;">  <!-- #BeginEditable "subject" -->WHAT IS DOCKER AND containerization?<!-- #EndEditable --></h2>
+    <h2 class="w3-wide" style = "text-transform:uppercase;">  <!-- #BeginEditable "subject" -->Docker Architecture AND containerization?<!-- #EndEditable --></h2>
     <p class="w3-opacity"><i><!-- #BeginEditable "date" -->Published on jUN 4, 2022<!-- #EndEditable --></i></p> 
 
     <!-- #BeginEditable "contant first" --> 
-   <P>Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers. Containers are isolated from one another and bundle their own software, libraries and configuration files; they can communicate with each other through well-defined channels.</P>
+    <h2>What is Docker?</h2>
+   <P>
+    Docker is an open-source platform for software development solutions utilizing OS-level virtualization
+     to deliver software in packages through a container. A container is a runtime instance of images that 
+     contain three things, image, an execution environment, and a standard set of instructions.  
+   </P>
 
-   <P>Coming soon....</P>
-  
+   <P>It contains everything that needs to run the code within the operating system. The container has all the code, all the configs, all the processes and all the networking to allow containers to talk to each other. It uses enough of the operating system to run the code and all the dependencies.</P>
+   <P>These containers are designed to be portable so they can be shipped from one place to another, and Docker does the work of getting these containers to and from your systems. Docker program builds these containers and it's a social platform to help you find and share containers with others who may have already built very similar work that you can build on top of. Docker program manages, setting up the containers, monitors and if needed tears it down when no longer needed.</P>
+  <p>Docker is a client program, named Docker, it's a command you type at the terminal. It's also a server program that listens for messages from that command and manages a running Linux system. Docker has a program which builds containers from code. It takes your code along with its dependencies and bundles it up and then seals it into a container. And it's a service that distributes these containers across the internet and makes it so you can find other's work, and the right people can find your work.</p>
+  <img src="images_3/Virtual_Container.JPG" alt="Container" style="width:100%; height:100%;"/>
+  <h2>Docker Architecture?</h2>
+  <p>Now, let’s understand the Docker architecture. Docker tries to solve the problems such as an application works in developer’s laptop but not in the production. There are many reasons why this kind of problems persist, but main common reason is that it may be due to the difference in computing environments between dev, test, and prod or something else. </p>
+<p>Docker has three different parts registry, Docker host, and Docker Client. </p>
+<img src="images_3/Docker_Architecture.JPG" alt="Container" style="width:100%; height:100%;"/>
+<p>Frist is Registry. Registry is one big database that contains a lot of images. Image is nothing more than just a pre-configured operating system with all the services on top of that, including the application that it is supposed to run. Images can be used on its own to build a container or customized to add additional elements to extend the current configuration. </p>
+<p>Second part of Docker is the Docker host. The Docker host has a component called the Docker daemon. The daemon is an application that runs behind the curtains, and it gets images and creates containers based on images. Image is a blueprint of a certain application that needs to run while a container is an instance, a running instance of that image. An image from the registry or even images that we are creating locally and then create a container that will be active and will run our application. </p>
+<p>The third part of Docker is the Docker client. And the Docker client is nothing more than just a simple application used to communicate with the Docker daemon and with the Docker registry. So we can use that to start to build images. We can use that to run images. We can use that to pull and push images from the registry. When you would install Docker on your machine, you’re, most of the time you would install both the client and the host.</p>
+
 
 
 <!-- #EndEditable -->
@@ -120,11 +135,11 @@ For more information, I can be reached at
     </div>
     
     <div class="w3-third w3-margin-bottom">
-      <a href="folio_software_development_21.html" style="text-decoration: none;">
+      <a href="Kubernetes.html" style="text-decoration: none;">
       <div class="w3-card-4">   
-        <img src="images/adeolu-eletu-unRkg2jH1j0-unsplash.jpg" alt="John" style="width:100%; height: 200px;"/>
+        <img src="images_3/K8_Cluster.JPG" alt="John" style="width:100%; height: 200px;"/>
         <div class="w3-container">
-          <h3>FOLIO SOLUTION FOR ENTERPRISE</h3>
+          <h3 style = "text-transform:uppercase;">Kubernetes Architecture</h3>
           <p class="w3-opacity">Kumar Dahal</p>
         </div>
       </div> 
@@ -136,7 +151,7 @@ For more information, I can be reached at
       <div class="w3-card-4">
         <img src="images/marilia-castelli-jX_7oDSo9_w-unsplash.jpg" alt="Mike" style="width:100%; height: 200px;"/>
         <div class="w3-container">
-          <h3>WHO STANDS THE BEST PRODUCT</h3>
+          <h3 style = "text-transform:uppercase;">WHO STANDS THE BEST PRODUCT</h3>
           <p class="w3-opacity">Kumar Dahal</p>
         </div>
       </div>
@@ -148,7 +163,7 @@ For more information, I can be reached at
       <div class="w3-card-4">
         <img src="new_image/jordan-graff-9TBgvuPAe0Y-unsplash.jpg" alt="Jane" style="width:100%; height: 200px;"/>
         <div class="w3-container">
-          <h3>INCREASING TRANSIT SAFETY</h3>
+          <h3 style = "text-transform:uppercase;">INCREASING TRANSIT SAFETY</h3>
           <p class="w3-opacity">Chetu</p>
         </div>
       </div>
