@@ -1,0 +1,35 @@
+name: Tag and Release
+permissions:
+  contents: write
+on:
+  
+  push:
+    branches: [ "main" ]  # Replace with the name of your main branch
+
+jobs:
+  tag_and_release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v4
+
+    - name: Set up Git
+      run: |
+        git config --global user.name "kdahal"
+        git config --global user.email "kumar.dahal@outlook.com"
+
+    - name: Generate release tag
+      id: TAG
+      run: |
+            echo "::set-output name=release_tag::UserBuild_$(date +"%Y.%m.%d_%H-%M")"
+    - name: Release user firmware
+      uses: softprops/action-gh-release@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+            tag_name: ${{ steps.tag.outputs.release_tag }}
+            files: |
+              file1
+              file2
+    - name: Deploy or Notify (optional)
+      run: |
