@@ -1,0 +1,55 @@
+name: Basic Workflow Dispatch Example
+permissions:
+  contents: write
+on:
+  push:
+    branches:
+        - develop
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'The environment to deploy to'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - production
+          - qa
+          - dev
+      notify:
+        description: 'Should workflow notify team?'
+        required: true
+        type: boolean
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Deploy
+        run: echo "Deploying to ${{ github.event.inputs.environment }} environment"
+
+      - name: Notify
+        if: ${{ github.event.inputs.notify }}
+        run: echo "Notifying of ${{ github.event.inputs.environment }} deployment"
+      - name: Set up Git
+        run: |
+          git config --global user.name "kdahal"
+          git config --global user.email "kumar.dahal@outlook.com"
+      - name: Generate release tag
+        id: TAG
+        run: |
+            echo "::set-output name=release_tag::UserBuild_$(date +"%Y.%m.%d_%H-%M")"
+      - name: Release user firmware
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+            tag_name: ${{ steps.tag.outputs.release_tag }}
+            files: |
+              file1
+              file2
+      - name: Deploy or Notify (optional)
+        run: |
