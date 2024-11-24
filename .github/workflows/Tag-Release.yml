@@ -2,7 +2,7 @@ name: Tag and Release
 
 on:
   push:
-    branches: [ "main" ]  # Replace with the name of your main branch
+    branches: [ "master" ]  # Replace with the name of your main branch
 
 jobs:
   tag_and_release:
