@@ -44,7 +44,7 @@ function showSlides() {
 
 //index page second //
 // Below this is for the page change in the middel of grid)
-filterSelection("cloud")
+filterSelection("MLOps")
 function filterSelection(c) {
   var x, i;
   x = document.getElementsByClassName("column");
