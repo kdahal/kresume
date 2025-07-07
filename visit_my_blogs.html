@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kumar Dahal's Blog - Insights on AI/ML, Multi-Cloud, DevSecOps, and Cybersecurity">
+  <title>Kumar Dahal - Tech Blog</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <!-- EmailJS CDN -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <style>
+    /* Parallax and Slider */
+    .hero-slider {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slide.active {
+      opacity: 1;
+    }
+    @media (max-width: 1024px) {
+      .hero-slider {
+        min-height: 60vh;
+      }
+    }
+
+    /* Blog Post Card */
+    .blog-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .blog-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 640px) {
+      .blog-card img {
+        height: 30vh;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans">
+  <!-- Initialize EmailJS -->
+  <script>
+    (function(){
+      emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS user ID
+    })();
+  </script>
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full bg-gray-800 bg-opacity-90 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="#home" class="text-2xl font-bold text-teal-400">Kumar Dahal Blog</a>
+      <div class="hidden md:flex space-x-6">
+        <a href="#home" class="hover:text-teal-400 transition">Home</a>
+        <a href="#posts" class="hover:text-teal-400 transition">Posts</a>
+        <a href="#categories" class="hover:text-teal-400 transition">Categories</a>
+        <a href="#contact" class="hover:text-teal-400 transition">Contact</a>
+      </div>
+      <button id="menu-toggle" class="md:hidden text-teal-400">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+      <a href="#home" class="block px-4 py-2 hover:bg-gray-700">Home</a>
+      <a href="#posts" class="block px-4 py-2 hover:bg-gray-700">Posts</a>
+      <a href="#categories" class="block px-4 py-2 hover:bg-gray-700">Categories</a>
+      <a href="#contact" class="block px-4 py-2 hover:bg-gray-700">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section with Sliding Parallax -->
+  <section id="home" class="hero-slider">
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7150?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')"></div>
+    <div class="flex items-center justify-center min-h-screen bg-black bg-opacity-50">
+      <div class="text-center">
+        <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 animate-fade-in">Kumar Dahal's Tech Blog</h1>
+        <p class="text-xl md:text-3xl text-teal-300 mb-8 animate-fade-in">Explore insights on AI/ML, Cloud, and Cybersecurity.</p>
+        <a href="#posts" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition animate-fade-in">Read Latest Posts</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Posts Section -->
+  <section id="posts" class="py-16 bg-gray-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center text-teal-400 mb-12 animate-fade-in">Featured Blog Posts</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg">
+          <a href="Securing_MLOps_Pipelines_with_DevSecOps_Practices.html" target="_blank">
+            <img src="images_3/mlops.JPG" alt="Securing MLOps" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Securing MLOps Pipelines with DevSecOps Practices</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Transformative power of MLOps with secure DevSecOps practices.</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg">
+          <a href="Cloud_migration.html" target="_blank">
+            <img src="images_3/Cloud_Migration.jpg" alt="Cloud Migration" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Cloud Migration Plan: A Comprehensive Guide</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Step-by-step approach to seamless cloud adoption.</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg">
+          <a href="Explainable AI.html" target="_blank">
+            <img src="images_3/explainable_ai_02.JPG" alt="Explainable AI" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Explainable AI (XAI)</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Making AI decisions transparent and trustworthy.</p>
+        </div>
+      </div>
+      <p class="text-center mt-8"><a href="https://www.linkedin.com/in/kumar-dahal/recent-activity/articles/" target="_blank" class="text-teal-400 hover:underline animate-fade-in">View All My Articles</a></p>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section id="categories" class="py-16 bg-gray-900">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center text-teal-400 mb-12 animate-fade-in">Explore by Category</h2>
+      <div class="flex flex-wrap justify-center gap-4 mb-8">
+        <button class="pagination-btn" onclick="filterSelection('all')">All</button>
+        <button class="pagination-btn" onclick="filterSelection('mlops')">MLOps</button>
+        <button class="pagination-btn" onclick="filterSelection('cloud')">Cloud</button>
+        <button class="pagination-btn" onclick="filterSelection('tech')">Tech</button>
+        <button class="pagination-btn" onclick="filterSelection('nature')">Nature</button>
+        <button class="pagination-btn" onclick="filterSelection('cars')">Cars</button>
+        <button class="pagination-btn" onclick="filterSelection('people')">People</button>
+        <button class="pagination-btn" onclick="filterSelection('profile')">Profile</button>
+      </div>
+      <div id="post-container" class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- Nature Grid -->
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="nature">
+          <a href="cicd_jenkins.html" target="_blank">
+            <img src="images/Jenkins_Small.png" alt="CI/CD using Jenkins" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">CI/CD using Jenkins Delivery</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="nature">
+          <a href="puppet.html" target="_blank">
+            <img src="images/Puppet_small.png" alt="Puppet" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Puppet</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="nature">
+          <a href="design_API.html" target="_blank">
+            <img src="images/rsz_api.jpg" alt="Creating your own API" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Creating your own API</h3>
+          </a>
+          <p class="mt-2 text-gray-300">When creating a new API there are a few things needs to be comprehended...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="nature">
+          <a href="kumar_dahal_Seeking.html" target="_blank">
+            <img src="new_image/profile.jpg" alt="Professional Objective" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Professional Objective</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Over 20 years designed, developed, and delivered software solution...</p>
+        </div>
+        <!-- Cars Grid -->
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="cars">
+          <a href="folio_software_development_21.html" target="_blank">
+            <img src="new_image/Foliosolution.jpg" alt="Folio Solution for Enterprise" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Folio Solution for Enterprise</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Designed and developed the new solution from the scratch to better manage company’s entire invoice system...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="cars">
+          <a href="transportation_truck_software_24.html" target="_blank">
+            <img src="new_image/Transportation.jpg" alt="Transportation Solution System" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Transportation Solution System</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Maintain responsibility for all activities related to design, implementation, troubleshooting...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="cars">
+          <a href="drone_agriculture_20.html" target="_blank">
+            <img src="new_image/agriculture.jpg" alt="Agriculture Software" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Agriculture Software</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Instructed, inspire and designed agriculture custom software suites to help farmers...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="cars">
+          <a href="e-commerce_25.html" target="_blank">
+            <img src="new_image/ecommerce.jpg" alt="E-Commerce Platform" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">E-Commerce Platform</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Developed and managed e-commerce business, maintained retail supply relationship...</p>
+        </div>
+        <!-- People Grid -->
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="people">
+          <a href="product_owner_22.html" target="_blank">
+            <img src="new_image/you-x-ventures-m2TU2gfqSeE-unsplash.jpg" alt="Who stands the best products owner?" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Who stands the best products owner?</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Product owner is a role in agile scrum development team who represents the clients...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="people">
+          <a href="transportation_software_development_23.html" target="_blank">
+            <img src="new_image/hanson-lu-HiDVTFBhwTY-unsplash.jpg" alt="Increasing Transit Safety" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Increasing Transit Safety</h3>
+          </a>
+          <p class="mt-2 text-gray-300">The Department of Transportation (DOT) has said bringing Vehicle-to-Vehicle (V2V) communication...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="people">
+          <img src="new_image/products.jpg" alt="Product Design" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+          <h3 class="text-xl font-semibold text-orange-500">Product Design</h3>
+          <p class="mt-2 text-gray-300">Designed and developed the unique product, coordinated various support functions...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="people">
+          <img src="new_image/Event.jpg" alt="Event Organizer" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+          <h3 class="text-xl font-semibold text-orange-500">Event Organizer</h3>
+          <p class="mt-2 text-gray-300">Charged with full creative and operational management and supervision of entire event cast...</p>
+        </div>
+        <!-- Profile Grid -->
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="profile">
+          <a href="https://visucraft.com/" target="_blank">
+            <img src="new_image/visucraft.jpg" alt="Visu Craft" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Visu Craft</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Manage Business, directed and manage all organizational operations...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="profile">
+          <a href="https://www.visutravel.com/index.htm" target="_blank">
+            <img src="new_image/visutravel.jpg" alt="Visu Travel" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Visu Travel</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Managed a group of 8 travel professionals, arranging domestic and international travel...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="profile">
+          <a href="https://www.visutravel.com/602563263" target="_blank">
+            <img src="new_image/dengerous_mountain.jpg" alt="Most Dangerous Mountains" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Most Dangerous Mountains</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Wrote a blogs on Nepal's mountains. Mt. Everest is the part of the Mhalangur Himalayan Range...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="profile">
+          <a href="https://www.visutravel.com/1258454" target="_blank">
+            <img src="new_image/TravelBolog.jpg" alt="Food & Culinary" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Food & Culinary</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Nepal's most known dishes are probably dal bhat (rice and lentils) and the popular momos...</p>
+        </div>
+        <!-- Tech Grid -->
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="tech">
+          <a href="Kubernetes.html" target="_blank">
+            <img src="new_image/rsz_kubernetes.jpg" alt="Kubernetes Cluster Architecture" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Kubernetes Cluster Architecture</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Kubernetes is an open-source container-orchestration system for automating computer application...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="tech">
+          <a href="docker.html" target="_blank">
+            <img src="images/rsz_docker.jpg" alt="Docker Architecture & containerization" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Docker Architecture & containerization?</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Docker is a set of platform as a service products that use OS-level virtualization...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="tech">
+          <a href="dl-ml.html" target="_blank">
+            <img src="images_3/DL_VS_ML_3.JPG" alt="Comparing Deep Learning and Machine Learning" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Comparing Deep Learning and Machine Learning</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Defining Deep Learning and comparing with machine learning provides us the difference...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="tech">
+          <a href="Explainable AI.html" target="_blank">
+            <img src="images_3/explainable_ai_02.JPG" alt="Explainable AI, or (XAI)" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Explainable AI, or (XAI)</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Explainable Artificial Intelligent, or XAI is widely used fundamental concepts...</p>
+        </div>
+        <!-- Cloud Grid -->
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="cloud">
+          <a href="Cloud_migration.html" target="_blank">
+            <img src="images_3/Cloud_Migration.jpg" alt="Cloud Migration Plan: A Comprehensive Guide" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Cloud Migration Plan: A Comprehensive Guide</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Cloud migration is an increasingly popular way for businesses to move their data...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="cloud">
+          <a href="Cloud_benefits.html" target="_blank">
+            <img src="images_3/Benefits_Cloud.jpg" alt="Exploring the Benefits of Public, Private, Hybrid, Multicloud and Polycloud" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Exploring the Benefits of Public, Private, Hybrid, Multicloud and Polycloud</h3>
+          </a>
+          <p class="mt-2 text-gray-300">The cloud has revolutionized the way businesses operate...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="cloud">
+          <a href="Neural_networks.html" target="_blank">
+            <img src="images_3/Neural_Networks_Overview.jpg" alt="Neural Networks Overview" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Neural Networks Overview</h3>
+          </a>
+          <p class="mt-2 text-gray-300">An artificial neural network (ANN) is a type of artificial intelligence...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="cloud">
+          <a href="footprinting.html" target="_blank">
+            <img src="images_3/explainable_ai_01.JPG" alt="What is Footprinting & Countermeasures" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">What is Footprinting & Countermeasures</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Footprinting is a type of cyber attack that involves gathering information...</p>
+        </div>
+        <!-- MLOps Grid -->
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="mlops">
+          <a href="Securing_MLOps_Pipelines_with_DevSecOps_Practices.html" target="_blank">
+            <img src="images_3/mlops.JPG" alt="Securing MLOps Pipelines with DevSecOps Practices" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Securing MLOps Pipelines with DevSecOps Practices</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Having spent the last decade deeply embedded in the evolving landscape of software...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="mlops">
+          <a href="ML-Workflows-Kubernetes-TensorFlow.html" target="_blank">
+            <img src="images_3/ml-flow3.jpg" alt="Automating ML Workflows with Kubernetes and TensorFlow" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Automating ML Workflows with Kubernetes and TensorFlow</h3>
+          </a>
+          <p class="mt-2 text-gray-300">The promise of Artificial Intelligence lies not just in groundbreaking models...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="mlops">
+          <a href="Optimizing _AWS_Networking_Terraform_IaC.html" target="_blank">
+            <img src="images_3/network-small.JPG" alt="Optimizing AWS Networking with Terraform IaC" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Optimizing AWS Networking with Terraform IaC</h3>
+          </a>
+          <p class="mt-2 text-gray-300">In today's cloud-first world, Amazon Web Services (AWS) provides an unparalleled breadth...</p>
+        </div>
+        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg" data-category="mlops">
+          <a href="Microservices-for-In-Flight-Connectivity.html" target="_blank">
+            <img src="images_3/in-flight-small.JPG" alt="Building Scalable Microservices for In-Flight Connectivity" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Building Scalable Microservices for In-Flight Connectivity</h3>
+          </a>
+          <p class="mt-2 text-gray-300">In-flight connectivity (IFC) has transformed from a luxury amenity to a passenger expectation...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-gray-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center text-teal-400 mb-12 animate-fade-in">Contact Me</h2>
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-8 md:mb-0">
+          <img src="new_image/visu_craft_web.JPG" alt="Collaboration" class="rounded-lg shadow-lg w-full">
+        </div>
+        <div class="md:w-1/2 md:pl-8">
+          <div class="mb-6">
+            <p><i class="fa fa-map-marker text-2xl text-teal-400 mr-2"></i> Aurora, Colorado US</p>
+            <p><i class="fa fa-phone text-2xl text-teal-400 mr-2"></i> Phone: +00 720-352-3978</p>
+            <p><i class="fa fa-envelope text-2xl text-teal-400 mr-2"></i> Email: kumar.dahal@outlook.com</p>
+          </div>
+          <form id="contact-form" class="space-y-6">
+            <div>
+              <label for="name" class="block text-lg font-medium">Name (Optional)</label>
+              <input type="text" id="name" name="name" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400">
+            </div>
+            <div>
+              <label for="email" class="block text-lg font-medium">Email Address</label>
+              <input type="email" id="email" name="email" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400" required>
+            </div>
+            <div>
+              <label for="message" class="block text-lg font-medium">Message</label>
+              <textarea id="message" name="message" rows="5" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400" required></textarea>
+            </div>
+            <button type="submit" class="w-full bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-3 rounded-lg transition">Send Message</button>
+            <p id="form-message" class="mt-4 text-center text-lg hidden"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 py-8">
+    <div class="container mx-auto px-4 text-center">
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fab fa-linkedin text-2xl"></i></a>
+        <a href="https://twitter.com/kumdahal" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fab fa-twitter text-2xl"></i></a>
+        <a href="https://kdahal.github.io/kresume/index.html" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fas fa-file-alt text-2xl"></i></a>
+      </div>
+      <p class="text-lg">Innovate. Secure. Scale.</p>
+      <p class="text-md mt-2">© 2025 Kumar Dahal. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // GSAP Animations
+    gsap.from('.animate-fade-in', { opacity: 0, y: 50, duration: 1, stagger: 0.2, ease: 'power2.out' });
+
+    // Mobile Menu Toggle
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+
+    // Hero Slider
+    let heroSlideIndex = 0;
+    const heroSlides = document.querySelectorAll('#home .slide');
+    heroSlides[heroSlideIndex].classList.add('active');
+    setInterval(() => {
+      heroSlides[heroSlideIndex].classList.remove('active');
+      heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
+      heroSlides[heroSlideIndex].classList.add('active');
+    }, 5000);
+
+    // Categories Filter
+    function filterSelection(category) {
+      const posts = document.querySelectorAll('#post-container .blog-card');
+      posts.forEach(post => {
+        if (category === 'all' || post.getAttribute('data-category') === category) {
+          post.style.display = 'block';
+        } else {
+          post.style.display = 'none';
+        }
+      });
+      // Update active pagination button
+      document.querySelectorAll('.pagination-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelector(`.pagination-btn[onclick*="filterSelection('${category}')"]`)?.classList.add('active');
+    }
+
+    // Form Submission
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formMessage = document.getElementById('form-message');
+      const submitButton = this.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+
+      emailjs.send('YOUR_USER_ID', 'YOUR_TEMPLATE_ID', {
+        from_name: this.name.value,
+        from_email: this.email.value,
+        message: this.message.value
+      })
+      .then(() => {
+        formMessage.classList.remove('hidden', 'text-red-500');
+        formMessage.classList.add('text-green-500');
+        formMessage.textContent = 'Message sent successfully!';
+        this.reset();
+      })
+      .catch(error => {
+        formMessage.classList.remove('hidden', 'text-green-500');
+        formMessage.classList.add('text-red-500');
+        formMessage.textContent = 'Error sending message. Please try again.';
+      })
+      .finally(() => {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send Message';
+      });
+    });
+  </script>
+</body>
+</html>

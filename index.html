@@ -1,1198 +1,560 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Kumar Dahal</title>
-<link rel="shortcut icon" href="images/kumar.logo.jpg" type="image/png" />
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-<link rel="stylesheet" href="talktokumar.css/talktokumarstylesheet.css"/>
-<!--<link rel="stylesheet" href="talktokumar.css/talktokumar.css"/>-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kumar Dahal - Principal Solutions Architect specializing in AI/ML, Multi-Cloud, DevSecOps, and Cybersecurity">
+  <title>Kumar Dahal - Software Architect & Innovator</title>
+ <link rel="shortcut icon" href="images/kumar.logo.jpg" type="image/png" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <!-- EmailJS CDN -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <style>
+    /* Parallax and Slider */
+    .hero-slider {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slide.active {
+      opacity: 1;
+    }
+    @media (max-width: 1024px) {
+      .hero-slider {
+        min-height: 60vh;
+      }
+    }
 
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<style>
-.example1 {
-  background-image: url(images/background-color.png), url(images/background-color.png);
-  background-position: right bottom, left top;
-  background-repeat: no-repeat, repeat;
-  /* if you are looking for seperate the colum edit padding to 15px */
-  padding: 0;
-}
+    /* Flip Box Styles */
+    .flip-box {
+      perspective: 1000px;
+      height: 300px;
+    }
+    .flip-box-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s ease-in-out;
+      transform-style: preserve-3d;
+    }
+    .flip-box:hover .flip-box-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-box-front, .flip-box-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .flip-box-front {
+      background-color: #1f2937; /* Tailwind bg-gray-800 */
+    }
+    .flip-box-back {
+      background-color: #1e40af; /* Tailwind bg-blue-800 */
+      transform: rotateY(180deg);
+    }
+    .flip-box-back img {
+      object-fit: cover;
+      max-height: 120px;
+      border-radius: 4px;
+    }
+    @media (max-width: 640px) {
+      .flip-box {
+        height: 250px;
+      }
+      .flip-box-back img {
+        max-height: 100px;
+      }
+    }
 
+    /* Skill Card Hover */
+    .skill-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .skill-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
 
-
-img  {
-object-fit:cover;
-	
-}
-
-
-.mySlides2 {display:none}
-.w3-tag, .fa {cursor:pointer}
-.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
-
-.bgimg-5 {
-  background-position: center;
-  background-size: cover;
-  background-image: url("new_image/slideshow_3.jpg");
-  min-height: 75%;
-}
-
-
-
-</style>
+    /* Photo Grid */
+    .photo-grid {
+      margin: 0 -16px;
+    }
+    .photo-grid img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+    /* .photo-grid img:hover {
+      transform: scale(1.05);
+    } */
+    @media (max-width: 640px) {
+      .photo-grid {
+        margin: 0;
+      }
+    }
+  </style>
 </head>
-
-<!--contant starts from here -->
-<body class=" example1 w3-black">
-<!-- First Parallax Image with Logo Text -->
-
-
-
-
-<script>
-  function myFunction() {
-    const myWindow = window.open("https://www.linkedin.com/in/kumar-dahal/", "", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
-    myWindow.focus();
-  }
+<body class="bg-gray-900 text-gray-100 font-sans">
+  <!-- Initialize EmailJS -->
+  <script>
+    (function(){
+      emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS user ID
+    })();
   </script>
 
-
-<!-- Icon Bar (Sidebar - hidden on small screens) -->
-<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
-  <!-- Avatar image in top left corner -->
-  <!--<img src="images/Kumar_2.png" style="width:100%"/>-->
-  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
-    <i class="fa fa-home w3-xxlarge" style="color:#fb6a6a;"></i>
-    <p>HOME</p>
-  </a>
-  <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-user w3-xxlarge" style="color:#fb6a6a;"></i>
-    <p>ABOUT</p>
-  </a>
-  <a href="#photos" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-eye w3-xxlarge" style="color:#fb6a6a;"></i>
-    <p>PHOTOS</p>
-  </a>
-  <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-envelope w3-xxlarge" style="color:#fb6a6a;"></i>
-    <p>CONTACT</p>
-  </a>
-  <a href="Solution_Engineering_Architect.pdf" class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="myFunction()" >
-    <i class="fa fa-file-pdf-o w3-xxlarge" style="color:#fb6a6a;"></i>
-    <p>RESUME</p>
-  </a>
-
-
-
-</nav>
-
-<!-- Navbar on small screens (Hidden on medium and large screens) -->
-<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
-  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-    <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
-    <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
-    <a href="#photos" class="w3-bar-item w3-button" style="width:25% !important">PHOTOS</a>
-    <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
-  </div>
-</div>
-
-
-
-<!-- Page Content -->
-<div class="w3-padding-large" id="main">
-
-  <!-- Header/Home -->
-  <header id="" class=" example1 w3-container w3-center">
-    <h1 ><span class="w3-hide-small">Hi! I'm</span> Kumar Dahal</h1>
-    <img class="bottom pic-change2 w3-hide-medium w3-hide-small w3-image w3-card-4" src="images/Kumar_2.png" alt="boy" width="900" height="700" />
-    <img class="tom pic-change1 w3-hide-medium w3-hide-small w3-image w3-card-4" src="images/Kumar_2.png" alt="boy" width="900" height="700"/>
-    <img src="images/Kumar_2.png" alt="boy" class="w3-image w3-card-4 w3-hide-large" width="992" height="1108"/>
-    <h4 ><span class="w3-hide-small"></span> Driving Scalable AI/ML & Cloud Transformations | Principal Solutions Architect</h4>
-  </header>
-
-<!-- About Section is the contaner -->
-<div class="w3-content w3-margin-top w3-padding-64 w3-text-light-grey">
-<!-- End of About Me one-->
-
-  <!-- moreaboutme -->
-   <div class="w3-padding-64 w3-content" id="about"> 
-            <div class=" w3-padding-64">
-      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">A Little Bit About Me!</span>
-    </div>   
-<!-- Start from here -->
-<p class="w3-container">Hello there! It's lovely to share a little about my professional journey with you. I'm someone who truly enjoys bringing big ideas to life by blending the best of technology with practical business needs. Over the past decade, I've had the wonderful opportunity to dive deep into the world of AI and Machine Learning, always looking for innovative ways to make systems smarter and more efficient.
-</p>
-<p class="w3-container">I find real joy in taking complex challenges and breaking them down into clear, manageable solutions. Whether it's crafting scalable architectures in the cloud (Azure, AWS, GCP), streamlining operations with DevOps, or ensuring everything is secure with DevSecOps, my passion lies in building reliable systems that truly make a difference. I've been fortunate to work with incredible teams, guiding projects from initial concept all the way to successful deployment, and always learning along the way.
-</p>
-<p class="w3-container">What truly lights me up is the chance to collaborate, share insights, and help others grow. I believe that the best solutions come from working together, understanding diverse perspectives, and always keeping the end-user's needs at heart. Beyond the technical bits, I'm simply someone who loves to solve problems, enjoys a good challenge, and is always eager to explore what's next in the ever-evolving landscape of technology.
-</p>
-   
-   </div>
-  <!-- Endes moreaboutme -->  
-<br>
-<!--
-<div id="container">
-<div id="monalisa"></div>
-</div>-->
-
-
-    <div class=" w3-padding-64">
-      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Technical Expertise</span>
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full bg-gray-800 bg-opacity-90 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="#home" class="text-2xl font-bold text-teal-400">Kumar Dahal</a>
+      <div class="hidden md:flex space-x-6">
+        <a href="#home" class="hover:text-teal-400 transition">Home</a>
+        <a href="#about" class="hover:text-teal-400 transition">About</a>
+        <a href="#experience" class="hover:text-teal-400 transition">Experience</a>
+        <a href="#skills" class="hover:text-teal-400 transition">Skills</a>
+        <a href="#photos" class="hover:text-teal-400 transition">Photos</a>
+        <a href="#blog" class="hover:text-teal-400 transition">Blog</a>
+        <a href="#contact" class="hover:text-teal-400 transition">Contact</a>
+      </div>
+      <button id="menu-toggle" class="md:hidden text-teal-400">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
-    
-    
-<!--First expereince row-->  
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+      <a href="#home" class="block px-4 py-2 hover:bg-gray-700">Home</a>
+      <a href="#about" class="block px-4 py-2 hover:bg-gray-700">About</a>
+      <a href="#experience" class="block px-4 py-2 hover:bg-gray-700">Experience</a>
+      <a href="#skills" class="block px-4 py-2 hover:bg-gray-700">Skills</a>
+      <a href="#photos" class="block px-4 py-2 hover:bg-gray-700">Photos</a>
+      <a href="#blog" class="block px-4 py-2 hover:bg-gray-700">Blog</a>
+      <a href="#contact" class="block px-4 py-2 hover:bg-gray-700">Contact</a>
+    </div>
+  </nav>
 
-<div class="w3-row-padding w3-margin-bottom">
-  <div class="w3-quarter">
-    <div class="w3-container w3-padding-16">
-      <div class="w3-clear"></div>
-      <button onclick="document.getElementById('AI').style.display='block'" class="button-ne" style="vertical-align:middle"><span>Artificial Intelligence</span></button>
-    </div>
-  </div>
-  <div class="w3-quarter">
-    <div class="w3-container w3-padding-16">
-      <div class="w3-clear"></div>
-      <button onclick="document.getElementById('ML').style.display='block'" class="button-ne" style="vertical-align:middle"><span>Machine Learning</span></button>
-    </div>
-  </div>
-  <div class="w3-quarter">
-    <div class="w3-container w3-padding-16">
-      <div class="w3-clear"></div>
-      <button onclick="document.getElementById('Multi-Cloud').style.display='block'" class="button-ne" style="vertical-align:middle"><span>Cloud Azure AWS GCP</span></button>
-    </div>
-  </div>
-  <div class="w3-quarter">
-    <div class="w3-container w3-padding-16">
-      <div class="w3-clear"></div>
-      <button onclick="document.getElementById('Cloud-Native').style.display='block'" class="button-ne" style="vertical-align:middle"><span>Clound - Native</span></button>
-    </div>
-  </div>
-</div> 
- <!--<script src='https://kit.fontawesome.com/a076d05399.js'></script>-->    
-<div class="w3-row-padding w3-margin-bottom">
-    <div class="w3-quarter">
-      <div class="w3-container w3-padding-16">
-        <div class="w3-clear"></div>
-        <button onclick="document.getElementById('ticketModal').style.display='block'" class="button-ne" style="vertical-align:middle"><span>DevOps Engineer</span></button>
+  <!-- Hero Section with Sliding Parallax -->
+  <section id="home" class="hero-slider">
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7150?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')"></div>
+    <div class="flex items-center justify-center min-h-screen bg-black bg-opacity-50">
+      <div class="text-center">
+        <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 animate-fade-in">Kumar Dahal</h1>
+        <p class="text-xl md:text-3xl text-teal-300 mb-8 animate-fade-in">Crafting secure, scalable, and innovative software solutions for a connected world.</p>
+        <a href="#contact" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition animate-fade-in">Get in Touch</a>
       </div>
     </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-padding-16">
-        <div class="w3-clear"></div>
-        <button onclick="document.getElementById('business').style.display='block'" class="button-ne" style="vertical-align:middle"><span>Cyber Security</span></button>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 bg-gray-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center text-teal-400 mb-8">A Little Bit About Me!</h2>
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-8 md:mb-0">
+          <img src="images/Kumar_2.png" alt="Tech Innovation" class="rounded-lg shadow-lg w-full">
+        </div>
+        <div class="md:w-1/2 md:pl-8">
+          <p class="text-lg mb-4">Hello there! It's lovely to share a little about my professional journey with you. I'm someone who truly enjoys bringing big ideas to life by blending the best of technology with practical business needs. Over the past decade, I've had the wonderful opportunity to dive deep into the world of AI and Machine Learning, always looking for innovative ways to make systems smarter and more efficient.</p>
+          <p class="text-lg mb-4">I find real joy in taking complex challenges and breaking them down into clear, manageable solutions. Whether it's crafting scalable architectures in the cloud (Azure, AWS, GCP), streamlining operations with DevOps, or ensuring everything is secure with DevSecOps, my passion lies in building reliable systems that truly make a difference. I've been fortunate to work with incredible teams, guiding projects from initial concept all the way to successful deployment, and always learning along the way.</p>
+          <p class="text-lg">What truly lights me up is the chance to collaborate, share insights, and help others grow. I believe that the best solutions come from working together, understanding diverse perspectives, and always keeping the end-user's needs at heart. Beyond the technical bits, I'm simply someone who loves to solve problems, enjoys a good challenge, and is always eager to explore what's next in the ever-evolving landscape of technology.</p>
+        </div>
       </div>
     </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-padding-16">
-        <div class="w3-clear"></div>
-        <button onclick="document.getElementById('sales').style.display='block'" class="button-ne" style="vertical-align:middle"><span>Methodology  and Tools</span></button>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="py-16 bg-gray-900">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center text-teal-400 mb-12 animate-fade-in">Professional Experience</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+              <h3 class="text-xl font-semibold text-orange-500">Technical Solutions Architect | The Cadmus Group</h3>
+              <p class="mt-2 text-gray-300">Apr 2023 – Present (2 years 3 months)</p>
+              <i class="fa fa-institution text-4xl text-teal-400 mt-4"></i>
+            </div>
+            <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Government Contract" class="w-full h-40 object-cover rounded-lg mb-4">
+              <p class="text-gray-300">Architected ETL solutions for Nutrition Accuracy Clearinghouse, improving data accuracy by 30%. Led AI/ML deployments on Azure, boosting client satisfaction by 20%.</p>
+              <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
+            </div>
+          </div>
+        </div>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+              <h3 class="text-xl font-semibold text-orange-500">DevSecOps Automation | ASRC Federal</h3>
+              <p class="mt-2 text-gray-300">Mar 2021 – Apr 2023 (2 years 2 months)</p>
+              <i class="fa fa-cloud text-4xl text-teal-400 mt-4"></i>
+            </div>
+            <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+              <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7150?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Government Contract" class="w-full h-40 object-cover rounded-lg mb-4">
+              <p class="text-gray-300">Designed CI/CD pipelines, reducing delivery cycles by 40%. Migrated apps to Azure, saving 20% in costs, and optimized Kubernetes for $15k/month savings.</p>
+              <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
+            </div>
+          </div>
+        </div>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+              <h3 class="text-xl font-semibold text-orange-500">Multi-Cloud & DevOps Engineer | Hotel Engine & Chetu Inc.</h3>
+              <p class="mt-2 text-gray-300">Jan 2017 – Mar 2020 (3 years 4 months)</p>
+              <i class="fa fa-hotel text-4xl text-teal-400 mt-4"></i>
+            </div>
+            <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Hospitality" class="w-full h-40 object-cover rounded-lg mb-4">
+              <p class="text-gray-300">Developed AI/ML automation with SageMaker, cutting costs by 35%. Pioneered GIS agriculture app with drone integration using Kubernetes.</p>
+              <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
+            </div>
+          </div>
+        </div>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+              <h3 class="text-xl font-semibold text-orange-500">Cloud Security & DevOps Engineer | Integra Telecom & Electronics Row</h3>
+              <p class="mt-2 text-gray-300">Dec 2009 – Dec 2016 (7 years 5 months)</p>
+              <i class="fa fa-500px text-4xl text-teal-400 mt-4"></i>
+            </div>
+            <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Telecommunication" class="w-full h-40 object-cover rounded-lg mb-4">
+              <p class="text-gray-300">Led cloud cybersecurity efforts and developed e-commerce platforms, generating $8.6M in revenue. Implemented Docker and Kubernetes for scalability.</p>
+              <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
+            </div>
+          </div>
+        </div>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+              <h3 class="text-xl font-semibold text-orange-500">Network Security Specialist | MasTec</h3>
+              <p class="mt-2 text-gray-300">Dec 2006 – Nov 2009 (4 years 7 months)</p>
+              <i class="fa fa-home text-4xl text-teal-400 mt-4"></i>
+            </div>
+            <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Housing Industry" class="w-full h-40 object-cover rounded-lg mb-4">
+              <p class="text-gray-300">Managed network infrastructure and cybersecurity, remediating risks and ensuring compliance with enterprise standards.</p>
+              <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
+            </div>
+          </div>
+        </div>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+              <h3 class="text-xl font-semibold text-orange-500">Network Engineer | LONG Building Technologies</h3>
+              <p class="mt-2 text-gray-300">Jan 2004 – Nov 2006 (5 years 2 months)</p>
+              <i class="fa fa-tree text-4xl text-teal-400 mt-4"></i>
+            </div>
+            <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+              <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7150?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Agriculture" class="w-full h-40 object-cover rounded-lg mb-4">
+              <p class="text-gray-300">Designed LAN/WAN for seven offices, reducing expenses by $5M through optimized telecom systems.</p>
+              <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-padding-16">
-        <div class="w3-clear"></div>
-        <button onclick="document.getElementById('Marketing').style.display='block'" class="button-ne" style="vertical-align:middle"><span>Network Infrastructure</span></button>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-16 bg-gray-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center text-teal-400 mb-12">Technical Expertise</h2>
+      <p class="text-center text-lg mb-8 text-orange-500">Building the future, one secure system at a time.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="skill-card bg-gray-900 p-6 rounded-lg shadow-lg text-center">
+          <i class="fas fa-robot text-4xl text-teal-400 mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">AI/ML & Software Architecture</h3>
+          <p>Expert in TensorFlow, PyTorch, Azure ML, and scalable system design. Built end-to-end AI pipelines and predictive models.</p>
+        </div>
+        <div class="skill-card bg-gray-900 p-6 rounded-lg shadow-lg text-center">
+          <i class="fas fa-cloud text-4xl text-teal-400 mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Multi-Cloud (Azure, AWS, GCP)</h3>
+          <p>Certified in Azure Architect, AWS DevOps, and GCP Architect. Deployed scalable cloud solutions with IaC.</p>
+        </div>
+        <div class="skill-card bg-gray-900 p-6 rounded-lg shadow-lg text-center">
+          <i class="fas fa-shield-alt text-4xl text-teal-400 mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">DevSecOps & Cybersecurity</h3>
+          <p>Proficient in Kubernetes, HashiCorp Vault, CISSP, and secure CI/CD pipelines.</p>
+        </div>
+      </div>
+      <div class="mt-12">
+        <h3 class="text-2xl font-semibold text-center text-orange-500 mb-8">Certifications</h3>
+        <div class="relative w-full max-w-6xl mx-auto py-8">
+          <div class="overflow-hidden">
+            <div id="certificates-slider" class="flex transition-transform duration-500 ease-in-out" style="width: 200%; transform: translateX(0);">
+              <!-- Slide 1 -->
+              <div class="w-1/6 flex-shrink-0 flex flex-wrap justify-around">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/58995847" alt="AI Architect Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/59685126" alt="AWS DevOps Engineer Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/60105444" alt="Azure Architect Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/60518563" alt="Cloud Engineer Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+              </div>
+              <!-- Slide 2 -->
+              <div class="w-1/6 flex-shrink-0 flex flex-wrap justify-around">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/60518565" alt="Multi-Cloud Architect Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/72294049" alt="ML Engineer Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/72304825" alt="DevOps Engineer Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/73947829" alt="AI Practitioner Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+              </div>
+              <!-- Slide 3 -->
+              <div class="w-1/6 flex-shrink-0 flex flex-wrap justify-around">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/37176303" alt="CloudOps Engineer Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/37390661" alt="DL Programmer Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/37390660" alt="ML Programmer Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/57041099" alt="AI Developer Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+              </div>
+              <!-- Slide 4 -->
+              <div class="w-1/6 flex-shrink-0 flex flex-wrap justify-around">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/57543015" alt="AI Apprentice Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/57833781" alt="ML Architect Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/57970664" alt="Cloud Architect Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/57970665" alt="DevSecOps Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+              </div>
+              <!-- Slide 5 -->
+              <div class="w-1/6 flex-shrink-0 flex flex-wrap justify-around">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36178289" alt="Cybersecurity Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36173800" alt="Network Engineer Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36171248" alt="System Design Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36225002" alt="Data Science Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+              </div>
+              <!-- Slide 6 -->
+              <div class="w-1/6 flex-shrink-0 flex flex-wrap justify-around">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36339148" alt="Software Architecture Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36405255" alt="Cloud Security Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36396925" alt="Kubernetes Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36405256" alt="Docker Certification" class="w-1/2 p-1 rounded-lg" loading="lazy">
+              </div>
+            </div>
+          </div>
+          <button id="prev-slide" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-full z-10">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button id="next-slide" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-full z-10">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <div class="flex justify-center mt-4 space-x-2">
+            <span id="dot-0" class="w-3 h-3 bg-gray-400 rounded-full cursor-pointer hover:bg-teal-400" onclick="currentSlide(0)"></span>
+            <span id="dot-1" class="w-3 h-3 bg-gray-400 rounded-full cursor-pointer hover:bg-teal-400" onclick="currentSlide(1)"></span>
+            <span id="dot-2" class="w-3 h-3 bg-gray-400 rounded-full cursor-pointer hover:bg-teal-400" onclick="currentSlide(2)"></span>
+            <span id="dot-3" class="w-3 h-3 bg-gray-400 rounded-full cursor-pointer hover:bg-teal-400" onclick="currentSlide(3)"></span>
+            <span id="dot-4" class="w-3 h-3 bg-gray-400 rounded-full cursor-pointer hover:bg-teal-400" onclick="currentSlide(4)"></span>
+            <span id="dot-5" class="w-3 h-3 bg-gray-400 rounded-full cursor-pointer hover:bg-teal-400" onclick="currentSlide(5)"></span>
+          </div>
+        </div>
+        <p class="text-center mt-4"><a href="https://skillsoft.digitalbadges.skillsoft.com/profile/kumardahal695260/wallet" target="_blank" class="text-teal-400 hover:underline">View All Skillsoft Digital Certificates</a></p>
       </div>
     </div>
-  </div>    
-   <br>
-  <!-- Certificates --> 
-<div class=" w3-padding-16 w3-content">
-      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Certificates</span>
-    </div> 
-         <p class="w3-padding-32">AI Apprentice, AI Developer, AI Practitioner, AI Architect ML Programmer, DL Programmer, ML Engineer, ML Architect, DevOps Engineer, Cloud Engineer, CloudOps Engineer, Muti-Cloud Architect </p>
-<!-- Slideshow container -->
-<div class="slideshow-container col-container w3-border w3-border-black">
+  </section>
 
-  <!-- Full-width images with number and caption text -->
-  <div class="mySlides fade w3-center col">
-    <div class="numbertext">1 / 6</div>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/58995847" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off" style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/59685126" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/60105444" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/60518563" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/60518565" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/72294049" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/72304825" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/73947829" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<div class="w3-padding-16"></div>    
-<a target='_blank' href="https://skillsoft.digitalbadges.skillsoft.com/profile/kumardahal695260/wallet"><div class="text">➢ View Skillsoft Digital Certificates</div></a>
-  </div>
-  
-  <div class="mySlides fade w3-center col">
-    <div class="numbertext">2 / 6</div>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/37176303" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off" style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/37390661" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/37390660" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/57041099" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/57543015" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/57833781" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/57970664" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/57970665" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<div class="w3-padding-16"></div>    
-<a target='_blank' href="https://skillsoft.digitalbadges.skillsoft.com/profile/kumardahal123755/wallet#gs.yxi4d0"></a><div class="text">➢ View SkillSoft Digital Certificats</div>
-  </div>
-
-  <div class="mySlides fade w3-center col">
-    <div class="numbertext">3 / 6</div>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36178289" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off" style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36173800" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36171248" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36225002" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36339148" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36405255" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36396925" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36405256" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<div class="w3-padding-16"></div>    
-<a target='_blank' href="https://skillsoft.digitalbadges.skillsoft.com/profile/kumardahal695260/wallet"><div class="text">➢ View Skillsoft Digital Certificates</div></a>
-  </div>
-
-    <div class="mySlides fade w3-center col">
-    <div class="numbertext">4 / 6</div>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36415026" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off" style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36451088" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36492855" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36507189" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36503561" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36573947" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36695705" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36805766" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<div class="w3-padding-16"></div>    
-<a target='_blank' href="https://skillsoft.digitalbadges.skillsoft.com/profile/kumardahal695260/wallet"><div class="text">➢ View Skillsoft Digital Certificates</div></a>
-  </div>
-
-      <div class="mySlides fade w3-center col">
-    <div class="numbertext">5 / 6</div>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/34661869" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off" style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/35696785" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/35679975" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/35874475" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/35873893" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/35943326" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/35942312" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/74079249" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<div class="w3-padding-16"></div>    
-<a target='_blank' href="https://skillsoft.digitalbadges.skillsoft.com/profile/kumardahal695260/wallet"><div class="text">➢ View Skillsoft Digital Certificates</div></a>
-  </div>
-
-        <div class="mySlides fade w3-center col">
-    <div class="numbertext">6 / 6</div>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/35980058" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off" style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/35950791" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/35948360" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/35874475" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36016685" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36063206" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/36061677" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/74079250" alt="company" class="ava w3-round w3-image w3-opacity w3-hover-opacity-off"  style="padding: 5px;"/>
-<div class="w3-padding-16"></div>    
-<a target='_blank' href="https://skillsoft.digitalbadges.skillsoft.com/profile/kumardahal695260/wallet"><div class="text">➢ View Skillsoft Digital Certificates</div></a>
-  </div>
-  <!-- Next and previous buttons -->
-  <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
-</div>
-<br>
-<!-- End of Certification -->
-
-<!--flipping cards-->
-<div class=" w3-padding-64">
-      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Profissional Experience</span>
-    </div>
-<div class="w3-row-padding" style="margin-bottom:46px; margin-left:20px;">
-<div class="w3-half w3-padding">  
-<div class="flip-box">
-  <div class="flip-box-inner">
-    <div class="flip-box-front">
-      <h4>Technical Solutions Engineer | AI/ML/Ops | DevSecOps</h4>
-      <p>The Cadmus Group</p>
-            <p>2 years and 3 months</p>
-      <i class=" fa fa fa-institution w3-xxlarge" style="color: rgb(10, 10, 10); "></i>
-    </div>
-    <div class="flip-box-back w3-display-container">
-     <img class="" src="images/mindaugas-petrutis.jpg" alt="software" style="width:400px; height:200px;"/>
-    <div class="w3-display-middle">
-    <p>Industry</p>
-    <h3>Government contract</h3><a href="https://www.linkedin.com/in/kumar-dahal/">     
-     <button class=" btn w3-button"><i class="fa  fa fa-institution w3-margin-right"></i>More Informartion</button></a>
-     </div>
-    </div>
-  </div>
-</div>
-</div>
-  <div class="w3-half w3-padding">
-   <div class="flip-box">
-  <div class="flip-box-inner">
-    <div class="flip-box-front">
-      <h4>Development Security Oparation | Azure Cloud | AI/ML/Ops</h4>
-      <p>ASRC Federal</p>
-            <p>2 years and 2 months</p>
-      <i class=" 	fa fa-cloud w3-xxlarge" style="color: rgb(11, 11, 11);"></i>
-    </div>
-    <div class="flip-box-back w3-display-container">
-     <img class=" w3-opacity-min" src="images/blake-wisz-tE6th1h6Bfk-unsplash-2.jpg" alt="software" style="width:400px; height:200px;"/>
-    <div class="w3-display-middle">
-    <p>Industry</p>
-    <h3>Government contract</h3><a href="https://www.linkedin.com/in/kumar-dahal/">     
-     <button class=" btn w3-button"><i class="fa  fa fa-cloud w3-margin-right"></i>More Informartion</button></a>
-     </div>
-    </div>
-  </div>
-</div>
-  </div>
-</div>
-<div class="w3-row-padding" style="margin-bottom:46px; margin-left:20px;">
-<div class="w3-half w3-padding">  
-<div class="flip-box">
-  <div class="flip-box-inner">
-    <div class="flip-box-front">
-      <h4>Multi-Cloud | DevOps Engineer | DevSecOps</h4>
-      <p>Hotel Enginee & Chatu, Inc</p>
-      <p>3 years and 4 months</p>
-      <i class="  fa fa-hotel w3-xxlarge" style="color: rgb(2, 2, 2); "></i>
-    </div>
-    <div class="flip-box-back w3-display-container">
-     <img class="" src="new_image/financial.JPG" alt="software" style="width:400px; height:200px;"/>
-    <div class="w3-display-middle">
-    <p>Industry</p>
-    <h3>Hospitility</h3><a href="https://www.linkedin.com/in/kumar-dahal/">     
-     <button class=" btn w3-button"><i class="fa fa-hotel w3-margin-right"></i>More Information</button></a>
-     </div>
-    </div>
-  </div>
-</div>
-</div>
-  <div class="w3-half w3-padding">
-   <div class="flip-box">
-  <div class="flip-box-inner">
-    <div class="flip-box-front">
-      <h4>Cloud Security & DevOps Automation Engineer</h4>
-      <p>Integra Telecom & Electronics Row </p>
-      <p>7 years and 5 months</p>
-      <i class="fa fa-500px w3-xxlarge" style="color: rgb(6, 6, 6);"></i>
-    </div>
-    <div class="flip-box-back w3-display-container">
-     <img class=" w3-opacity-min" src="new_image/e-business.JPG" alt="software" style="width:400px; height:200px;"/>
-    <div class="w3-display-middle">
-    <p>Industry</p>
-    <h2>Telecommunication</h2><a href="https://www.linkedin.com/in/kumar-dahal/">     
-     <button class=" btn w3-button"><i class="fa fa-500px w3-margin-right"></i>More Information</button></a>
-     </div>
-    </div>
-  </div>
-</div>
-  </div>
-</div>
-<div class="w3-row-padding" style="margin-bottom:46px; margin-left:20px;">
-<div class="w3-half w3-padding">  
-<div class="flip-box">
-  <div class="flip-box-inner">
-    <div class="flip-box-front">
-      <h4>Network Security Specialist Infrastructure</h4>
-      <p>MasTec</p>
-      <p>4 years and 7 months</p>
-      <i class="fa fa fa-home w3-xxlarge" style="color: rgb(3, 3, 3); "></i>
-    </div>
-    <div class="flip-box-back w3-display-container">
-     <img class="" src="new_image/Vechicle_parking.JPG" alt="software" style="width:400px; height:200px;"/>
-    <div class="w3-display-middle">
-    <p>Industry</p>
-    <h3>Housing Industry</h3><a href="https://www.linkedin.com/in/kumar-dahal/">     
-     <button class=" btn w3-button"><i class="fa fa fa-home w3-margin-right"></i>More Information</button></a>
-     </div>
-    </div>
-  </div>
-</div>
-</div>
-  <div class="w3-half w3-padding">
-   <div class="flip-box">
-  <div class="flip-box-inner">
-    <div class="flip-box-front">
-      <h4>Network Engineer </h4>
-      <p>LONG Building Technologies</p>
-      <p>5 years and 2 months</p>
-      <i class="fa fa-tree w3-xxlarge" style="color: rgb(2, 2, 2);"></i>
-    </div>
-    <div class="flip-box-back w3-display-container">
-     <img class=" w3-opacity-min" src="new_image/Drone_ag.JPG" alt="software" style="width:400px; height:200px;"/>
-    <div class="w3-display-middle">
-    <p>Industry</p>
-    <h2>Agriculture</h2><a href="https://www.linkedin.com/in/kumar-dahal/">     
-     <button class=" btn w3-button"><i class="fa fa-tree w3-margin-right"></i>More Information</button></a>
-     </div>
-    </div>
-  </div>
-</div>
-  </div>
-</div>
-<div class=" w3-padding-36 w3-container w3-center"></div>
-     <!-- my work First Photo Grid-->
-     
-         <div class=" w3-padding-64">
-      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">My Blog</span>
-    </div>
-<!--<p class="w3-container w3-padding"> -->
-
- <!-- First --> 
-<div class="column nature ">    
-<div class="w3-row-padding w3-padding-16 w3-container">
-	<div class="w3-quarter">
-    <a target='_blank' href="cicd_jenkins.html">
-    <img class="w3-grayscale" src="images/Jenkins_Small.png" alt="transportation" style="width:100%"/></a>
-   <h3>CI/CD using Jenkins delivery</h3>
-   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris....</p>
-
- </div>
- <div class="w3-quarter">
-<a target='_blank' href="puppet.html">
-<img class="w3-grayscale" src="images/Puppet_small.png" alt="transportation" style="width:100%"/></a>
-    <h3>Puppet</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris....</p>
-
-  </div>
-     <div class="w3-quarter">
-      <a target='_blank' href="design_API.html">
-       <img class="w3-grayscale" src="images/rsz_api.jpg" alt="profile" style="width:100%"/></a>
-       <h3>Creating your own API</h3>
- <p>When creating a new API there are a few things needs to be comprehended. First strong understanding how to add API to your existing system. Second why business requires and who get benefits. Third is the actual modeling the API tips......
- </p>
-     </div>
-     <div class="w3-quarter">
-      <a target='_blank' href="kumar_dahal_Seeking.html">
-       <img class="w3-grayscale" src="new_image/profile.jpg" alt="profile" style="width:100%"/></a>
-       <h3>Professional Objective</h3>
- <p>Over 20 years designed, developed, and delivered software solution, business development services, sales improvement and marketing management expertise and experience within high-growth technology and manufacturing organization....
- </p>
-     </div>
-
-
-
-  </div>
-  </div>
-<!-- End First Grid -->
- <!-- Second --> 
-<div class="column cars">
-  <!-- Second Photo Grid-->
-  <div class="w3-row-padding w3-padding-16 w3-container">
-    <div class="w3-quarter">
-      <a target='_blank' href="folio_software_development_21.html">
-       <img class="w3-grayscale" src="new_image/Foliosolution.jpg" alt="foliosolution" style="width:100%"/></a>
-       <h3>Folio Solution for Enterprise</h3>
-       <p>Designed and developed the new solution from the scratch to better manage company’s entire invoice system for increasing and streamlining the revenue through folio solution. Folio solution is cloud-based software, designed to manage entire invoices of the ... </p>
-     </div>
-     <div class="w3-quarter">
-         <a target='_blank' href="transportation_truck_software_24.html">
-       <img class="w3-grayscale" src="new_image/Transportation.jpg" alt="Steak" style="width:100%"/></a>
-       <h3>Transportation Solution System</h3>
-       <p>Maintain responsibility for all activities related to design, implementation, troubleshooting, collaborate with 120 developers and problem resolution for transportation Industry Company. Effectively manage customization projects for high-profile clients...</p>
-     </div>
-     <div class="w3-quarter">
-     <a target='_blank' href="drone_agriculture_20.html">
-       <img class="w3-grayscale" src="new_image/agriculture.jpg" alt="Cherries" style="width:100%"/></a>
-       <h3>Agriculture Software</h3>
-       <p>Instructed, inspire and designed agriculture custom software suites to help farmers and growers gain total control over their land. Bring farm into the future with the help of the agriculture software experts. Designed and developed software to maximize...</p>
-     </div>
-  <div class="w3-quarter">
-    <a target='_blank' href="e-commerce_25.html">
-      <img class="w3-grayscale" src="new_image/ecommerce.jpg" alt="Pasta and Wine" style="width:100%"/></a>
-      <h3>E-Commerce Platform </h3>
-      <p>Developed and managed e-commerce business, maintained retail supply relationship with distributors, vendors and manufacturers. Created innovative marketing strategy, including defining products, evaluated prospective vendors, and researched competitors.... </p>
-    </div>
-
-
-
-    
-  </div>
-</div><!-- End of Second Grid -->
-<!-- Third Grid -->
-<div class="column people">  
-<div class="w3-row-padding w3-padding-16 w3-container">
-  <div class="w3-quarter">
-    <a target='_blank' href="product_owner_22.html">
-     <img class="w3-grayscale" src="new_image/you-x-ventures-m2TU2gfqSeE-unsplash.jpg" alt="foliosolution" style="width:100%"/></a>
-     <h3>Who stands the best products owner?</h3>
-     <p>Product owner is a role in agile scrum development team who represents the clients and key stakeholder of the business to the scrum development team and collaboratively works with both groups...</p>
-   </div>
-   <div class="w3-quarter">
-       <a target='_blank' href="transportation_software_development_23.html">
-     <img class="w3-grayscale" src="new_image/hanson-lu-HiDVTFBhwTY-unsplash.jpg" alt="transportation" style="width:100%"/></a>
-     <h3>Increaseing Transit Safety</h3>
-     <p>The Department of Transportation (DOT) has said bringing Vehicle-to-Vehicle (V2V) communication technology to all vehicles could dramatically reduce the occurrence and severity of car accidents.</p>
-   </div>
-     <div class="w3-quarter">
-     <img class="w3-grayscale" src="new_image/products.jpg" alt="Sandwich" style="width:100%"/>
-     <h3>Product Design</h3>
-     <p>Designed and developed the unique product, coordinated various support functions, conducting strategic marketing services to determine distribution/price/promotions. Overseeing internal and beta testing, launching and rolling out products monitoring products for profitability. </p>
-   </div>
-<div class="w3-quarter">
-      <img class="w3-grayscale" src="new_image/Event.jpg" alt="Croissant" style="width:100%"/>
-      <h3>Event Organizer</h3>
-      <p>Charged with full creative and operational management and supervision of entire event cast and crew. Created benchmark template for production schedules and running orders. Compiled theatrical terminology glossary for use in training staff. </p>
-    </div>
-
-  </div>
-</div>
-<!-- End of Third Grid -->
-
-
-<!-- Four Grid -->
-<div class="column profile">  
-<div class="w3-row-padding w3-padding-16 w3-container">
-  <div class="w3-quarter">
-    <a target='_blank' href="https://visucraft.com/">
-  <img class="w3-grayscale" src="new_image/visucraft.jpg" alt="Popsicle" style="width:100%"/></a>
-  <h3>Visu Craft</h3>
-  <p>Manage Business, directed and manage all organizational operations, use creative problem solving to turn challenges into profitable opportunities. Monitor cost-effectiveness of operations and personnel using quantitative data, offering feedback and making cuts where necessary. </p>
-</div>
-<div class="w3-quarter">
-    <a target='_blank' href="https://www.visutravel.com/index.htm">
-  <img class="w3-grayscale" src="new_image/visutravel.jpg" alt="Salmon" style="width:100%"/></a>
-  <h3>Visu Travel</h3>
-  <p>Managed a group of 8 travel professionals, arranging domestic and international travel services for individuals, and groups. Directed business operations, including budgeting, accounts receivable and accounts payable, contract negotiation, and personnel administration. </p>
-</div>
-<div class="w3-quarter">
-<a target='_blank' href="https://www.visutravel.com/602563263">
-  <img class="w3-grayscale" src="new_image/dengerous_mountain.jpg" alt="Cherries" style="width:100%"/></a>
-  <h3>Most Dangerous Mountains</h3>
-  <p>Wrote a blogs on Nepal's mountains. 
-Mt. Everest is the part of the Mhalangur Himalayan Range in the Khumbu region of Nepal, which has been recognized one of the highest mountain in the world, with elevation of 29,029 ft.      
-  </p>
-</div>
-    <div class="w3-quarter">
-        <a target='_blank' href="https://www.visutravel.com/1258454">
-      <img class="w3-grayscale" src="new_image/TravelBolog.jpg" alt="Pasta and Wine" style="width:100%"/></a>
-      <h3>Food & Culinary</h3>
-		<p>
-Nepal's most known dishes are probably dal bhat (rice and lentils) and the popular momos. And besides the international dishes from continental to Asian, Nepal that are available in the touristic areas, Nepal has a wide variety of local dishes to discover.		
-		</p>
-    </div>
-  </div>
-</div>
-<!-- End of Four Grid -->
-<!-- 5 Grid -->
-<div class="column tech">  
-  <div class="w3-row-padding w3-padding-16 w3-container">
-     <div class="w3-quarter">
-      <a target='_blank' href="Kubernetes.html">
-       <img class="w3-grayscale" src="new_image/rsz_kubernetes.jpg" alt="profile" style="width:100%"/></a>
-       <h3>Kubernetes Cluster Architecture</h3>
- <p>Kubernetes is an open-source container-orchestration system for automating computer application deployment, scaling, and management. It was originally designed by Google and is now maintained....
- </p>
-     </div>
-       <div class="w3-quarter">
-       <a target='_blank' href="docker.html">
-        <img class="w3-grayscale" src="images/rsz_docker.jpg" alt="profile" style="width:100%"/></a>
-        <h3>Docker Architecture & containerization?</h3>
-  <p>Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers. Containers are isolated from one another and bundle  .....
-  </p>
-      </div>
-      <div class="w3-quarter">
-        <a target='_blank' href="dl-ml.html">
-         <img class="w3-grayscale" src="images_3/DL_VS_ML_3.JPG" alt="foliosolution" style="width:100%"/></a>
-         <h3>Comparing Deep Learning and Machine Learning</h3>
-         <p>Defining Deep Learning and comparing with machine learning provides us the difference between their core concepts and analytics statistical power to comprehend their relationship...</p>
-       </div>
-       <div class="w3-quarter">
-           <a target='_blank' href="Explainable AI.html">
-         <img class="w3-grayscale" src="images_3/explainable_ai_02.JPG" alt="transportation" style="width:100%"/></a>
-         <h3>Explainable AI, or (XAI)</h3>
-         <p>Explainable Artificial Intelligent, or XAI is widely used fundamental concepts and understanding the differences between inherently explainable Artificial Intelligent....</p>
-  
-       </div>
-      
-    
-  
-    </div>
-  </div>
-  <!-- 6 Grid -->
-<div class="column cloud">  
-  <div class="w3-row-padding w3-padding-16 w3-container">
-     <div class="w3-quarter">
-      <a target='_blank' href="Cloud_migration.html">
-       <img class="w3-grayscale" src="images_3/Cloud_Migration.jpg" alt="profile" style="width:100%"/></a>
-       <h3>Cloud Migration Plan: A Comprehensive Guide</h3>
- <p>Cloud migration is an increasingly popular way for businesses to move their data and applications to the cloud. It offers a range of benefits....
- </p>
-     </div>
-       <div class="w3-quarter">
-       <a target='_blank' href="Cloud_benefits.html">
-        <img class="w3-grayscale" src="images_3/Benefits_Cloud.jpg" alt="profile" style="width:100%"/></a>
-        <h3>Exploring the Benefits of Public, Private, Hybrid, Multicloud and Polycloud</h3>
-  <p>The cloud has revolutionized the way businesses operate. It has enabled organizations to acces.....
-  </p>
-      </div>
-      <div class="w3-quarter">
-        <a target='_blank' href="Neural_networks.html">
-         <img class="w3-grayscale" src="images_3/Neural_Networks_Overview.jpg" alt="foliosolution" style="width:100%"/></a>
-         <h3>Neural Networks Overview</h3>
-         <p>An artificial neural network (ANN) is a type of artificial intelligence that is modeled after the human brain. It is composed of interconnected nodes, or neurons, which proces...</p>
-       </div>
-       <div class="w3-quarter">
-           <a target='_blank' href="footprinting.html">
-         <img class="w3-grayscale" src="images_3/explainable_ai_01.JPG" alt="transportation" style="width:100%"/></a>
-         <h3>What is Footprinting & Countermeasures</h3>
-         <p>Footprinting is a type of cyber attack that involves gathering information about a target system or network. It is often used as the first step in a larger attack, as it provid...</p>
-  
-       </div>
-    </div>
-  </div>
-  <!-- End of 6 Grid -->
-
-    <!-- 7 Grid -->
-<div class="column MLOps">  
-  <div class="w3-row-padding w3-padding-16 w3-container">
-     <div class="w3-quarter">
-      <a target='_blank' href="Securing_MLOps_Pipelines_with_DevSecOps_Practices.html">
-       <img class="w3-grayscale" src="images_3/mlops.JPG" alt="mlops" style="width:100%"/></a>
-       <h3>Securing MLOps Pipelines with DevSecOps Practices</h3>
- <p>Having spent the last decade deeply embedded in the evolving landscape of software and machine learning operations, I've witnessed firsthand the transformative power of MLOps. 
- </p>
-     </div>
-       <div class="w3-quarter">
-       <a target='_blank' href="ML-Workflows-Kubernetes-TensorFlow.html">
-        <img class="w3-grayscale" src="images_3/ml-flow3.jpg" alt="profile" style="width:100%"/></a>
-        <h3>Automating ML Workflows with Kubernetes and TensorFlow</h3>
-  <p>
- The promise of Artificial Intelligence lies not just in groundbreaking models, but in their efficient and reliable deployment. 
-  </p>
-      </div>
-      <div class="w3-quarter">
-        <a target='_blank' href="Optimizing _AWS_Networking_Terraform_IaC.html">
-         <img class="w3-grayscale" src="images_3/network-small.JPG" alt="foliosolution" style="width:100%"/></a>
-         <h3>Optimizing AWS Networking with Terraform IaC</h3>
-         <p>
-          In today's cloud-first world, Amazon Web Services (AWS) provides an unparalleled breadth of networking services, from Virtual Private Clouds (VPCs) and Subnets to Transit Gateways, Load Balancers, and PrivateLink.
-        </p>
-       </div>
-       <div class="w3-quarter">
-           <a target='_blank' href="Microservices-for-In-Flight-Connectivity.html">
-         <img class="w3-grayscale" src="images_3/in-flight-small.JPG" alt="transportation" style="width:100%"/></a>
-         <h3>Building Scalable Microservices for In-Flight Connectivity</h3>
-         <p>
-          In-flight connectivity (IFC) has transformed from a luxury amenity to a passenger expectation. From checking emails and Browse social media to streaming video and making VoIP calls...
-        </p>
-  
-       </div>
-    </div>
-  </div>
-  <!-- End of 7 Grid -->
-  <!-- End of Grid -->
-
-<!-- To change: Change here needed: <script src="talktokumar.js/talktokumarstylesheet.js"></script>
-  First change "Mlops" <div class="column MLOps"> 
-  Then change: alt="mlops" 
-  Then change here:<a class="w3-bar-item btn" onclick="filterSelection('MLOps')">«</a>
-  <a onclick="filterSelection('MLOps')" class="w3-bar-item btn active">1</a> -->
-  <!-- Pagination -->
-  <div class="w3-center w3-padding-32" id="btncontain">
-    <div class="w3-bar">
-      <a class="w3-bar-item btn" onclick="filterSelection('MLOps')">«</a>
-            <a onclick="filterSelection('MLOps')" class="w3-bar-item btn active">1</a>
-      <a onclick="filterSelection('cloud')" class="w3-bar-item btn">2</a>
-      <a onclick="filterSelection('tech')" class="w3-bar-item btn">3</a>
-      <a onclick="filterSelection('nature ')"   class="w3-bar-item  btn">4</a>
-      <a onclick="filterSelection('cars')" class="w3-bar-item  btn">5</a>
-      <a onclick="filterSelection('people')" class="w3-bar-item btn">6</a>
-      <a onclick="filterSelection('profile')" class="w3-bar-item btn">7</a>
-      <!--<a onclick="filterSelection('all')" class="w3-bar-item btn">All</a>-->
-      <a class="w3-bar-item btn" onclick="filterSelection('profile')">»</a>
-    </div>
-  </div>
-  <!-- End of Pagination -->
-
-<!-- This is for the linkedin articles linke-->
-        <div class=" w3-container w3-padding-32">
-        <a target='_blank' href="https://www.linkedin.com/in/kumar-dahal/recent-activity/articles/">
-        <p class="w3-white w3-padding-large w3-animate-bottom">➢ View all my Articles </p></a>
-      </div>
-      <!-- Ends This is for the linkedin articles linke--> 
- <hr>
-    <div class="w3-padding-24"></div>
-
-<!--AI -->
-<div id="AI" class="w3-modal">
-  <div class="w3-modal-content w3-animate-top w3-card-4">
-    <header class="w3-container w3-black w3-center"> 
-      <span onclick="document.getElementById('AI').style.display='none'" 
-     class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
-      <h2 class="w3-wide"><i class="fa fa-rocket w3-margin-right"></i>Artificial Intelligence Architect</h2>
-    </header>
-<!-- CARD -->
-<div class="w3-container">
-<div class="w3-content" style="max-width:700px; color: black;">
-  <h5 class="w3-center w3-padding-16"><span class=" w3-wide">Experience designing and deploying production-grade AI solutions</span></h5>
-  <p>🚀 1. End-to-End AI Solution Design: - </p>
-  <p><!--<span style="color: red;">✓</span> -->
-Designed and deployed full AI/ML pipelines: from data ingestion to real-time/batch model deployment and monitoring.
-Made architectural decisions involving diverse data types, feature engineering, model lifecycle, and retraining strategies.
-  </p>
-  <p>🧠 2. Advanced Model Development & Evaluation: - </p>
-  <p><!--<span style="color: red;">✓</span> -->
-  Built and fine-tuned models using Scikit-learn, TensorFlow, and PyTorch, including CNNs, RNNs, and LLMs.
-Applied rigorous evaluation metrics (accuracy, F1, ROC-AUC) to drive reliable performance across regression, classification, and clustering problems.
-  </p>
-  <p>☁️ 3. Cloud MLOps & Scalable ML Systems: - </p>
-  <p><!--<span style="color: red;">✓</span> -->
-  Deployed models using Azure ML / SageMaker / Vertex AI with CI/CD pipelines, containerization, and model registries.
-Leveraged MLOps tools like MLflow, Kubeflow, and GitHub Actions for automation, reproducibility, and version control.
-  </p>
-  <p>🔐 4. Responsible AI & Governance: - </p>
-  <p><!--<span style="color: red;">✓</span> --> 	
-  Implemented explainable AI (SHAP, LIME), fairness checks, and bias mitigation strategies in production models.
-Integrated privacy-aware mechanisms and model governance policies (e.g., audit logs, RBAC, compliance with GDPR/HIPAA).
-  </p>
-  <p>📊 5. Business Value Delivery & Collaboration: - </p>
-  <p><!--<span style="color: red;">✓</span> --> 
-Delivered measurable impact through AI use cases like churn prediction, fraud detection, and intelligent automation.
-Bridged technical and non-technical teams—translating business needs into ML solutions and presenting architecture trade-offs.
-  </p>
-
-<div class="w3-panel w3-leftbar w3-light-grey">
-    <p><i></i></p>
-    <p></p>
-  </div>
-
-</div>
-</div>      
-  </div>
-</div>
-
-
-<!--ML -->
-<div id="ML" class="w3-modal">
-  <div class="w3-modal-content w3-animate-top w3-card-4">
-    <header class="w3-container w3-black w3-center"> 
-      <span onclick="document.getElementById('ML').style.display='none'" 
-     class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
-      <h2 class="w3-wide"><i class="fa 	fa fa-microchip w3-margin-right"></i>Machine Learning Architect</h2>
-    </header>
-<!-- CARD -->
-<div class="w3-container">
-<div class="w3-content" style="max-width:700px; color: black;">
-  <h5 class="w3-center w3-padding-16"><span class=" w3-wide">ML Programmer, DL Programmer, ML Engineer, ML Architect </span></h5>
-  <p>🧠 1. End-to-End ML & DL Model Lifecycle: - </p>
-  <p><!--<span style="color: red;">✓</span> -->
-Built and deployed classification/regression models using Scikit-learn, XGBoost, and LightGBM with full training→validation→deployment pipelines.
-Developed CNNs from scratch in TensorFlow/Keras, delivering image classification solutions using real-world datasets like CIFAR and COCO.
-  </p>
-  <p>📈 2. Business-Driven Predictive Analytics: - </p>
-  <p><!--<span style="color: red;">✓</span> -->
-Designed predictive models that directly influenced revenue, customer retention, and operational efficiency.
-Translated business problems into ML use cases, collaborating with stakeholders for data-driven impact.
-  </p>
-  </p>
-
-  <p>☁️ 3. Cloud MLOps & Scalable Deployments: - </p>
-  <p><!--<span style="color: red;">✓</span> -->
-Deployed models using Azure ML, SageMaker, and Vertex AI with CI/CD, Docker, and FastAPI.
-Built automated, production-grade ML pipelines using MLflow, Kubeflow, and Terraform for cloud-native infrastructure.
-  </p>
-  <p>🧪 4. Model Optimization & Governance: - </p>
-  <p><!--<span style="color: red;">✓</span> -->
-Debugged deep learning models using techniques like Grad-CAM, loss curve analysis, and architecture tuning (e.g., overfitting resolution).
-Implemented experiment tracking, model versioning, and audit-ready governance practices using DVC and MLflow.
-  </p>
-    <p>👨‍🏫 5. Leadership & Architecture in AI Systems: - </p>
-  <p><!--<span style="color: red;">✓</span> --> 
-Mentored junior developers and led internal ML training sessions covering neural networks, Keras, and end-to-end ML workflows.
-Designed and integrated enterprise-scale ML/DL systems across ERP, IoT, and CRM platforms, ensuring scalability, security, and multi-data-type handling.
-  </p>
-
-  
-
-<div class="w3-panel w3-leftbar w3-light-grey">
-    <p><i></i></p>
-    <p></p>
-  </div>
-
-</div>
-</div>      
-  </div>
-</div>
-
-
-<!--Multi-Cloud -->
-   <!--Network Engineer  -->
-   <div id="Multi-Cloud" class="w3-modal">
-    <div class="w3-modal-content w3-animate-top w3-card-4">
-      <header class="w3-container w3-black w3-center"> 
-        <span onclick="document.getElementById('Multi-Cloud').style.display='none'" 
-       class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
-        <h2 class="w3-wide"><i class="fa fa-cloud w3-margin-right"></i>Multi-Cloud Architect</h2>
-      </header>
-<!-- CARD -->
-<div class="w3-container">
-  <div class="w3-content" style="max-width:700px; color: black;">
-      <h5 class="w3-center w3-padding-16"><span class=" w3-wide">AWS, Azure, GCP, Network</span></h5>
-<h6>🌩 Amazon Web Services (AWS): -</h6>
-<p>
-  Hands-on experience architecting and deploying scalable cloud solutions using AWS services. Proficient in infrastructure as code (CloudFormation), DevOps practices, monitoring (CloudWatch), and the AWS Well-Architected Framework. Certified as an AWS DevOps Engineer – Professional with a strong foundation in developer and architect toolsets.
-</p>
-<h6>☁ Microsoft Azure: -</h6>
-<p> 
-  Extensive experience designing and managing enterprise solutions in Azure, including virtual networks, load balancing, storage, and serverless computing. Expertise in implementing CI/CD pipelines with Azure DevOps and managing cloud infrastructure using ARM templates and Docker. Certified in AZ-300 and AZ-400, with hands-on work in Cosmos DB, Event Grid, and identity management. 
-
-</p>
-<h6>🌐 Google Cloud Platform (GCP): -</h6>
-<p>
-  Skilled in building and maintaining GCP-based applications, covering cloud architecture, VM deployment, data storage, and security. Strong command of GCP’s monitoring, logging, and CLI resource management tools. Trained in designing scalable and secure cloud-native solutions aligned with GCP best practices.
-
-</p>
-<h6>🛰 Network Infrastructure & Systems Architecture: -</h6>
-<p> 
-  Deep understanding of modern network technologies, including NFV, SDN, SD-WAN, and DPDK. Experienced in configuring and managing core network protocols (TCP/IP, DNS, DHCP, VPN) and designing secure, scalable architectures. Proficient in enterprise systems like Active Directory, Group Policy, and Routing & Remote Access, with hands-on work in both Intel and ARM-based CPE hardware.
-</p>
-
-  <div class="w3-panel w3-leftbar w3-light-grey">
-      <p><i></i></p>
-      <p></p>
-    </div>
-
-  </div>
-</div>      
-    </div>
-  </div>
-
-
-<!--Cloud-Native -->
-<div id="Cloud-Native" class="w3-modal">
-  <div class="w3-modal-content w3-animate-top w3-card-4">
-    <header class="w3-container w3-black w3-center"> 
-      <span onclick="document.getElementById('Cloud-Native').style.display='none'" 
-     class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
-      <h2 class="w3-wide"><i class="fa fa-microchip w3-margin-right"></i>Cloud-Native with Kubernetes</h2>
-    </header>
-<!-- CARD -->
-<div class="w3-container">
-<div class="w3-content" style="max-width:700px; color: black;">
-  <h5 class="w3-center w3-padding-16"><span class=" w3-wide">Docker Architecture, Kubernetes Architecture, HashiCorp Tools.</span></h5>
-  <p>🐳 Docker Architecture: - </p>
-  <p>
-Experienced in designing and implementing containerized applications using Docker. Proficient in creating Dockerfiles, managing multi-stage builds, and orchestrating containers in development and production environments. Skilled in image optimization, container networking, and secure container lifecycle management.
-  </p>
-  <p>☸️ Kubernetes Architecture: - </p>
-  <p>
-  Hands-on experience architecting and managing Kubernetes clusters for scalable, resilient application deployment. Knowledgeable in resource management, Helm charts, Ingress controllers, RBAC, and service discovery. Implemented CI/CD pipelines integrated with Kubernetes for automated rollouts and monitoring.
-  <p>🔧 HashiCorp Tools: - </p>
-  <p>
-Proficient with HashiCorp suite including Terraform for infrastructure as code, Vault for secrets management, and Consul for service discovery and configuration. Experienced in building secure, reproducible, and version-controlled infrastructure across multi-cloud environments using Terraform modules and state management best practices.
-   </p>
-
-
-<div class="w3-panel w3-leftbar w3-light-grey">
-    <p><i></i></p>
-    <p></p>
-  </div>
-
-</div>
-</div>      
-  </div>
-</div>
-
- <!--DevOps --> 
-  <div id="ticketModal" class="w3-modal">
-    <div class="w3-modal-content w3-animate-top w3-card-4">
-      <header class="w3-container w3-black w3-center"> 
-        <span onclick="document.getElementById('ticketModal').style.display='none'" 
-       class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
-        <h2 class="w3-wide"><i class="fa fa-cogs w3-margin-right"></i>Engineer</h2>
-      </header>
-<!-- CARD -->
-<div class="w3-container">
-  <div class="w3-content" style="max-width:700px; color: black;">
-    <h5 class="w3-center w3-padding-16"><span class=" w3-wide">DevOps Engineer, Cloud Engineer, CloudOps Engineer, Enterprise Cloud Architect</span></h5>
-
-<p>
-  DevOps Engineer : -
-</p>
-<p><span style="color: red;">✓</span> Designed and implemented sustainable CI/CD automation for build, test and deployment of enterprise web applications written in .NET, JavaScript and JAVA.</p>
-<p>Cloud Engineer: -</p>
-<p ><span style="color: red;">✓</span> Collaboratively engaged team to focus on DevOps automation architect by creating strategies and design patterns on AWS, Azure, GCP automation across platforms.  </p>
-<p>CloudOps Engineer : -</p>
-<p ><span style="color: red;">✓</span> implemented and optimized multi-cloud strategy in the enterprise, the CloudOps design scenarios for managing critical architectural and operational requirement of multi-cloud strategy.</p>
-<p>Enterprise Cloud Architect : -</p>
-<p ><span style="color: red;">✓</span> Designed end-to-end Cloud Architect solutions to automate and orchestrate multi-cloud applications, along with the Cloud Computing Reference Model and Cloud Governance Lifecycle, which are used for building cloud frameworks.</p>
-
-<div class="w3-panel w3-leftbar w3-light-grey">
-      <p><i></i></p>
-      <p></p>
-    </div>
-
-  </div>
-</div>      
-    </div>
-  </div>
-  
-  
-<!--Cyber Security -->
-  <div id="business" class="w3-modal">
-    <div class="w3-modal-content w3-animate-top w3-card-4">
-      <header class="w3-container w3-black w3-center"> 
-        <span onclick="document.getElementById('business').style.display='none'" 
-       class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
-        <h2 class="w3-wide"><i class="fa fa-user-secret w3-margin-right"></i>Cyber Security</h2>
-      </header>
-<!-- CARD -->
-<div class="w3-container">
-  <div class="w3-content" style="max-width:700px; color: black;">
-    <h5 class="w3-center w3-padding-16"><span class=" w3-wide">CCSP, CISSP, SY0-601: CompTIA Security+, DevSecOps, HashiCorp Vault, Ethical Hacker, Advance in Kali and penetration testing.</span></h5>
-    <p>Certified Cloud Security Professional (CCSP): - </p>
-    <p><span style="color: red;">✓</span> Developed, maintained and managed Security Assessment and Authorization (SA&A) packages that include System Security Plans (SSP), Contingency Plans (CP), Security Impact Analysis (SIA), POA&Ms, and other relevant security documentation for existing and new systems.</p>
-    <p>Certified Information Systems Security Professional (CISSP): - </p>
-    <p><span style="color: red;">✓</span> Developing and maintaining information security program strategic and tactical goals and objectives and program outreach/communication plans.</p>
-    <p>SY0-601: CompTIA Security+: - </p>
-    <p><span style="color: red;">✓</span> Identified and access management concepts for enterprise companies to install and configure identity and access services. Implemented identity and access management controls and different common account management practices. </p>
-    <p>DevSecOps: - </p>
-    <p><span style="color: red;">✓</span> Provided leadership in the DevSecOps areas of Vulnerability Scanning, Certificate Management, Password Policy Management, Data Analysis of security monitoring outputs, coordination of Remediation Patching, and other daily Security and Compliance efforts.   </p>
-    <p>HashiCorp Tools: - </p>
-    <p><span style="color: red;">✓</span> Simplified infrastructure automation by utilizing tools like Vagrant, Terraform, Packer, and Vault, you can manage virtual machines, define declarative infrastructure as code, automate machine images, and manage secrets across your infrastructure.   </p>
-    <p>Ethical Hacker: - </p>
-    <p><span style="color: red;">✓</span> Expert ability to identify vulnerabilities in an organization's network or infrastructure, and then address the issues to prevent incidents or attacks. Performed penetration testing and gain the knowledge and skills to implement countermeasures to prevent cybersecurity attacks.   </p>
-    <p>Advance in Kali: - </p>
-    <p><span style="color: red;">✓</span> Exploited Advanced Kali Linux system to do penetration-testing main tool, including hundreds of modules for scanning, exploitation, payloads, and post exploitation.    </p>
-    <p>penetration testing: - </p>
-    <p><span style="color: red;">✓</span> Provide technical support to regulatory agencies, external auditors, and internal auditors, as required, to respond to audits and examinations of the Bank's control environment   </p>
-
-<div class="w3-panel w3-leftbar w3-light-grey">
-      <p><i></i></p>
-      <p></p>
-    </div>
-
-  </div>
-</div>      
-    </div>
-  </div>
-  
-
-  <!--Methodology  -->
-  <div id="sales" class="w3-modal">
-    <div class="w3-modal-content w3-animate-top w3-card-4">
-      <header class="w3-container w3-black w3-center"> 
-        <span onclick="document.getElementById('sales').style.display='none'" 
-       class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
-        <h2 class="w3-wide"><i class="fa fa-cogs w3-margin-right"></i>Methodology and Tools</h2>
-      </header>
-<!-- CARD -->
-<div class="w3-container">
-  <div class="w3-content" style="max-width:700px; color: black;">
-    <h5 class="w3-center w3-padding-16"><span class=" w3-wide">Agile, Kanban, Scrum, SAFe Team, SAFe DevOps,</span></h5>
-<p>Agile: - </p>
-<p ><span style="color: red;">✓</span> helped lead agile scrum teams and ensure the highest value deliverable are implemented as help safeguard the world’s most critical infrastructure.</p>
-<p>Kanban: - </p>
-<p ><span style="color: red;">✓</span> Experienced working in an iterative based development environment using Agile/SCRUM or Kanban</p>
-<p>Scrum: - </p>
-<p ><span style="color: red;">✓</span> Engaged with Scrum Master and team members on a regular basis to ensure assigned features are fully executed within the prescribed Program Increment, Hold all appropriate Product Owner ceremonies as necessary (Grooming, Demo, etc.)</p>
-<p>SAFe Team: - </p>
-<p ><span style="color: red;">✓</span> Lead the well-integrated team in a sAFE Agile manner across all contributing partners mentioned above (data engineers, data governance, data scientists, service designers and software engineers) to define product features, design capabilities and execute build and delivery for the committed scope and timelines </p>
-<p>SAFe DevOps: - </p>
-<p ><span style="color: red;">✓</span> Worked directly with the DevOps team and Senior DevOps manager to test system integrity. Designed and implement build, deployment, and configuration management.  </p>
-<p>Tools: Git, Jenkins, Docker Architecture, Kubernetes Architecture, HashiCorp Tools, Ansible, Puppet, Chef, Red Hate, Nagios, Selenium, Salt Stack, Splunk, Angular, EKL, SoarQube, Node.js, React, .Net Core. 
-  Language: HTML, JSON, XML, CSS, JavaScript, PHP, JAVA, C++ and Python.</p>
-<div class="w3-panel w3-leftbar w3-light-grey">
-      <p><i></i></p>
-      <p></p>
-    </div>
-
-  </div>
-</div>      
-    </div>
-  </div>
- 
-   <!--Network Engineer  -->
-  <div id="Marketing" class="w3-modal">
-    <div class="w3-modal-content w3-animate-top w3-card-4">
-      <header class="w3-container w3-black w3-center"> 
-        <span onclick="document.getElementById('Marketing').style.display='none'" 
-       class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
-        <h2 class="w3-wide"><i class="fa fa-cloud w3-margin-right"></i>Multi-Cloud Architect</h2>
-      </header>
-<!-- CARD -->
-<div class="w3-container">
-  <div class="w3-content" style="max-width:700px; color: black;">
-      <h5 class="w3-center w3-padding-16"><span class=" w3-wide">AWS, Azure, GCP</span></h5>
-<h6>Multi-Cloud AWS: -</h6>
-<p> AWS DevOps Engineer (Professional) Certification, Master the AWS Well-Architected Framework, choosing a Cloud Platform for Developers: AWS, Azure, and GCP, Learning Amazon Web Services (AWS) for Developers, AWS Essential Training for Architects, AWS: Monitoring and Reporting, Learning AWS CloudFormation.
-</p>
-<h6>Multi-Cloud GCP: -</h6>
-<p> Google Cloud Architect - Cloud Design, Network Components, Web Applications & Name Resolution, Data Storage, Virtual Machine Deployment, Security, Virtual Machine Configuration, Monitoring & Logging, Programmatic Access, Identity Management, Solution Management & Testing, Troubleshooting, CLI Cloud Resource Management. 
-
-</p>
-<h6>Multi-Cloud Azure: -</h6>
-<p>Azure Architect Technologies Certification, Deploy and Manage Virtual Machines, Deploy and Manage Virtual Machines, Configure and Manage Virtual Networks, Manage Identities, Implement and Manage Storage, Azure Serverless Computing, Load Balancers and Application Gateways, Implement and Manage Application Services, Docker on Azure, Developing CI/CD Solutions with Azure DevOps, Cosmos DB, Azure Essential Training for Developers, Azure Event Grid, AZ400, AZ300. 
-</p>
-<h6> Network Infrastructure: -</h6>
-<p> NFV, SDN, SD-WAN, DPDK, MPLS, VOIP, TCP/IP, DNS, DHCP, VPN, IAS, DOCSIS. Network Architecture and design: Active Directory, Group policy, Terminal Services, Routing and Remote Access, wiring and cable terminations, Hardware based CPE (Intel and ARM).
-</p>
-
-  <div class="w3-panel w3-leftbar w3-light-grey">
-      <p><i></i></p>
-      <p></p>
-    </div>
-
-  </div>
-</div>      
-    </div>
-  </div>
-
-<!--My Work -->
-<!-- First Photo Grid-->
-  <div class="w3-row-padding">
-    <div class="w3-third w3-container w3-margin-bottom">
-      <a href="social_media_post_%257893845784.html"><img src="new_image/developers_world.JPG" alt="DevOps" style="width:100%" /></a>
-      <div class="w3-container">
-        <p><b>Developer's World</b></p>
-        <p>Find out more about how developers are enhancing the features and implementing new technologies and methodologies to support today is demand. </p>
+  <!-- My Photos Section -->
+  <section id="photos" class="py-16 bg-gray-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center text-teal-400 mb-12 border-b-4 border-teal-400 pb-2">My Photos</h2>
+      <div class="photo-grid grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="grayscale">
+          <img src="images/KD_Tech.jpg" alt="Kumar Dahal Tech" class="w-full h-auto rounded-lg" loading="lazy">
+          <img src="images/highres_233567202.png" alt="High Resolution Tech" class="w-full h-auto rounded-lg mt-4" loading="lazy">
+        </div>
+        <div class="grayscale">
+          <img src="images/kumar_entegra1.jpg" alt="Kumar Entegra" class="w-full h-auto rounded-lg" loading="lazy">
+          <img src="images/KD_ableplant.jpg" alt="Kumar Ableplant" class="w-full h-auto rounded-lg mt-4" loading="lazy">
+          
+        </div>
       </div>
     </div>
-    <div class="w3-third w3-container w3-margin-bottom">
-      <a href="https://www.visucraft.com/"><img src="new_image/visu_craft_web.JPG" alt="Visu Craft" style="width:100%" /></a>
-      <div class="w3-container">
-        <p><b>Visu Craft</b></p>
-        <p>Website provides handmade and hand created products uniquely built from hemp plants, produced and imported from Nepal, India and Tibet.</p>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="py-16 bg-gray-900">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center text-teal-400 mb-12">My Blog</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+          <a href="visit_my_blogs.html" target="_blank">
+            <img src="images_3/mlops.JPG" alt="Securing MLOps" class="w-full h-40 object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-orange-500">Securing MLOps Pipelines with DevSecOps Practices</h3>
+          </a>
+          <p class="mt-2">Transformative power of MLOps with secure DevSecOps practices.</p>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+          <a href="visit_my_blogs.html" target="_blank">
+            <img src="images_3/Cloud_Migration.jpg" alt="Cloud Migration" class="w-full h-40 object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-orange-500">Cloud Migration Plan: A Comprehensive Guide</h3>
+          </a>
+          <p class="mt-2">Step-by-step approach to seamless cloud adoption.</p>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+          <a href="visit_my_blogs.html"target="_blank">
+            <img src="images_3/explainable_ai_02.JPG" alt="Explainable AI" class="w-full h-40 object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-orange-500">Explainable AI (XAI)</h3>
+          </a>
+          <p class="mt-2">Making AI decisions transparent and trustworthy.</p>
+        </div>
       </div>
+      <p class="text-center mt-8"><a href="https://www.linkedin.com/in/kumar-dahal/recent-activity/articles/" target="_blank" class="text-teal-400 hover:underline">View All My Articles</a></p>
     </div>
-    <div class="w3-third w3-container">
-      <a href="https://www.visutravel.com/"><img src="new_image/visu_travel_web.JPG" alt="Visu Travel" style="width:100%" /></a>
-      <div class="w3-container">
-        <p><b>Visu Travel</b></p>
-        <p>Looking to have thrilling adventure, search no more Visu Travel provides all kind of adventures throughout South Asia from Nepal to India, Tibet or Bhutan.</p>
-      </div>
-    </div>
-  </div>
-
-<br>
-
-
-<!--my expereinces -->    
-<!-- This is for slideshow certificates and trainings --->
-    <div class=" w3-padding-64">
-      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Certificates & Training</span>
-    </div>
-  <!-- Slideshow -->
-  <div class="w3-container">
-    <div class="w3-display-container mySlides2">
-      <img class="w3-grayscale" src="new_image/certificates_01.JPG" style="width:100%"/>
-      <div class="w3-display-topleft w3-container w3-padding-32">
-        <a target='_blank' href="https://skillsoft.digitalbadges.skillsoft.com/profile/kumardahal695260/wallet">
-        <span class="w3-white w3-padding-large w3-animate-bottom">➢ Skillsoft Digital Certificates</span></a>
-      </div>
-    </div>
-    <div class="w3-display-container mySlides2">
-      <img class="w3-grayscale" src="new_image/certificates_02.JPG" style="width:100%"/>
-      <div class="w3-display-middle w3-container w3-padding-32">
-        <a target='_blank' href="https://skillsoft.digitalbadges.skillsoft.com/profile/kumardahal123755/wallet#gs.yxi4d0">
-        <span class="w3-white w3-padding-large w3-animate-bottom">➢ Skillsoft Digital Certificates</span></a>
-      </div>
-    </div>
-    <div class="w3-display-container mySlides2">
-      <img class="w3-grayscale" src="new_image/certificates_03.JPG" style="width:100%"/>
-      <div class="w3-display-topright w3-container w3-padding-32">
-                <a target='_blank' href="https://1drv.ms/a/c/59ad310e3a1e2b62/QmIrHjoOMa0ggFnmdgAAAAAAmU-UqVbnXyLhLg">
-        <span class="w3-white w3-padding-large w3-animate-bottom">➢ Linkedin Digital Certificats </span></a>
-
-      </div>
-    </div>
-
-    <!-- Slideshow next/previous buttons -->
-    <div class="w3-container w3-padding w3-xlarge">
-      <div class="w3-left" onclick="plusDivs(-1)"><i class="fa fa-arrow-circle-left w3-hover-text-teal"></i></div>
-      <div class="w3-right" onclick="plusDivs(1)"><i class="fa fa-arrow-circle-right w3-hover-text-teal"></i></div>
-    
-      <div class="w3-center">
-        <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
-        <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
-        <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
-      </div>
-    </div>
-  </div>
-<!--End of slideshow
-<div class=" w3-padding-32 w3-margin-bottom w3-center"></div>--> 
-  <br>
-  <!-- Next and previous buttons 
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>-->
-
-<br>
-
-
-  
-  <!-- Portfolio Section -->
-  <div class="w3-padding-64 w3-content" id="photos">
-            <div class=" w3-padding-64">
-      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">My Photos</span>
-    </div>   
-    <!-- Grid for photos -->
-    <div class="w3-row-padding w3-grayscale" style="margin:0 -16px">
-      <div class="w3-half">
-        <!--<img src="images/20190524_073500.jpg" style="width:100%"/>-->
-        <img src="images/KD_Tech.jpg" style="width:100%"/>
-        <img src="images/highres_233567202.png" style="width:100%"/>
-        <!--<img src="20180824_135937.jpg" style="width:100%"/>-->
-      </div>
-
-      <div class="w3-half">
-        <!--<img src="images/KD_Meniya.jpg" style="width:100%"/>-->
-        <img src="images/kumar_entegra1.jpg" style="width:100%"/>
-        <img src="images/KD_ableplant.jpg" style="width:100%"/>
-        <!--<img src="images/DSC_0027.JPG" style="width:100%"/>-->
-        <!--<img src="images/480400.jpg" style="width:100%"/>-->
-
-      </div>
-    <!-- End photo grid -->
-    </div>
-  <!-- End Portfolio Section -->
-  </div>
-  
+  </section>
 
   <!-- Contact Section -->
-  <div class="w3-padding-64 w3-content w3-text-white" id="contact">
-                <div class=" w3-padding-64">
-      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Contact Me</span>
-    </div>   
+  <section id="contact" class="py-16 bg-gray-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center text-teal-400 mb-12">Contact Me</h2>
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-8 md:mb-0">
+          <img src="new_image/visu_craft_web.JPG" alt="Collaboration" class="rounded-lg shadow-lg w-full">
+        </div>
+        <div class="md:w-1/2 md:pl-8">
+          <div class="mb-6">
+            <p><i class="fa fa-map-marker text-2xl text-teal-400 mr-2"></i> Aurora, Colorado US</p>
+            <p><i class="fa fa-phone text-2xl text-teal-400 mr-2"></i> Phone: +00 720-352-3978</p>
+            <p><i class="fa fa-envelope text-2xl text-teal-400 mr-2"></i> Email: kumar.dahal@outlook.com</p>
+          </div>
+          <form id="contact-form" class="space-y-6">
+            <div>
+              <label for="name" class="block text-lg font-medium">Name (Optional)</label>
+              <input type="text" id="name" name="name" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400">
+            </div>
+            <div>
+              <label for="email" class="block text-lg font-medium">Email Address</label>
+              <input type="email" id="email" name="email" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400" required>
+            </div>
+            <div>
+              <label for="message" class="block text-lg font-medium">Message</label>
+              <textarea id="message" name="message" rows="5" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400" required></textarea>
+            </div>
+            <button type="submit" class="w-full bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-3 rounded-lg transition">Send Message</button>
+            <p id="form-message" class="mt-4 text-center text-lg hidden"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
-
-    <div class="w3-section">
-      <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Aurora, Colorado US</p>
-      <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Phone: +00 720-352-3978</p>
-      <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i> Email: kumar.dahal@outlook.com</p>
-    </div><br>
-    <p>Lets get in touch. Send me a message:</p>
-
-    <form id="form20" onsubmit="submitForme(); return false;">
-      <p><input class="w3-input w3-padding-16" id="name1" type="text" placeholder="Name" required name="Name"/></p>
-      <p><input class="w3-input w3-padding-16" id="email2" type="text" placeholder="Email" required name="Email"/></p>
-      <!--<p><input class="w3-input w3-padding-16" type="text" placeholder="Subject" required name="Subject"/></p>-->
-      <p><input class="w3-input w3-padding-16" id="comment3" type="text" placeholder="Message" required name="Message"/></p>
-      <p>
-        <button class="w3-button w3-light-grey w3-padding-large" id="myform" type="submit" value="Submit"><span id="stode"></span>
-          <i class="fa fa-paper-plane"></i> SEND MESSAGE
-        </button>
-      </p>
-    </form>
-  <!-- End Contact Section -->
-  </div>
-    <!-- About Section is the contaner -->
-  </div>
-  
-    <!-- Footer -->
-  <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
-    <a href="#"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <a href="https://twitter.com/kumdahal"><i class="fa fa-twitter w3-hover-opacity"></i></a>
-    <a href="https://www.linkedin.com/in/kumar-dahal/"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
-  <!-- End footer -->
-  
+  <!-- Footer -->
+  <footer class="bg-gray-800 py-8">
+    <div class="container mx-auto px-4 text-center">
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fab fa-linkedin text-2xl"></i></a>
+        <a href="https://twitter.com/kumdahal" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fab fa-twitter text-2xl"></i></a>
+        <a href="https://kdahal.github.io/kresume/index.html" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fas fa-file-alt text-2xl"></i></a>
+      </div>
+      <p class="text-lg">Innovate. Secure. Scale.</p>
+      <p class="text-md mt-2">© 2025 Kumar Dahal. All rights reserved.</p>
+    </div>
   </footer>
 
-<!-- END PAGE CONTENT -->
-</div>
+  <!-- JavaScript -->
+  <script>
+    // GSAP Animations
+    gsap.from('.animate-fade-in', { opacity: 0, y: 50, duration: 1, stagger: 0.2, ease: 'power2.out' });
 
-<script src="talktokumar.js/talktokumarstylesheet.js"></script>
+    // Mobile Menu Toggle
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+
+    // Hero Slider
+    let heroSlideIndex = 0;
+    const heroSlides = document.querySelectorAll('#home .slide');
+    heroSlides[heroSlideIndex].classList.add('active');
+    setInterval(() => {
+      heroSlides[heroSlideIndex].classList.remove('active');
+      heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
+      heroSlides[heroSlideIndex].classList.add('active');
+    }, 5000);
+
+    // Certificates Slider
+    let certSlideIndex = 0;
+    const certSlides = document.querySelectorAll('#certificates-slider > div');
+    const certDots = document.querySelectorAll('.dot');
+    const totalCertSlides = certSlides.length;
+
+    function currentSlide(index) {
+      certSlideIndex = index;
+      showCertSlide(certSlideIndex);
+    }
+
+    function showCertSlide(index) {
+      if (index >= totalCertSlides) certSlideIndex = 0;
+      if (index < 0) certSlideIndex = totalCertSlides - 1;
+      document.getElementById('certificates-slider').style.transform = `translateX(-${certSlideIndex * (100 / totalCertSlides)}%)`;
+      certDots.forEach(dot => dot.classList.remove('bg-teal-400'));
+      document.getElementById(`dot-${certSlideIndex}`).classList.add('bg-teal-400');
+    }
+
+    document.getElementById('prev-slide').addEventListener('click', () => {
+      certSlideIndex--;
+      showCertSlide(certSlideIndex);
+    });
+
+    document.getElementById('next-slide').addEventListener('click', () => {
+      certSlideIndex++;
+      showCertSlide(certSlideIndex);
+    });
+
+    // Auto-slide every 4 seconds for certificates slider
+    setInterval(() => {
+      certSlideIndex++;
+      showCertSlide(certSlideIndex);
+    }, 4000);
+
+    // Initialize with first slide
+    showCertSlide(certSlideIndex);
+
+    // Form Submission
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formMessage = document.getElementById('form-message');
+      const submitButton = this.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+
+      emailjs.send('YOUR_USER_ID', 'YOUR_TEMPLATE_ID', {
+        from_name: this.name.value,
+        from_email: this.email.value,
+        message: this.message.value
+      })
+      .then(() => {
+        formMessage.classList.remove('hidden', 'text-red-500');
+        formMessage.classList.add('text-green-500');
+        formMessage.textContent = 'Message sent successfully!';
+        this.reset();
+      })
+      .catch(error => {
+        formMessage.classList.remove('hidden', 'text-green-500');
+        formMessage.classList.add('text-red-500');
+        formMessage.textContent = 'Error sending message. Please try again.';
+      })
+      .finally(() => {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send Message';
+      });
+    });
+  </script>
 </body>
 </html>
