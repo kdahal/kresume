@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Kumar Dahal - Principal Solutions Architect specializing in AI/ML, Multi-Cloud, DevSecOps, and Cybersecurity">
   <title>Kumar Dahal - Software Architect & Innovator</title>
- <link rel="shortcut icon" href="images/kumar.logo.jpg" type="image/png" />
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome CDN -->
@@ -102,20 +100,39 @@
 
     /* Photo Grid */
     .photo-grid {
-      margin: 0 -16px;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 6px;
+      justify-items: center;
     }
     .photo-grid img {
       width: 100%;
-      height: auto;
-      transition: transform 0.3s ease;
+      max-width: 600px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    /* .photo-grid img:hover {
+    .photo-grid img:hover {
       transform: scale(1.05);
-    } */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
     @media (max-width: 640px) {
-      .photo-grid {
-        margin: 0;
+      .photo-grid img {
+        max-width: 200px;
+        height: 150px;
       }
+    }
+
+    /* Project Card */
+    .project-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     }
   </style>
 </head>
@@ -131,176 +148,178 @@
   <nav class="fixed top-0 w-full bg-gray-800 bg-opacity-90 z-50">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
       <a href="#home" class="text-2xl font-bold text-teal-400">Kumar Dahal</a>
-      <div class="hidden md:flex space-x-6">
-        <a href="#home" class="hover:text-teal-400 transition">Home</a>
-        <a href="#about" class="hover:text-teal-400 transition">About</a>
-        <a href="#experience" class="hover:text-teal-400 transition">Experience</a>
-        <a href="#skills" class="hover:text-teal-400 transition">Skills</a>
-        <a href="#photos" class="hover:text-teal-400 transition">Photos</a>
-        <a href="#blog" class="hover:text-teal-400 transition">Blog</a>
-        <a href="#contact" class="hover:text-teal-400 transition">Contact</a>
-      </div>
-      <button id="menu-toggle" class="md:hidden text-teal-400">
-        <i class="fas fa-bars"></i>
-      </button>
+    <div class="hidden md:flex space-x-6">
+      <a href="#home" class="hover:text-teal-400 transition">Home</a>
+      <a href="#about" class="hover:text-teal-400 transition">About</a>
+      <a href="#experience" class="hover:text-teal-400 transition">Experience</a>
+      <a href="#skills" class="hover:text-teal-400 transition">Skills</a>
+      <a href="#photos" class="hover:text-teal-400 transition">Photos</a>
+      <a href="#projects" class="hover:text-teal-400 transition">Projects</a>
+      <a href="#blog" class="hover:text-teal-400 transition">Blog</a>
+      <a href="#contact" class="hover:text-teal-400 transition">Contact</a>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
-      <a href="#home" class="block px-4 py-2 hover:bg-gray-700">Home</a>
-      <a href="#about" class="block px-4 py-2 hover:bg-gray-700">About</a>
-      <a href="#experience" class="block px-4 py-2 hover:bg-gray-700">Experience</a>
-      <a href="#skills" class="block px-4 py-2 hover:bg-gray-700">Skills</a>
-      <a href="#photos" class="block px-4 py-2 hover:bg-gray-700">Photos</a>
-      <a href="#blog" class="block px-4 py-2 hover:bg-gray-700">Blog</a>
-      <a href="#contact" class="block px-4 py-2 hover:bg-gray-700">Contact</a>
-    </div>
-  </nav>
+    <button id="menu-toggle" class="md:hidden text-teal-400">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+    <a href="#home" class="block px-4 py-2 hover:bg-gray-700">Home</a>
+    <a href="#about" class="block px-4 py-2 hover:bg-gray-700">About</a>
+    <a href="#experience" class="block px-4 py-2 hover:bg-gray-700">Experience</a>
+    <a href="#skills" class="block px-4 py-2 hover:bg-gray-700">Skills</a>
+    <a href="#photos" class="block px-4 py-2 hover:bg-gray-700">Photos</a>
+    <a href="#projects" class="block px-4 py-2 hover:bg-gray-700">Projects</a>
+    <a href="#blog" class="block px-4 py-2 hover:bg-gray-700">Blog</a>
+    <a href="#contact" class="block px-4 py-2 hover:bg-gray-700">Contact</a>
+  </div>
+</nav>
 
-  <!-- Hero Section with Sliding Parallax -->
-  <section id="home" class="hero-slider">
-    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7150?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')"></div>
-    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')"></div>
-    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')"></div>
-    <div class="flex items-center justify-center min-h-screen bg-black bg-opacity-50">
-      <div class="text-center">
-        <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 animate-fade-in">Kumar Dahal</h1>
-        <p class="text-xl md:text-3xl text-teal-300 mb-8 animate-fade-in">Crafting secure, scalable, and innovative software solutions for a connected world.</p>
-        <a href="#contact" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition animate-fade-in">Get in Touch</a>
+<!-- Hero Section with Sliding Parallax -->
+<section id="home" class="hero-slider">
+  <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7150?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')"></div>
+  <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')"></div>
+  <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')"></div>
+  <div class="flex items-center justify-center min-h-screen bg-black bg-opacity-50">
+    <div class="text-center">
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 animate-fade-in">Kumar Dahal</h1>
+      <p class="text-xl md:text-3xl text-teal-300 mb-8 animate-fade-in">Crafting secure, scalable, and innovative software solutions for a connected world.</p>
+      <a href="#contact" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition animate-fade-in">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-16 bg-gray-800">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center text-teal-400 mb-8">A Little Bit About Me!</h2>
+    <div class="flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-8 md:mb-0">
+        <img src="images/Kumar_2.png" alt="Tech Innovation" class="rounded-lg shadow-lg w-full">
+      </div>
+      <div class="md:w-1/2 md:pl-8">
+        <p class="text-lg mb-4">Hello there! It's lovely to share a little about my professional journey with you. I'm someone who truly enjoys bringing big ideas to life by blending the best of technology with practical business needs. Over the past decade, I've had the wonderful opportunity to dive deep into the world of AI and Machine Learning, always looking for innovative ways to make systems smarter and more efficient.</p>
+        <p class="text-lg mb-4">I find real joy in taking complex challenges and breaking them down into clear, manageable solutions. Whether it's crafting scalable architectures in the cloud (Azure, AWS, GCP), streamlining operations with DevOps, or ensuring everything is secure with DevSecOps, my passion lies in building reliable systems that truly make a difference. I've been fortunate to work with incredible teams, guiding projects from initial concept all the way to successful deployment, and always learning along the way.</p>
+        <p class="text-lg">What truly lights me up is the chance to collaborate, share insights, and help others grow. I believe that the best solutions come from working together, understanding diverse perspectives, and always keeping the end-user's needs at heart. Beyond the technical bits, I'm simply someone who loves to solve problems, enjoys a good challenge, and is always eager to explore what's next in the ever-evolving landscape of technology.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- About Section -->
-  <section id="about" class="py-16 bg-gray-800">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold text-center text-teal-400 mb-8">A Little Bit About Me!</h2>
-      <div class="flex flex-col md:flex-row items-center">
-        <div class="md:w-1/2 mb-8 md:mb-0">
-          <img src="images/Kumar_2.png" alt="Tech Innovation" class="rounded-lg shadow-lg w-full">
-        </div>
-        <div class="md:w-1/2 md:pl-8">
-          <p class="text-lg mb-4">Hello there! It's lovely to share a little about my professional journey with you. I'm someone who truly enjoys bringing big ideas to life by blending the best of technology with practical business needs. Over the past decade, I've had the wonderful opportunity to dive deep into the world of AI and Machine Learning, always looking for innovative ways to make systems smarter and more efficient.</p>
-          <p class="text-lg mb-4">I find real joy in taking complex challenges and breaking them down into clear, manageable solutions. Whether it's crafting scalable architectures in the cloud (Azure, AWS, GCP), streamlining operations with DevOps, or ensuring everything is secure with DevSecOps, my passion lies in building reliable systems that truly make a difference. I've been fortunate to work with incredible teams, guiding projects from initial concept all the way to successful deployment, and always learning along the way.</p>
-          <p class="text-lg">What truly lights me up is the chance to collaborate, share insights, and help others grow. I believe that the best solutions come from working together, understanding diverse perspectives, and always keeping the end-user's needs at heart. Beyond the technical bits, I'm simply someone who loves to solve problems, enjoys a good challenge, and is always eager to explore what's next in the ever-evolving landscape of technology.</p>
+<!-- Experience Section -->
+<section id="experience" class="py-16 bg-gray-900">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center text-teal-400 mb-12 animate-fade-in">Professional Experience</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="flip-box">
+        <div class="flip-box-inner">
+          <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <h3 class="text-xl font-semibold text-orange-500">Technical Solutions Architect | The Cadmus Group</h3>
+            <p class="mt-2 text-gray-300">Apr 2023 – Present (2 years 3 months)</p>
+            <i class="fa fa-institution text-4xl text-teal-400 mt-4"></i>
+          </div>
+          <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Government Contract" class="w-full h-40 object-cover rounded-lg mb-4">
+            <p class="text-gray-300">Architected ETL solutions for Nutrition Accuracy Clearinghouse, improving data accuracy by 30%. Led AI/ML deployments on Azure, boosting client satisfaction by 20%.</p>
+            <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Experience Section -->
-  <section id="experience" class="py-16 bg-gray-900">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold text-center text-teal-400 mb-12 animate-fade-in">Professional Experience</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="flip-box">
-          <div class="flip-box-inner">
-            <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-              <h3 class="text-xl font-semibold text-orange-500">Technical Solutions Architect | The Cadmus Group</h3>
-              <p class="mt-2 text-gray-300">Apr 2023 – Present (2 years 3 months)</p>
-              <i class="fa fa-institution text-4xl text-teal-400 mt-4"></i>
-            </div>
-            <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Government Contract" class="w-full h-40 object-cover rounded-lg mb-4">
-              <p class="text-gray-300">Architected ETL solutions for Nutrition Accuracy Clearinghouse, improving data accuracy by 30%. Led AI/ML deployments on Azure, boosting client satisfaction by 20%.</p>
-              <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
-            </div>
+      <div class="flip-box">
+        <div class="flip-box-inner">
+          <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <h3 class="text-xl font-semibold text-orange-500">DevSecOps Automation | ASRC Federal</h3>
+            <p class="mt-2 text-gray-300">Mar 2021 – Apr 2023 (2 years 2 months)</p>
+            <i class="fa fa-cloud text-4xl text-teal-400 mt-4"></i>
+          </div>
+          <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7150?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Government Contract" class="w-full h-40 object-cover rounded-lg mb-4">
+            <p class="text-gray-300">Designed CI/CD pipelines, reducing delivery cycles by 40%. Migrated apps to Azure, saving 20% in costs, and optimized Kubernetes for $15k/month savings.</p>
+            <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
           </div>
         </div>
-        <div class="flip-box">
-          <div class="flip-box-inner">
-            <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-              <h3 class="text-xl font-semibold text-orange-500">DevSecOps Automation | ASRC Federal</h3>
-              <p class="mt-2 text-gray-300">Mar 2021 – Apr 2023 (2 years 2 months)</p>
-              <i class="fa fa-cloud text-4xl text-teal-400 mt-4"></i>
-            </div>
-            <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-              <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7150?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Government Contract" class="w-full h-40 object-cover rounded-lg mb-4">
-              <p class="text-gray-300">Designed CI/CD pipelines, reducing delivery cycles by 40%. Migrated apps to Azure, saving 20% in costs, and optimized Kubernetes for $15k/month savings.</p>
-              <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
-            </div>
+      </div>
+      <div class="flip-box">
+        <div class="flip-box-inner">
+          <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <h3 class="text-xl font-semibold text-orange-500">Multi-Cloud & DevOps Engineer | Hotel Engine & Chetu Inc.</h3>
+            <p class="mt-2 text-gray-300">Jan 2017 – Mar 2020 (3 years 4 months)</p>
+            <i class="fa fa-hotel text-4xl text-teal-400 mt-4"></i>
+          </div>
+          <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Hospitality" class="w-full h-40 object-cover rounded-lg mb-4">
+            <p class="text-gray-300">Developed AI/ML automation with SageMaker, cutting costs by 35%. Pioneered GIS agriculture app with drone integration using Kubernetes.</p>
+            <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
           </div>
         </div>
-        <div class="flip-box">
-          <div class="flip-box-inner">
-            <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-              <h3 class="text-xl font-semibold text-orange-500">Multi-Cloud & DevOps Engineer | Hotel Engine & Chetu Inc.</h3>
-              <p class="mt-2 text-gray-300">Jan 2017 – Mar 2020 (3 years 4 months)</p>
-              <i class="fa fa-hotel text-4xl text-teal-400 mt-4"></i>
-            </div>
-            <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Hospitality" class="w-full h-40 object-cover rounded-lg mb-4">
-              <p class="text-gray-300">Developed AI/ML automation with SageMaker, cutting costs by 35%. Pioneered GIS agriculture app with drone integration using Kubernetes.</p>
-              <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
-            </div>
+      </div>
+      <div class="flip-box">
+        <div class="flip-box-inner">
+          <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <h3 class="text-xl font-semibold text-orange-500">Cloud Security & DevOps Engineer | Integra Telecom & Electronics Row</h3>
+            <p class="mt-2 text-gray-300">Dec 2009 – Dec 2016 (7 years 5 months)</p>
+            <i class="fa fa-500px text-4xl text-teal-400 mt-4"></i>
+          </div>
+          <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Telecommunication" class="w-full h-40 object-cover rounded-lg mb-4">
+            <p class="text-gray-300">Led cloud cybersecurity efforts and developed e-commerce platforms, generating $8.6M in revenue. Implemented Docker and Kubernetes for scalability.</p>
+            <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
           </div>
         </div>
-        <div class="flip-box">
-          <div class="flip-box-inner">
-            <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-              <h3 class="text-xl font-semibold text-orange-500">Cloud Security & DevOps Engineer | Integra Telecom & Electronics Row</h3>
-              <p class="mt-2 text-gray-300">Dec 2009 – Dec 2016 (7 years 5 months)</p>
-              <i class="fa fa-500px text-4xl text-teal-400 mt-4"></i>
-            </div>
-            <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Telecommunication" class="w-full h-40 object-cover rounded-lg mb-4">
-              <p class="text-gray-300">Led cloud cybersecurity efforts and developed e-commerce platforms, generating $8.6M in revenue. Implemented Docker and Kubernetes for scalability.</p>
-              <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
-            </div>
+      </div>
+      <div class="flip-box">
+        <div class="flip-box-inner">
+          <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <h3 class="text-xl font-semibold text-orange-500">Network Security Specialist | MasTec</h3>
+            <p class="mt-2 text-gray-300">Dec 2006 – Nov 2009 (4 years 7 months)</p>
+            <i class="fa fa-home text-4xl text-teal-400 mt-4"></i>
+          </div>
+          <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Housing Industry" class="w-full h-40 object-cover rounded-lg mb-4">
+            <p class="text-gray-300">Managed network infrastructure and cybersecurity, remediating risks and ensuring compliance with enterprise standards.</p>
+            <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
           </div>
         </div>
-        <div class="flip-box">
-          <div class="flip-box-inner">
-            <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-              <h3 class="text-xl font-semibold text-orange-500">Network Security Specialist | MasTec</h3>
-              <p class="mt-2 text-gray-300">Dec 2006 – Nov 2009 (4 years 7 months)</p>
-              <i class="fa fa-home text-4xl text-teal-400 mt-4"></i>
-            </div>
-            <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Housing Industry" class="w-full h-40 object-cover rounded-lg mb-4">
-              <p class="text-gray-300">Managed network infrastructure and cybersecurity, remediating risks and ensuring compliance with enterprise standards.</p>
-              <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
-            </div>
+      </div>
+      <div class="flip-box">
+        <div class="flip-box-inner">
+          <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <h3 class="text-xl font-semibold text-orange-500">Network Engineer | LONG Building Technologies</h3>
+            <p class="mt-2 text-gray-300">Jan 2004 – Nov 2006 (5 years 2 months)</p>
+            <i class="fa fa-tree text-4xl text-teal-400 mt-4"></i>
           </div>
-        </div>
-        <div class="flip-box">
-          <div class="flip-box-inner">
-            <div class="flip-box-front bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-              <h3 class="text-xl font-semibold text-orange-500">Network Engineer | LONG Building Technologies</h3>
-              <p class="mt-2 text-gray-300">Jan 2004 – Nov 2006 (5 years 2 months)</p>
-              <i class="fa fa-tree text-4xl text-teal-400 mt-4"></i>
-            </div>
-            <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-              <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7150?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Agriculture" class="w-full h-40 object-cover rounded-lg mb-4">
-              <p class="text-gray-300">Designed LAN/WAN for seven offices, reducing expenses by $5M through optimized telecom systems.</p>
-              <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
-            </div>
+          <div class="flip-box-back bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7150?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Agriculture" class="w-full h-40 object-cover rounded-lg mb-4">
+            <p class="text-gray-300">Designed LAN/WAN for seven offices, reducing expenses by $5M through optimized telecom systems.</p>
+            <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-2 px-4 rounded-lg mt-4 inline-block">More Info</a>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="py-16 bg-gray-800">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold text-center text-teal-400 mb-12">Technical Expertise</h2>
-      <p class="text-center text-lg mb-8 text-orange-500">Building the future, one secure system at a time.</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="skill-card bg-gray-900 p-6 rounded-lg shadow-lg text-center">
-          <i class="fas fa-robot text-4xl text-teal-400 mb-4"></i>
-          <h3 class="text-xl font-semibold mb-2">AI/ML & Software Architecture</h3>
-          <p>Expert in TensorFlow, PyTorch, Azure ML, and scalable system design. Built end-to-end AI pipelines and predictive models.</p>
-        </div>
-        <div class="skill-card bg-gray-900 p-6 rounded-lg shadow-lg text-center">
-          <i class="fas fa-cloud text-4xl text-teal-400 mb-4"></i>
-          <h3 class="text-xl font-semibold mb-2">Multi-Cloud (Azure, AWS, GCP)</h3>
-          <p>Certified in Azure Architect, AWS DevOps, and GCP Architect. Deployed scalable cloud solutions with IaC.</p>
-        </div>
-        <div class="skill-card bg-gray-900 p-6 rounded-lg shadow-lg text-center">
-          <i class="fas fa-shield-alt text-4xl text-teal-400 mb-4"></i>
-          <h3 class="text-xl font-semibold mb-2">DevSecOps & Cybersecurity</h3>
-          <p>Proficient in Kubernetes, HashiCorp Vault, CISSP, and secure CI/CD pipelines.</p>
-        </div>
+<!-- Skills Section -->
+<section id="skills" class="py-16 bg-gray-800">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center text-teal-400 mb-12">Technical Expertise</h2>
+    <p class="text-center text-lg mb-8 text-orange-500">Building the future, one secure system at a time.</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="skill-card bg-gray-900 p-6 rounded-lg shadow-lg text-center">
+        <i class="fas fa-robot text-4xl text-teal-400 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">AI/ML & Software Architecture</h3>
+        <p>Expert in TensorFlow, PyTorch, Azure ML, and scalable system design. Built end-to-end AI pipelines and predictive models.</p>
       </div>
+      <div class="skill-card bg-gray-900 p-6 rounded-lg shadow-lg text-center">
+        <i class="fas fa-cloud text-4xl text-teal-400 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">Multi-Cloud (Azure, AWS, GCP)</h3>
+        <p>Certified in Azure Architect, AWS DevOps, and GCP Architect. Deployed scalable cloud solutions with IaC.</p>
+      </div>
+      <div class="skill-card bg-gray-900 p-6 rounded-lg shadow-lg text-center">
+        <i class="fas fa-shield-alt text-4xl text-teal-400 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">DevSecOps & Cybersecurity</h3>
+        <p>Proficient in Kubernetes, HashiCorp Vault, CISSP, and secure CI/CD pipelines.</p>
+      </div>
+    </div>
       <div class="mt-12">
         <h3 class="text-2xl font-semibold text-center text-orange-500 mb-8">Certifications</h3>
         <div class="relative w-full max-w-6xl mx-auto py-8">
@@ -367,194 +386,220 @@
         </div>
         <p class="text-center mt-4"><a href="https://skillsoft.digitalbadges.skillsoft.com/profile/kumardahal695260/wallet" target="_blank" class="text-teal-400 hover:underline">View All Skillsoft Digital Certificates</a></p>
       </div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- My Photos Section -->
-  <section id="photos" class="py-16 bg-gray-800">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold text-center text-teal-400 mb-12 border-b-4 border-teal-400 pb-2">My Photos</h2>
-      <div class="photo-grid grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="grayscale">
-          <img src="images/KD_Tech.jpg" alt="Kumar Dahal Tech" class="w-full h-auto rounded-lg" loading="lazy">
-          <img src="images/highres_233567202.png" alt="High Resolution Tech" class="w-full h-auto rounded-lg mt-4" loading="lazy">
-        </div>
-        <div class="grayscale">
-          <img src="images/kumar_entegra1.jpg" alt="Kumar Entegra" class="w-full h-auto rounded-lg" loading="lazy">
-          <img src="images/KD_ableplant.jpg" alt="Kumar Ableplant" class="w-full h-auto rounded-lg mt-4" loading="lazy">
-          
-        </div>
+<!-- My Photos Section -->
+<section id="photos" class="py-16 bg-gray-800">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center text-teal-400 mb-12 border-b-4 border-teal-400 pb-2">My Photos</h2>
+    <div class="photo-grid grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
+      <div class="grayscale">
+        <img src="images/KD_Tech.jpg" alt="Kumar Dahal Tech" class="w-full max-w-xs h-48 object-cover rounded-lg shadow-md hover:shadow-lg" loading="lazy">
+        <img src="images/highres_233567202.png" alt="High Resolution Tech" class="w-full max-w-xs h-48 object-cover rounded-lg shadow-md hover:shadow-lg mt-6" loading="lazy">
+      </div>
+      <div class="grayscale">
+        <img src="images/kumar_entegra1.jpg" alt="Kumar Entegra" class="w-full max-w-xs h-48 object-cover rounded-lg shadow-md hover:shadow-lg" loading="lazy">
+        <img src="images/KD_ableplant.jpg" alt="Kumar Ableplant" class="w-full max-w-xs h-48 object-cover rounded-lg shadow-md hover:shadow-lg mt-6" loading="lazy">
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Blog Section -->
-  <section id="blog" class="py-16 bg-gray-900">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold text-center text-teal-400 mb-12">My Blog</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
-          <a href="visit_my_blogs.html" target="_blank">
-            <img src="images_3/mlops.JPG" alt="Securing MLOps" class="w-full h-40 object-cover rounded-lg mb-4">
-            <h3 class="text-xl font-semibold text-orange-500">Securing MLOps Pipelines with DevSecOps Practices</h3>
-          </a>
-          <p class="mt-2">Transformative power of MLOps with secure DevSecOps practices.</p>
-        </div>
-        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
-          <a href="visit_my_blogs.html" target="_blank">
-            <img src="images_3/Cloud_Migration.jpg" alt="Cloud Migration" class="w-full h-40 object-cover rounded-lg mb-4">
-            <h3 class="text-xl font-semibold text-orange-500">Cloud Migration Plan: A Comprehensive Guide</h3>
-          </a>
-          <p class="mt-2">Step-by-step approach to seamless cloud adoption.</p>
-        </div>
-        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
-          <a href="visit_my_blogs.html"target="_blank">
-            <img src="images_3/explainable_ai_02.JPG" alt="Explainable AI" class="w-full h-40 object-cover rounded-lg mb-4">
-            <h3 class="text-xl font-semibold text-orange-500">Explainable AI (XAI)</h3>
-          </a>
-          <p class="mt-2">Making AI decisions transparent and trustworthy.</p>
-        </div>
+<!-- Projects Showcase Section -->
+<section id="projects" class="py-16 bg-gray-900">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center text-teal-400 mb-12 border-b-4 border-teal-400 pb-2 animate-fade-in">Projects Showcase</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="project-card bg-gray-900 p-6 rounded-lg shadow-lg">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Cloud Infrastructure" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+        <h3 class="text-xl font-semibold text-orange-500">Cloud Infrastructure Optimization</h3>
+        <p class="mt-2 text-gray-300">Designed and deployed a scalable cloud architecture, achieving 99.9% uptime using Kubernetes and Terraform. Improved resource efficiency by 25%.</p>
+        <p class="mt-4 text-teal-400 hover:underline"><a href="#contact" onclick="event.preventDefault(); alert('Details available upon request under NDA. Please contact me for more information.');">Details available upon request under NDA</a></p>
       </div>
-      <p class="text-center mt-8"><a href="https://www.linkedin.com/in/kumar-dahal/recent-activity/articles/" target="_blank" class="text-teal-400 hover:underline">View All My Articles</a></p>
+      <div class="project-card bg-gray-900 p-6 rounded-lg shadow-lg">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="AI/ML Deployment" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+        <h3 class="text-xl font-semibold text-orange-500">AI/ML Model Deployment</h3>
+        <p class="mt-2 text-gray-300">Led the development and deployment of machine learning models, reducing processing time by 40% with TensorFlow and Azure ML.</p>
+        <p class="mt-4 text-teal-400 hover:underline"><a href="#contact" onclick="event.preventDefault(); alert('Details available upon request under NDA. Please contact me for more information.');">Details available upon request under NDA</a></p>
+      </div>
+      <div class="project-card bg-gray-900 p-6 rounded-lg shadow-lg">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="DevSecOps Pipeline" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+        <h3 class="text-xl font-semibold text-orange-500">Secure DevSecOps Pipeline</h3>
+        <p class="mt-2 text-gray-300">Implemented a secure CI/CD pipeline, cutting deployment cycles by 50% and enhancing security with HashiCorp Vault.</p>
+        <p class="mt-4 text-teal-400 hover:underline"><a href="#contact" onclick="event.preventDefault(); alert('Details available upon request under NDA. Please contact me for more information.');">Details available upon request under NDA</a></p>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-16 bg-gray-800">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold text-center text-teal-400 mb-12">Contact Me</h2>
-      <div class="flex flex-col md:flex-row items-center">
-        <div class="md:w-1/2 mb-8 md:mb-0">
-          <img src="new_image/visu_craft_web.JPG" alt="Collaboration" class="rounded-lg shadow-lg w-full">
+<!-- Blog Section -->
+<section id="blog" class="py-16 bg-gray-900">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center text-teal-400 mb-12">My Blog</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+        <a href="Securing_MLOps_Pipelines_with_DevSecOps_Practices.html" target="_blank">
+          <img src="images_3/mlops.JPG" alt="Securing MLOps" class="w-full h-40 object-cover rounded-lg mb-4">
+          <h3 class="text-xl font-semibold text-orange-500">Securing MLOps Pipelines with DevSecOps Practices</h3>
+        </a>
+        <p class="mt-2">Transformative power of MLOps with secure DevSecOps practices.</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+        <a href="Cloud_migration.html" target="_blank">
+          <img src="images_3/Cloud_Migration.jpg" alt="Cloud Migration" class="w-full h-40 object-cover rounded-lg mb-4">
+          <h3 class="text-xl font-semibold text-orange-500">Cloud Migration Plan: A Comprehensive Guide</h3>
+        </a>
+        <p class="mt-2">Step-by-step approach to seamless cloud adoption.</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+        <a href="Explainable AI.html" target="_blank">
+          <img src="images_3/explainable_ai_02.JPG" alt="Explainable AI" class="w-full h-40 object-cover rounded-lg mb-4">
+          <h3 class="text-xl font-semibold text-orange-500">Explainable AI (XAI)</h3>
+        </a>
+        <p class="mt-2">Making AI decisions transparent and trustworthy.</p>
+      </div>
+    </div>
+    <p class="text-center mt-8"><a href="visit_my_blogs.html" target="_blank" class="text-teal-400 hover:underline">View All My Articles</a></p>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-16 bg-gray-800">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center text-teal-400 mb-12">Contact Me</h2>
+    <div class="flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-8 md:mb-0">
+        <img src="new_image/visu_craft_web.JPG" alt="Collaboration" class="rounded-lg shadow-lg w-full">
+      </div>
+      <div class="md:w-1/2 md:pl-8">
+        <div class="mb-6">
+          <p><i class="fa fa-map-marker text-2xl text-teal-400 mr-2"></i> Aurora, Colorado US</p>
+          <p><i class="fa fa-phone text-2xl text-teal-400 mr-2"></i> Phone: +00 720-352-3978</p>
+          <p><i class="fa fa-envelope text-2xl text-teal-400 mr-2"></i> Email: kumar.dahal@outlook.com</p>
         </div>
-        <div class="md:w-1/2 md:pl-8">
-          <div class="mb-6">
-            <p><i class="fa fa-map-marker text-2xl text-teal-400 mr-2"></i> Aurora, Colorado US</p>
-            <p><i class="fa fa-phone text-2xl text-teal-400 mr-2"></i> Phone: +00 720-352-3978</p>
-            <p><i class="fa fa-envelope text-2xl text-teal-400 mr-2"></i> Email: kumar.dahal@outlook.com</p>
+        <form id="contact-form" class="space-y-6">
+          <div>
+            <label for="name" class="block text-lg font-medium">Name (Optional)</label>
+            <input type="text" id="name" name="name" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400">
           </div>
-          <form id="contact-form" class="space-y-6">
-            <div>
-              <label for="name" class="block text-lg font-medium">Name (Optional)</label>
-              <input type="text" id="name" name="name" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400">
-            </div>
-            <div>
-              <label for="email" class="block text-lg font-medium">Email Address</label>
-              <input type="email" id="email" name="email" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400" required>
-            </div>
-            <div>
-              <label for="message" class="block text-lg font-medium">Message</label>
-              <textarea id="message" name="message" rows="5" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400" required></textarea>
-            </div>
-            <button type="submit" class="w-full bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-3 rounded-lg transition">Send Message</button>
-            <p id="form-message" class="mt-4 text-center text-lg hidden"></p>
-          </form>
-        </div>
+          <div>
+            <label for="email" class="block text-lg font-medium">Email Address</label>
+            <input type="email" id="email" name="email" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400" required>
+          </div>
+          <div>
+            <label for="message" class="block text-lg font-medium">Message</label>
+            <textarea id="message" name="message" rows="5" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400" required></textarea>
+          </div>
+          <button type="submit" class="w-full bg-teal-400 hover:bg-teal-500 text-gray-900 font-semibold py-3 rounded-lg transition">Send Message</button>
+          <p id="form-message" class="mt-4 text-center text-lg hidden"></p>
+        </form>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 py-8">
-    <div class="container mx-auto px-4 text-center">
-      <div class="flex justify-center space-x-6 mb-4">
-        <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fab fa-linkedin text-2xl"></i></a>
-        <a href="https://twitter.com/kumdahal" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fab fa-twitter text-2xl"></i></a>
-        <a href="https://kdahal.github.io/kresume/index.html" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fas fa-file-alt text-2xl"></i></a>
-      </div>
-      <p class="text-lg">Innovate. Secure. Scale.</p>
-      <p class="text-md mt-2">© 2025 Kumar Dahal. All rights reserved.</p>
+<!-- Footer -->
+<footer class="bg-gray-800 py-8">
+  <div class="container mx-auto px-4 text-center">
+    <div class="flex justify-center space-x-6 mb-4">
+      <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fab fa-linkedin text-2xl"></i></a>
+      <a href="https://twitter.com/kumdahal" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fab fa-twitter text-2xl"></i></a>
+      <a href="https://kdahal.github.io/kresume/index.html" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fas fa-file-alt text-2xl"></i></a>
     </div>
-  </footer>
+    <p class="text-lg">Innovate. Secure. Scale.</p>
+    <p class="text-md mt-2">© 2025 Kumar Dahal. All rights reserved.</p>
+  </div>
+</footer>
 
-  <!-- JavaScript -->
-  <script>
-    // GSAP Animations
-    gsap.from('.animate-fade-in', { opacity: 0, y: 50, duration: 1, stagger: 0.2, ease: 'power2.out' });
+<!-- JavaScript -->
+<script>
+  // GSAP Animations
+  gsap.from('.animate-fade-in', { opacity: 0, y: 50, duration: 1, stagger: 0.2, ease: 'power2.out' });
 
-    // Mobile Menu Toggle
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-    });
+  // Mobile Menu Toggle
+  document.getElementById('menu-toggle').addEventListener('click', () => {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+  });
 
-    // Hero Slider
-    let heroSlideIndex = 0;
-    const heroSlides = document.querySelectorAll('#home .slide');
+  // Hero Slider
+  let heroSlideIndex = 0;
+  const heroSlides = document.querySelectorAll('#home .slide');
+  heroSlides[heroSlideIndex].classList.add('active');
+  setInterval(() => {
+    heroSlides[heroSlideIndex].classList.remove('active');
+    heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
     heroSlides[heroSlideIndex].classList.add('active');
-    setInterval(() => {
-      heroSlides[heroSlideIndex].classList.remove('active');
-      heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
-      heroSlides[heroSlideIndex].classList.add('active');
-    }, 5000);
+  }, 5000);
 
-    // Certificates Slider
-    let certSlideIndex = 0;
-    const certSlides = document.querySelectorAll('#certificates-slider > div');
-    const certDots = document.querySelectorAll('.dot');
-    const totalCertSlides = certSlides.length;
+  // Certificates Slider
+  let certSlideIndex = 0;
+  const certSlides = document.querySelectorAll('#certificates-slider > div');
+  const certDots = document.querySelectorAll('.dot');
+  const totalCertSlides = certSlides.length;
 
-    function currentSlide(index) {
-      certSlideIndex = index;
-      showCertSlide(certSlideIndex);
-    }
-
-    function showCertSlide(index) {
-      if (index >= totalCertSlides) certSlideIndex = 0;
-      if (index < 0) certSlideIndex = totalCertSlides - 1;
-      document.getElementById('certificates-slider').style.transform = `translateX(-${certSlideIndex * (100 / totalCertSlides)}%)`;
-      certDots.forEach(dot => dot.classList.remove('bg-teal-400'));
-      document.getElementById(`dot-${certSlideIndex}`).classList.add('bg-teal-400');
-    }
-
-    document.getElementById('prev-slide').addEventListener('click', () => {
-      certSlideIndex--;
-      showCertSlide(certSlideIndex);
-    });
-
-    document.getElementById('next-slide').addEventListener('click', () => {
-      certSlideIndex++;
-      showCertSlide(certSlideIndex);
-    });
-
-    // Auto-slide every 4 seconds for certificates slider
-    setInterval(() => {
-      certSlideIndex++;
-      showCertSlide(certSlideIndex);
-    }, 4000);
-
-    // Initialize with first slide
+  function currentSlide(index) {
+    certSlideIndex = index;
     showCertSlide(certSlideIndex);
+  }
 
-    // Form Submission
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const formMessage = document.getElementById('form-message');
-      const submitButton = this.querySelector('button[type="submit"]');
-      submitButton.disabled = true;
-      submitButton.textContent = 'Sending...';
+  function showCertSlide(index) {
+    if (index >= totalCertSlides) certSlideIndex = 0;
+    if (index < 0) certSlideIndex = totalCertSlides - 1;
+    document.getElementById('certificates-slider').style.transform = `translateX(-${certSlideIndex * (100 / totalCertSlides)}%)`;
+    certDots.forEach(dot => dot.classList.remove('bg-teal-400'));
+    document.getElementById(`dot-${certSlideIndex}`).classList.add('bg-teal-400');
+  }
 
-      emailjs.send('YOUR_USER_ID', 'YOUR_TEMPLATE_ID', {
-        from_name: this.name.value,
-        from_email: this.email.value,
-        message: this.message.value
-      })
-      .then(() => {
-        formMessage.classList.remove('hidden', 'text-red-500');
-        formMessage.classList.add('text-green-500');
-        formMessage.textContent = 'Message sent successfully!';
-        this.reset();
-      })
-      .catch(error => {
-        formMessage.classList.remove('hidden', 'text-green-500');
-        formMessage.classList.add('text-red-500');
-        formMessage.textContent = 'Error sending message. Please try again.';
-      })
-      .finally(() => {
-        submitButton.disabled = false;
-        submitButton.textContent = 'Send Message';
-      });
+  document.getElementById('prev-slide').addEventListener('click', () => {
+    certSlideIndex--;
+    showCertSlide(certSlideIndex);
+  });
+
+  document.getElementById('next-slide').addEventListener('click', () => {
+    certSlideIndex++;
+    showCertSlide(certSlideIndex);
+  });
+
+  // Auto-slide every 4 seconds for certificates slider
+  setInterval(() => {
+    certSlideIndex++;
+    showCertSlide(certSlideIndex);
+  }, 4000);
+
+  // Initialize with first slide
+  showCertSlide(certSlideIndex);
+
+  // Form Submission
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formMessage = document.getElementById('form-message');
+    const submitButton = this.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+
+    emailjs.send('YOUR_USER_ID', 'YOUR_TEMPLATE_ID', {
+      from_name: this.name.value,
+      from_email: this.email.value,
+      message: this.message.value
+    })
+    .then(() => {
+      formMessage.classList.remove('hidden', 'text-red-500');
+      formMessage.classList.add('text-green-500');
+      formMessage.textContent = 'Message sent successfully!';
+      this.reset();
+    })
+    .catch(error => {
+      formMessage.classList.remove('hidden', 'text-green-500');
+      formMessage.classList.add('text-red-500');
+      formMessage.textContent = 'Error sending message. Please try again.';
+    })
+    .finally(() => {
+      submitButton.disabled = false;
+      submitButton.textContent = 'Send Message';
     });
-  </script>
+  });
+</script>
 </body>
 </html>
