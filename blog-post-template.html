@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kumar Dahal's Blog - Securing MLOps Pipelines with DevSecOps Practices">
+  <title>Securing MLOps Pipelines with DevSecOps Practices | Kumar Dahal Blog</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <style>
+    /* Parallax and Slider (optional for post page) */
+    .hero-slider {
+      position: relative;
+      min-height: 60vh;
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slide.active {
+      opacity: 1;
+    }
+    /* Blog Content Styles */
+    .blog-content {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .blog-content h2 {
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .blog-content p {
+      margin-bottom: 1rem;
+    }
+    .blog-content img {
+      max-width: 100%;
+      height: auto;
+      margin: 1rem 0;
+    }
+    /* Recommended Card */
+    .recommended-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .recommended-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+    @media (max-width: 640px) {
+      .recommended-card img {
+        height: 30vh;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans">
+  <!-- Navbar (same as index.html) -->
+  <nav class="fixed top-0 w-full bg-gray-800 bg-opacity-90 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold text-teal-400">Kumar Dahal Blog</a>
+      <div class="hidden md:flex space-x-6">
+        <a href="index.html" class="hover:text-teal-400 transition">Home</a>
+        <a href="visit_my_blogs.html" class="hover:text-teal-400 transition">Blog Landing</a>
+        <a href="#contact" class="hover:text-teal-400 transition">Contact</a>
+      </div>
+      <button id="menu-toggle" class="md:hidden text-teal-400">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+      <a href="index.html" class="block px-4 py-2 hover:bg-gray-700">Home</a>
+      <a href="visit_my_blogs.html" class="block px-4 py-2 hover:bg-gray-700">Blog Landing</a>
+      <a href="#contact" class="block px-4 py-2 hover:bg-gray-700">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Header for Blog Post -->
+  <section class="hero-slider">
+    <div class="slide" style="background-image: url('images_3/mlops.JPG')"></div> <!-- Use post-specific image or generic -->
+    <div class="flex items-center justify-center min-h-[60vh] bg-black bg-opacity-50">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 animate-fade-in">Securing MLOps Pipelines with DevSecOps Practices</h1>
+        <p class="text-lg text-teal-300 mb-4 animate-fade-in">By Kumar Dahal | July 18, 2025</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Content Section -->
+  <section class="py-16 bg-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="blog-content text-lg text-gray-300">
+        <p>Introduction: Having spent the last decade deeply embedded in the evolving landscape of software and machine learning operations, I've witnessed firsthand the transformative power of MLOps. </p>
+        <h2>Section 1: Key Concepts</h2>
+        <p>Explainable Artificial Intelligent, or XAI is widely used fundamental concepts and understanding the differences between inherently explainable Artificial Intelligent....</p>
+        <img src="images_3/explainable_ai_01.JPG" alt="Blog Image" class="w-full rounded-lg">
+        <p>Continue with more content, paragraphs, or code snippets here. For example, a code block:</p>
+        <pre class="bg-gray-900 p-4 rounded-lg overflow-auto">
+<code>
+# Example Python code for MLOps
+import tensorflow as tf
+model = tf.keras.models.Sequential([
+  tf.keras.layers.Dense(64, activation='relu'),
+  tf.keras.layers.Dense(1)
+])
+model.compile(optimizer='adam', loss='mse')
+</code>
+        </pre>
+        <h2>Section 2: Best Practices</h2>
+        <p>Cloud migration is an increasingly popular way for businesses to move their data and applications to the cloud. It offers a range of benefits....</p>
+        <!-- Add as much content as needed -->
+        <p class="mt-8 text-teal-400 hover:underline"><a href="visit_my_blogs.html">Back to Blog Landing</a></p>
+
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+            <!-- Recommended Posts Section -->
+        <h2 class="text-3xl font-bold text-center text-teal-400 mt-12 mb-8">Recommended Posts</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="recommended-card bg-gray-900 p-6 rounded-lg shadow-lg">
+            <a href="cloud_migration.html" target="_blank">
+              <img src="images_3/Cloud_Migration.jpg" alt="Cloud Migration Plan: A Comprehensive Guide" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+              <h3 class="text-xl font-semibold text-orange-500">Cloud Migration Plan: A Comprehensive Guide</h3>
+            </a>
+            <p class="mt-2 text-gray-300">Step-by-step approach to seamless cloud adoption.</p>
+          </div>
+          <div class="recommended-card bg-gray-900 p-6 rounded-lg shadow-lg">
+            <a href="explainable_ai.html" target="_blank">
+              <img src="images_3/explainable_ai_02.JPG" alt="Explainable AI (XAI)" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+              <h3 class="text-xl font-semibold text-orange-500">Explainable AI (XAI)</h3>
+            </a>
+            <p class="mt-2 text-gray-300">Making AI decisions transparent and trustworthy.</p>
+          </div>
+          <div class="recommended-card bg-gray-900 p-6 rounded-lg shadow-lg">
+            <a href="kubernetes.html" target="_blank">
+              <img src="new_image/rsz_kubernetes.jpg" alt="Kubernetes Cluster Architecture" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+              <h3 class="text-xl font-semibold text-orange-500">Kubernetes Cluster Architecture</h3>
+            </a>
+            <p class="mt-2 text-gray-300">Kubernetes is an open-source container-orchestration system for automating computer application...</p>
+          </div>
+          <div class="recommended-card bg-gray-900 p-6 rounded-lg shadow-lg">
+            <a href="docker.html" target="_blank">
+              <img src="images/rsz_docker.jpg" alt="Docker Architecture & containerization?" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+              <h3 class="text-xl font-semibold text-orange-500">Docker Architecture & containerization?</h3>
+            </a>
+            <p class="mt-2 text-gray-300">Docker is a set of platform as a service products that use OS-level virtualization...</p>
+          </div>
+        </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 py-8">
+    <div class="container mx-auto px-4 text-center">
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fab fa-linkedin text-2xl"></i></a>
+        <a href="https://twitter.com/kumdahal" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fab fa-twitter text-2xl"></i></a>
+        <a href="https://kdahal.github.io/kresume/index.html" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fas fa-file-alt text-2xl"></i></a>
+      </div>
+      <p class="text-lg">Innovate. Secure. Scale.</p>
+      <p class="text-md mt-2">© 2025 Kumar Dahal. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // GSAP Animations
+    gsap.from('.animate-fade-in', { opacity: 0, y: 50, duration: 1, stagger: 0.2, ease: 'power2.out' });
+
+    // Mobile Menu Toggle
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+
+    // Hero Slider (for post header)
+    let heroSlideIndex = 0;
+    const heroSlides = document.querySelectorAll('.hero-slider .slide');
+    if (heroSlides.length > 0) {
+      heroSlides[heroSlideIndex].classList.add('active');
+      setInterval(() => {
+        heroSlides[heroSlideIndex].classList.remove('active');
+        heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
+        heroSlides[heroSlideIndex].classList.add('active');
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
