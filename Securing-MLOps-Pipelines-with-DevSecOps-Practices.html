@@ -12,23 +12,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <!-- GSAP CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
-    <script>
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: 'dark',
-            themeVariables: {
-                primaryColor: '#2DD4BF',
-                secondaryColor: '#F97316',
-                tertiaryColor: '#6B7280',
-                primaryTextColor: '#E5E7EB',
-                secondaryTextColor: '#1F2937',
-                lineColor: '#FFFFFF',
-                noteBkgColor: '#F97316',
-                noteTextColor: '#1F2937'
-           }
-          });
-      </script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
   <style>
     /* Parallax and Slider (optional for post page) */
@@ -124,7 +111,87 @@
         <h2>Introduction</h2>
         <p>Having spent the last decade deeply embedded in the evolving landscape of software and machine learning operations, I've witnessed firsthand the transformative power of MLOps. However, this rapid advancement in deploying and managing AI models has also brought a fresh set of security challenges. The answer, as I've consistently advocated and implemented, lies in the robust integration of DevSecOps practices directly into our MLOps pipelines. Security must be an intrinsic part of the entire machine learning lifecycle, not an afterthought.</p>
         <p>The journey from traditional software development to the complexities of MLOps introduces unique security considerations. We're not just dealing with code vulnerabilities; we're contending with data poisoning, model extraction, adversarial attacks, data privacy, and the integrity of continuously evolving models. My 10 years of experience in architecting secure systems have reinforced a fundamental truth: a proactive, "shift-left" security approach, bolstered by automation and continuous vigilance, is paramount.</p>
-        <img src="images_3/mlops_security.jpg" alt="MLOps Security Diagram" class="w-full rounded-lg">
+        <!--<img src="images_3/mlops_security.jpg" alt="MLOps Security Diagram" class="w-full rounded-lg">-->
+                <div class="mermaid">
+                    graph TD
+                        %% Define styles
+                        classDef pipeline fill:#2DD4BF,stroke:#FFFFFF,stroke-width:2px,color:#1F2937;
+                        classDef security fill:#F97316,stroke:#FFFFFF,stroke-width:2px,color:#1F2937;
+                        classDef cultural fill:#6B7280,stroke:#FFFFFF,stroke-width:2px,color:#E5E7EB,stroke-dasharray: 5, 5;
+                        classDef startEnd fill:#10B981,stroke:#FFFFFF,stroke-width:2px,color:#1F2937;
+
+                        %% Start Node
+                        A((Start: MLOps Pipeline)):::startEnd --> B[Data Ingestion & Preparation]:::pipeline
+                        %% Data Ingestion & Preparation Notes
+                        B --> note1["
+                        **Security Measures**<br>
+                        - Robust Data Governance<br>
+                        - Data Encryption<br>
+                        - Access Controls & Anonymization<br>
+                        - Data Lineage & Versioning
+                        "]:::security 
+
+                        %% Model Development & Experimentation
+                        B --> C[Model Development & Experimentation]:::pipeline
+                        C --> note2["
+                        **Security Measures**<br>
+                        - Secure Coding Practices<br>
+                        - Vulnerability Scanning<br>
+                        - Environment Hardening<br>
+                        - Secrets Management
+                        "]:::security 
+
+                        %% CI/CD Pipeline
+                        C --> D[CI/CD Pipeline]:::pipeline
+                        D --> note3["
+                        **Security Measures**<br>
+                        - Automated Security Gates<br>
+                        - Immutable Infrastructure<br>
+                        - Container Security<br>
+                        - Model Versioning
+                        "]:::security 
+
+                        %% Model Deployment & Serving
+                        D --> E[Model Deployment & Serving]:::pipeline
+                        E --> note4["
+                        **Security Measures**<br>
+                        - Secure Deployment Practices<br>
+                        - Runtime Security Monitoring<br>
+                        - API Security<br>
+                        - Bias & Fairness Testing
+                        "]:::security 
+
+                        %% Continuous Monitoring & Incident Response
+                        E --> F[Continuous Monitoring & Incident Response]:::pipeline
+                        F --> note5["
+                        **Security Measures**<br>
+                        - Observability<br>
+                        - Anomaly Detection<br>
+                        - Threat Modeling<br>
+                        - Automated Incident Response
+                        "]:::security 
+
+                        %% Feedback Loop
+                        F -->|Continuous Improvement| B
+
+                        %% End Node
+                        F --> G((End: Secure MLOps Pipeline)):::startEnd
+
+                        %% Cultural Imperative
+                        subgraph Cultural_Imperative [Cultural Imperative]
+                            H["
+                            - Breaking Silos<br>
+                            - Security Champion Program<br>
+                            - Continuous Security Training<br>
+                            - Shared Responsibility
+                            "]:::cultural
+                        end
+                        H -.-> B
+                        H -.-> C
+                        H -.-> D
+                        H -.-> E
+                        H -.-> F
+                    </div>
 
         <h2>Key Concepts</h2>
         <p>Securing MLOps pipelines requires a holistic approach that integrates DevSecOps principles across the entire machine learning lifecycle. Below are the key concepts and practices, forged over a decade of practical application, to fortify MLOps pipelines:</p>
@@ -187,94 +254,6 @@ model.load_weights(secret['model_path'])
         <h3>The Cultural Imperative</h3>
         <p>Beyond tools and processes, fostering a security-focused culture is critical. Break down silos between data scientists, ML engineers, security teams, and operations. Implement a "security champion" program, provide continuous security training, and create shared responsibility for security.</p>
         <img src="images_3/devsecops_culture.jpg" alt="DevSecOps Culture" class="w-full rounded-lg">
-        <div class="mermaid">
-            graph TD
-              %% Define styles
-              classDef pipeline fill:#2DD4BF,stroke:#FFFFFF,stroke-width:2px,color:#1F2937;
-              classDef security fill:#F97316,stroke:#FFFFFF,stroke-width:2px,color:#1F2937;
-              classDef cultural fill:#6B7280,stroke:#FFFFFF,stroke-width:2px,color:#E5E7EB,stroke-dasharray: 5, 5;
-              classDef startEnd fill:#10B981,stroke:#FFFFFF,stroke-width:2px,color:#1F2937;
-
-              %% Start Node
-              A((Start: MLOps Pipeline)):::startEnd --> B
-
-              %% Data Ingestion & Preparation
-              B[Data Ingestion & Preparation]:::pipeline --> C
-              note1["
-              **Security Measures**<br>
-              - Robust Data Governance<br>
-              - Data Encryption<br>
-              - Access Controls & Anonymization<br>
-              - Data Lineage & Versioning
-              "]:::security
-              B -->|""| note1
-
-              %% Model Development & Experimentation
-              C[Model Development & Experimentation]:::pipeline --> D
-              note2["
-              **Security Measures**<br>
-              - Secure Coding Practices<br>
-              - Vulnerability Scanning<br>
-              - Environment Hardening<br>
-              - Secrets Management
-              "]:::security
-              C -->|""| note2
-
-              %% CI/CD Pipeline
-              D[CI/CD Pipeline]:::pipeline --> E
-              note3["
-              **Security Measures**<br>
-              - Automated Security Gates<br>
-              - Immutable Infrastructure<br>
-              - Container Security<br>
-              - Model Versioning
-              "]:::security
-              D -->|""| note3
-
-              %% Model Deployment & Serving
-              E[Model Deployment & Serving]:::pipeline --> F
-              note4["
-              **Security Measures**<br>
-              - Secure Deployment Practices<br>
-              - Runtime Security Monitoring<br>
-              - API Security<br>
-              - Bias & Fairness Testing
-              "]:::security
-              E -->|""| note4
-
-              %% Continuous Monitoring & Incident Response
-              F[Continuous Monitoring & Incident Response]:::pipeline --> G
-              note5["
-              **Security Measures**<br>
-              - Observability<br>
-              - Anomaly Detection<br>
-              - Threat Modeling<br>
-              - Automated Incident Response
-              "]:::security
-              F -->|""| note5
-
-              %% Feedback Loop
-              F -->|Continuous Improvement| B
-
-              %% End Node
-              G((End: Secure MLOps Pipeline)):::startEnd
-
-              %% Cultural Imperative
-              subgraph Cultural_Imperative [Cultural Imperative]
-                  H["
-                  - Breaking Silos<br>
-                  - Security Champion Program<br>
-                  - Continuous Security Training<br>
-                  - Shared Responsibility
-                  "]:::cultural
-              end
-              H -.-> B
-              H -.-> C
-              H -.-> D
-              H -.-> E
-              H -.-> F
-
-        </div>
 
         <h2>Conclusion</h2>
         <p>Architecting secure MLOps pipelines is about embedding resilience, not adding friction. It’s about building trust in AI systems, ensuring their integrity, protecting sensitive data, and delivering business value securely. The past decade has provided invaluable lessons, and the path forward is clear: DevSecOps is the blueprint for secure MLOps.</p>
@@ -354,5 +333,28 @@ model.load_weights(secret['model_path'])
       }, 5000);
     }
   </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    mermaid.run({
+      querySelector: 'pre.mermaid'
+    });
+  });
+</script>
+<script>
+mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: {
+      primaryColor: '#2DD4BF',
+      secondaryColor: '#F97316',
+      tertiaryColor: '#6B7280',
+      primaryTextColor: '#E5E7EB',
+      secondaryTextColor: '#1F2937',
+      lineColor: '#FFFFFF',
+      noteBkgColor: '#F97316',
+      noteTextColor: '#1F2937'
+    }
+  });
+</script>
 </body>
 </html>
