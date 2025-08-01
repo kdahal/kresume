@@ -12,6 +12,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <!-- GSAP CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({ startOnLoad: true });
+</script>
   <style>
     /* Parallax and Slider (optional for post page) */
     .hero-slider {
@@ -144,7 +148,49 @@
           <li>Plan for potential outages.</li>
           <li>Build a rollback strategy.</li>
         </ul>
+        <br>
+        <div class="mermaid">
+            flowchart TD
+                Start(("Start")) --> A["Analyze Services, Providers, Costs"]
+                A --> B["Release Data - Wave Approach"]
+                B --> D1{"Issues?"}
+                D1 -- Yes --> C["Corrective Action"]
+                C --> E["Add More Data"]
+                E -- "..." --> B
+                D1 -- No --> F["Secure Data - Before"]
+                F --> G["Prepare for Cutover"]
+                G -.-> Note1[/"Migration Tips Note"/]
+                G --> H["Execute Migration"]
+                H --> I["Secure Data - After"] & J["Establish Training Plan"]
+                I --> K["Predict & Respond to Changes"]
+                J --> K
+                K --> L["Monitor Performance"]
+                L --> D2{"Issues?"} & End(("End"))
+                D2 -- Yes --> M["Fine-Tune Cloud Use"]
+                M -.-> Note2[/"Backups Tips Note"/]
+                M --> L
+                D2 -- No --> L
 
+                style Start stroke:#00C853
+                style A stroke:#FFF9C4
+                style B stroke:#FFE0B2
+                style D1 stroke:#FFCDD2
+                style C stroke:#C8E6C9
+                style E stroke:#BBDEFB
+                style F stroke:#C8E6C9
+                style G stroke:#BBDEFB
+                style Note1 stroke:#C8E6C9
+                style H stroke:#C8E6C9
+                style I stroke:#BBDEFB
+                style J stroke:#BBDEFB
+                style K stroke:#E1BEE7
+                style L stroke:#FFE0B2
+                style D2 stroke:#BBDEFB
+                style End stroke:#00C853
+                style M stroke:#FFD600
+                style Note2 stroke:#FFCDD2
+        </div>
+      </br>
         <h2>Migration Tips</h2>
         <ul class="list-disc pl-6">
           <li>Start small to reduce risk.</li>
@@ -284,5 +330,28 @@
       }, 5000);
     }
   </script>
+    <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    mermaid.run({
+      querySelector: 'pre.mermaid'
+    });
+  });
+</script>
+<script>
+mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: {
+      primaryColor: '#2DD4BF',
+      secondaryColor: '#F97316',
+      tertiaryColor: '#6B7280',
+      primaryTextColor: '#E5E7EB',
+      secondaryTextColor: '#1F2937',
+      lineColor: '#FFFFFF',
+      noteBkgColor: '#F97316',
+      noteTextColor: '#1F2937'
+    }
+  });
+</script>
 </body>
 </html>
