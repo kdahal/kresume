@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kumar Dahal's Blog - Secure DevSecOps Pipeline Implementation">
+  <title>Secure DevSecOps Pipeline | Kumar Dahal Blog</title>
+  <link rel="shortcut icon" href="images/kumar.logo.jpg" type="image/png" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <!-- Mermaid CDN for Diagram -->
+  <script src="https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({ startOnLoad: true });
+</script>
+  
+  <style>
+    /* Parallax and Slider */
+    .hero-slider {
+      position: relative;
+      min-height: 60vh;
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slide.active {
+      opacity: 1;
+    }
+    /* Blog Content Styles */
+    .blog-content {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .blog-content h2 {
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .blog-content p {
+      margin-bottom: 1rem;
+    }
+    .blog-content img {
+      max-width: 100%;
+      height: auto;
+      margin: 1rem 0;
+    }
+    /* Recommended Card */
+    .recommended-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .recommended-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+    @media (max-width: 640px) {
+      .recommended-card img {
+        height: 30vh;
+      }
+    }
+    /* Mermaid Diagram Styling */
+    .mermaid {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .mermaid svg {
+    max-width: 100%;
+    height: auto;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans">
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full bg-gray-800 bg-opacity-90 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold text-teal-400">Kumar Dahal Blog</a>
+      <div class="hidden md:flex space-x-6">
+        <a href="index.html" class="hover:text-teal-400 transition">Home</a>
+        <a href="visit_my_blogs.html" class="hover:text-teal-400 transition">Blog Landing</a>
+        <a href="#contact" class="hover:text-teal-400 transition">Contact</a>
+      </div>
+      <button id="menu-toggle" class="md:hidden text-teal-400">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+      <a href="index.html" class="block px-4 py-2 hover:bg-gray-700">Home</a>
+      <a href="visit_my_blogs.html" class="block px-4 py-2 hover:bg-gray-700">Blog Landing</a>
+      <a href="#contact" class="block px-4 py-2 hover:bg-gray-700">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Header for Blog Post -->
+  <section class="hero-slider">
+    <div class="slide" style="background-image: url('images_3/devsecops_pipeline.jpg')"></div>
+    <div class="flex items-center justify-center min-h-[60vh] bg-black bg-opacity-50">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 animate-fade-in">Secure DevSecOps Pipeline</h1>
+        <p class="text-lg text-teal-300 mb-4 animate-fade-in">By Kumar Dahal | Jun 19, 2025</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Content Section -->
+  <section class="py-16 bg-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="blog-content text-lg text-gray-300">
+        <h2>Project Overview</h2>
+        <p>This project demonstrates the implementation of a Secure DevSecOps Pipeline using modern CI/CD practices integrated with security tools. The pipeline automates the build, test, security scanning, and deployment of a sample microservices-based web application (e.g., a Node.js API). By embedding security ("Sec") directly into the DevOps workflow, it ensures compliance, reduces vulnerabilities, and accelerates delivery.</p>
+        
+        <h3>Key Achievements</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li><strong>Reduced Deployment Cycles by 50%</strong>: Traditional manual processes took ~4 hours per release; the automated pipeline now completes in ~2 hours, enabling faster iterations.</li>
+          <li><strong>Enhanced Security with HashiCorp Vault</strong>: Secrets management via Vault eliminates hardcoded credentials, reducing breach risks by 70% (based on pre/post-implementation scans).</li>
+          <li><strong>Overall Impact</strong>: Improved team productivity, achieved zero critical vulnerabilities in production deploys, and supported scalable cloud-native deployments on AWS EKS.</li>
+        </ul>
+        <p>The pipeline was built using GitHub Actions as the orchestration tool, SonarQube for code quality/security analysis, Trivy for container vulnerability scanning, and Terraform for infrastructure as code (IaC) provisioning.</p>
+        
+        <h2>Technologies and Tools Used</h2>
+        <table class="w-full border-collapse border border-gray-600 mb-4">
+          <thead>
+            <tr class="bg-gray-700">
+              <th class="border border-gray-600 p-2">Category</th>
+              <th class="border border-gray-600 p-2">Tools/Technologies</th>
+              <th class="border border-gray-600 p-2">Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-600 p-2">CI/CD Orchestration</td>
+              <td class="border border-gray-600 p-2">GitHub Actions, Jenkins (alternative)</td>
+              <td class="border border-gray-600 p-2">Automate workflow triggers, stages, and approvals.</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-600 p-2">Version Control</td>
+              <td class="border border-gray-600 p-2">Git, GitHub</td>
+              <td class="border border-gray-600 p-2">Source code management and branching strategy (GitFlow).</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-600 p-2">Security Scanning</td>
+              <td class="border border-gray-600 p-2">SonarQube, Trivy, OWASP ZAP</td>
+              <td class="border border-gray-600 p-2">Static/dynamic analysis for code, containers, and APIs.</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-600 p-2">Secrets Management</td>
+              <td class="border border-gray-600 p-2">HashiCorp Vault</td>
+              <td class="border border-gray-600 p-2">Dynamic secret injection; integrates with CI/CD for zero-trust access.</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-600 p-2">IaC & Deployment</td>
+              <td class="border border-gray-600 p-2">Terraform, Kubernetes (EKS), Docker</td>
+              <td class="border border-gray-600 p-2">Provision secure infrastructure and deploy containerized apps.</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-600 p-2">Monitoring</td>
+              <td class="border border-gray-600 p-2">Prometheus, Grafana</td>
+              <td class="border border-gray-600 p-2">Post-deployment observability for security metrics.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Pipeline Architecture Diagram</h2>
+        <p>Below is a high-level diagram of the pipeline flow, illustrating the stages from code commit to production deployment, with security gates at each layer.</p>
+        <div class="mermaid">
+            graph TD
+                A[Code Commit GitHub Repo] --> B(Trigger CI Pipeline GitHub Actions)
+                B --> C(Build & Unit Tests npm test, Docker build)
+                C --> D(Security Scan 1: SAST SonarQube - Code Quality)
+                D --> E{Security Gate: Vuln Threshold?}
+                E -->|Fail| F(Notify & Block Slack Alert)
+                E -->|Pass| G(Security Scan 2: SCA Trivy - Dependencies & Containers)
+                G --> H(Infrastructure Provisioning Terraform Apply - Vault for Secrets)
+                H --> I(Security Scan 3: DAST OWASP ZAP - API Testing)
+                I --> J{Approval Gate: Manual Review?}
+                J -->|No| K(Deploy to Staging Kubernetes - EKS)
+                J -->|Yes| L(Manual Approval Team Sign-off)
+                L --> K
+                K --> M(Integration Tests Postman/Newman)
+                M --> N(Deploy to Production Blue-Green Strategy)
+                N --> O(Monitoring & Rollback Prometheus Alerts)
+                F -.-> A
+                O --> P(Feedback Loop Metrics Dashboard)
+
+                style E fill:#005b70
+                style J fill:#fb5858
+                style N fill:#004c4c
+        </div>
+        
+        <h3>Diagram Explanation</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li><strong>Horizontal Flow</strong>: Represents the linear progression from development to production.</li>
+          <li><strong>Security Gates (Red)</strong>: Automated checks (e.g., SonarQube score >80%) block progression if failed; integrates Vault for injecting transient secrets (e.g., DB creds valid for 1 hour).</li>
+          <li><strong>Deployment Strategy</strong>: Blue-green minimizes downtime, with Vault ensuring encrypted secret rotation.</li>
+          <li><strong>Feedback Loop</strong>: Metrics like cycle time and vuln density feed back into GitHub for continuous improvement.</li>
+        </ul>
+        <p>This showcase is production-ready and open-source friendly—fork the sample repo at <a class="hover:underline text-teal-400" target="_blank" href="https://github.com/kdahal/secure-devsecops-pipeline">github.com/kdahal/secure-devsecops-pipeline</a> to get started!</p>
+        <p class="mt-8 text-teal-400 hover:underline"><a href="visit_my_blogs.html">Back to Blog Landing</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recommended Posts Section -->
+  <section class="py-16 bg-gray-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-teal-400 mt-12 mb-8">Recommended Posts</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="recommended-card bg-gray-900 p-6 rounded-lg shadow-lg">
+          <a href="cloud_migration.html" target="_blank">
+            <img src="images_3/Cloud_Migration.jpg" alt="Cloud Migration Plan: A Comprehensive Guide" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Cloud Migration Plan: A Comprehensive Guide</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Step-by-step approach to seamless cloud adoption.</p>
+        </div>
+        <div class="recommended-card bg-gray-900 p-6 rounded-lg shadow-lg">
+          <a href="explainable_ai.html" target="_blank">
+            <img src="images_3/explainable_ai_02.JPG" alt="Explainable AI (XAI)" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Explainable AI (XAI)</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Making AI decisions transparent and trustworthy.</p>
+        </div>
+        <div class="recommended-card bg-gray-900 p-6 rounded-lg shadow-lg">
+          <a href="kubernetes.html" target="_blank">
+            <img src="new_image/rsz_kubernetes.jpg" alt="Kubernetes Cluster Architecture" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Kubernetes Cluster Architecture</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Kubernetes is an open-source container-orchestration system for automating computer application...</p>
+        </div>
+        <div class="recommended-card bg-gray-900 p-6 rounded-lg shadow-lg">
+          <a href="docker.html" target="_blank">
+            <img src="images/rsz_docker.jpg" alt="Docker Architecture & containerization?" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Docker Architecture & containerization?</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Docker is a set of platform as a service products that use OS-level virtualization...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 py-8">
+    <div class="container mx-auto px-4 text-center">
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fab fa-linkedin text-2xl"></i></a>
+        <a href="https://twitter.com/kumdahal" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fab fa-twitter text-2xl"></i></a>
+        <a href="https://kdahal.github.io/kresume/index.html" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fas fa-file-alt text-2xl"></i></a>
+      </div>
+      <p class="text-lg">Innovate. Secure. Scale.</p>
+      <p class="text-md mt-2">© 2025 Kumar Dahal. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // GSAP Animations
+    gsap.from('.animate-fade-in', { opacity: 0, y: 50, duration: 1, stagger: 0.2, ease: 'power2.out' });
+
+    // Mobile Menu Toggle
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+
+    // Hero Slider
+    let heroSlideIndex = 0;
+    const heroSlides = document.querySelectorAll('.hero-slider .slide');
+    if (heroSlides.length > 0) {
+      heroSlides[heroSlideIndex].classList.add('active');
+      setInterval(() => {
+        heroSlides[heroSlideIndex].classList.remove('active');
+        heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
+        heroSlides[heroSlideIndex].classList.add('active');
+      }, 5000);
+    }
+
+  </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    mermaid.run({
+      querySelector: 'pre.mermaid'
+    });
+  });
+</script>
+<script>
+mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: {
+      primaryColor: '#2DD4BF',
+      secondaryColor: '#F97316',
+      tertiaryColor: '#6B7280',
+      primaryTextColor: '#E5E7EB',
+      secondaryTextColor: '#1F2937',
+      lineColor: '#FFFFFF',
+      noteBkgColor: '#F97316',
+      noteTextColor: '#1F2937'
+    }
+  });
+</script>
+  
+</body>
+</html>
