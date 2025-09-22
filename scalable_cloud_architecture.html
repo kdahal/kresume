@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kumar Dahal's Blog - Scalable Cloud Architecture Implementation">
+  <title>Scalable Cloud Architecture | Kumar Dahal Blog</title>
+  <link rel="shortcut icon" href="images/kumar.logo.jpg" type="image/png" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <!-- Mermaid CDN for Diagram -->
+  <script src="https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  
+  <style>
+    /* Parallax and Slider */
+    .hero-slider {
+      position: relative;
+      min-height: 60vh;
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slide.active {
+      opacity: 1;
+    }
+    /* Blog Content Styles */
+    .blog-content {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .blog-content h2 {
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .blog-content p {
+      margin-bottom: 1rem;
+    }
+    .blog-content img {
+      max-width: 100%;
+      height: auto;
+      margin: 1rem 0;
+    }
+    /* Recommended Card */
+    .recommended-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .recommended-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+    @media (max-width: 640px) {
+      .recommended-card img {
+        height: 30vh;
+      }
+    }
+    /* Mermaid Diagram Styling */
+    .mermaid {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .mermaid svg {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans">
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full bg-gray-800 bg-opacity-90 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold text-teal-400">Kumar Dahal Blog</a>
+      <div class="hidden md:flex space-x-6">
+        <a href="index.html" class="hover:text-teal-400 transition">Home</a>
+        <a href="visit_my_blogs.html" class="hover:text-teal-400 transition">Blog Landing</a>
+        <a href="#contact" class="hover:text-teal-400 transition">Contact</a>
+      </div>
+      <button id="menu-toggle" class="md:hidden text-teal-400">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+      <a href="index.html" class="block px-4 py-2 hover:bg-gray-700">Home</a>
+      <a href="visit_my_blogs.html" class="block px-4 py-2 hover:bg-gray-700">Blog Landing</a>
+      <a href="#contact" class="block px-4 py-2 hover:bg-gray-700">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Header for Blog Post -->
+  <section class="hero-slider">
+    <div class="slide" style="background-image: url('images_3/scalable_cloud.jpg')"></div>
+    <div class="flex items-center justify-center min-h-[60vh] bg-black bg-opacity-50">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 animate-fade-in">Scalable Cloud Architecture</h1>
+        <p class="text-lg text-teal-300 mb-4 animate-fade-in">By Kumar Dahal | Sep 22, 2025</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Content Section -->
+  <section class="py-16 bg-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="blog-content text-lg text-gray-300">
+        <h2>Project Overview</h2>
+        <p>This project demonstrates the design and deployment of a production-ready, scalable cloud architecture for a sample web application (e.g., a Node.js backend with a PostgreSQL database). Hosted on AWS Elastic Kubernetes Service (EKS), it leverages Terraform for infrastructure as code (IaC) and Kubernetes for orchestration. The primary goals were to achieve high availability with 99.9% uptime, enhance resource efficiency by approximately 25%, and ensure seamless scalability under varying loads.</p>
+        <p>The architecture incorporates best practices for cloud-native development, including auto-scaling, multi-AZ redundancy, health checks, and optimized resource allocation. This setup is ideal for modern applications requiring reliability, cost-effectiveness, and ease of maintenance. The entire project is version-controlled in a Git repository, making it reproducible and extensible.</p>
+        
+        <h3>Key Achievements</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li><strong>High Uptime (99.9%)</strong>: Accomplished through multi-AZ deployments, load balancing, automated failover, rolling updates, and health probes, minimizing downtime during failures or maintenance.</li>
+          <li><strong>Resource Efficiency Improvement (25%)</strong>: Optimized via right-sized instance types (e.g., t3.medium with spot instances), Kubernetes resource requests/limits, and Horizontal Pod Autoscaling (HPA), reducing costs by dynamically adjusting resources.</li>
+          <li><strong>Scalability</strong>: Supports horizontal scaling of pods (3-10 replicas) and nodes (2-5), handling traffic spikes efficiently.</li>
+          <li><strong>Security and Observability</strong>: Includes IAM roles, secrets management (Kubernetes Secrets/AWS Secrets Manager), and monitoring integrations (CloudWatch/Prometheus/Grafana) for proactive issue detection.</li>
+          <li><strong>Automation</strong>: CI/CD readiness with GitHub Actions for automated builds, tests, and deployments.</li>
+        </ul>
+        <p>These metrics were validated through load testing (e.g., using Locust) and monitoring tools, simulating real-world scenarios to confirm performance.</p>
+        
+        <h2>Technologies and Tools Used</h2>
+        <table class="w-full border-collapse border border-gray-600 mb-4">
+          <thead>
+            <tr class="bg-gray-700">
+              <th class="border border-gray-600 p-2">Category</th>
+              <th class="border border-gray-600 p-2">Tools/Technologies</th>
+              <th class="border border-gray-600 p-2">Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-600 p-2">Infrastructure Provisioning</td>
+              <td class="border border-gray-600 p-2">Terraform</td>
+              <td class="border border-gray-600 p-2">Declarative IaC for managing AWS resources (VPC, subnets, EKS).</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-600 p-2">Container Orchestration</td>
+              <td class="border border-gray-600 p-2">Kubernetes (AWS EKS)</td>
+              <td class="border border-gray-600 p-2">Manage containerized workloads with manifests for deployments, services, and HPA.</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-600 p-2">Cloud Provider</td>
+              <td class="border border-gray-600 p-2">AWS (EKS, ALB, RDS, CloudWatch)</td>
+              <td class="border border-gray-600 p-2">Host infrastructure and provide monitoring/logging.</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-600 p-2">CI/CD</td>
+              <td class="border border-gray-600 p-2">GitHub Actions</td>
+              <td class="border border-gray-600 p-2">Automate build, test, and deployment workflows.</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-600 p-2">Monitoring & Logging</td>
+              <td class="border border-gray-600 p-2">Prometheus, Grafana, AWS CloudWatch</td>
+              <td class="border border-gray-600 p-2">Track metrics, alerts, and logs for uptime and efficiency.</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-600 p-2">Other Tools</td>
+              <td class="border border-gray-600 p-2">Docker, Helm, Velero</td>
+              <td class="border border-gray-600 p-2">Containerization, advanced Kubernetes management, and backups.</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-600 p-2">Languages/Frameworks</td>
+              <td class="border border-gray-600 p-2">Node.js, YAML, HCL</td>
+              <td class="border border-gray-600 p-2">Sample app, Kubernetes manifests, Terraform scripts.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Architecture Diagram</h2>
+        <p>Below is a high-level diagram of the architecture, illustrating how user traffic flows through the system, emphasizing scalability, availability, and efficiency components.</p>
+        <div class="mermaid">
+          graph TD
+            A[User] -->|HTTPS| B[ALB Load Balancer<br>Multi-AZ]
+            B --> C[Kubernetes Ingress<br>ALB Controller]
+            C --> D[Pods: My-App Deployment<br>Replicas: 3-10<br>CPU: 250m-500m<br>Mem: 512Mi-1Gi<br>Liveness Probes]
+            D --> E[Horizontal Pod Autoscaler<br>Target: 50% CPU Utilization]
+            D --> F[PostgreSQL Service<br>Multi-AZ RDS Instance<br>Persistent Storage]
+            G[EKS Cluster<br>Nodes: t3.medium Spot<br>Min: 2, Max: 5<br>Multi-AZ] --> D
+            H[Terraform Provisioning<br>VPC, Subnets, IAM Roles<br>Region: us-west-2] --> G
+            I[Monitoring: CloudWatch/Prometheus<br>Alerts: Uptime, Resource Usage<br>Grafana Dashboards] --> G
+            J[CI/CD: GitHub Actions<br>Rolling Updates, Automated Builds] --> H
+            K[Secrets Management<br>AWS Secrets Manager<br>Kubernetes Secrets] --> D
+
+            style D fill:#FF7CC9,stroke:#333,stroke-width:2px
+            style G fill:#998,stroke:#333,stroke-width:2px
+            style F fill:#07F,stroke:#333
+            style I fill:#F0A,stroke:#333
+        </div>
+        
+        <h3>Diagram Explanation</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li><strong>User Traffic Flow</strong>: Users access the application via an AWS ALB, routed through Kubernetes Ingress to application pods.</li>
+          <li><strong>Scalability</strong>: HPA adjusts pod replicas (3-10) based on 50% CPU utilization; EKS node groups scale from 2 to 5 nodes.</li>
+          <li><strong>High Availability</strong>: Multi-AZ setup for ALB, EKS, and RDS ensures 99.9% uptime with automated failover.</li>
+          <li><strong>Efficiency</strong>: Spot instances and optimized resource limits reduce costs by ~25%.</li>
+          <li><strong>Observability</strong>: CloudWatch and Prometheus/Grafana provide real-time monitoring and alerts.</li>
+        </ul>
+
+        <h2>Implementation Details</h2>
+        <h3>Repository Structure</h3>
+        <p>The project is organized in a GitHub repository (<a class="hover:underline text-teal-400" href="https://github.com/yourusername/scalable-cloud-arch" target="_blank">scalable-cloud-arch</a>) for easy collaboration and deployment:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li><strong>terraform/</strong>: IaC scripts (e.g., <code>main.tf</code> for EKS, VPC, node groups).</li>
+          <li><strong>kubernetes/</strong>: YAML manifests for deployments, services, ingress, HPA, and ConfigMaps.</li>
+          <li><strong>scripts/</strong>: Bash scripts (e.g., <code>deploy.sh</code>) for one-click deployment.</li>
+          <li><strong>diagrams/</strong>: Mermaid files for architecture visualization.</li>
+          <li><strong>.github/workflows/</strong>: CI/CD pipelines for automated testing and deployment.</li>
+          <li><strong>docs/</strong>: Documentation, including cost analysis and security guidelines.</li>
+        </ul>
+
+        <h3>Deployment Workflow</h3>
+        <ol class="list-decimal pl-6 mb-4">
+          <li><strong>Provision Infrastructure</strong>: Use Terraform to create the EKS cluster, VPC, and related resources (<code>terraform apply</code>).</li>
+          <li><strong>Configure Kubernetes</strong>: Update kubeconfig and apply manifests (<code>kubectl apply -f kubernetes/</code>).</li>
+          <li><strong>Deploy Application</strong>: Build and push Docker images, then deploy via Kubernetes.</li>
+          <li><strong>Monitor and Scale</strong>: Set up CloudWatch alarms and HPA for automatic adjustments.</li>
+          <li><strong>CI/CD Integration</strong>: GitHub Actions triggers builds on pushes to main, ensuring zero-downtime updates.</li>
+        </ol>
+
+        <h3>Security Best Practices</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Network policies to restrict pod communication.</li>
+          <li>Least-privilege IAM roles for EKS nodes.</li>
+          <li>Secrets encrypted at rest and in transit.</li>
+          <li>Regular vulnerability scans (e.g., with Trivy).</li>
+        </ul>
+
+        <h3>Testing and Validation</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li><strong>Load Testing</strong>: Simulated with Apache Bench or Locust to verify scaling and uptime.</li>
+          <li><strong>Efficiency Metrics</strong>: Monitored via <code>kubectl top</code> and CloudWatch, confirming 25% reduction in idle resources.</li>
+          <li><strong>Backup/Recovery</strong>: Velero for Kubernetes backups, ensuring quick restoration.</li>
+        </ul>
+
+        <h2>Benefits and Lessons Learned</h2>
+        <p>This architecture provides a blueprint for building resilient cloud systems, reducing operational overhead while optimizing costs. Key lessons include:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Prioritizing automation (IaC and CI/CD) to minimize human error.</li>
+          <li>Iterative optimization of resources based on real metrics to achieve efficiency gains.</li>
+          <li>Integrating observability early for better debugging and performance tuning.</li>
+        </ul>
+        <p>The project is extensible—e.g., add serverless components (Lambda) or migrate to other clouds (GKE on GCP).</p>
+
+        <h2>Source Code and Demo</h2>
+        <p>This showcase is production-ready and open-source friendly—fork the sample repo at <a class="hover:underline text-teal-400" href="https://github.com/kdahal/scalable-cloud-arch" target="_blank">github.com/kdahal/scalable-cloud-arch</a> to get started!</p>
+        <p>Live Demo: Deployed on AWS; contact for access or deploy your own using the provided instructions.</p>
+        <p class="mt-8 text-teal-400 hover:underline"><a href="visit_my_blogs.html">Back to Blog Landing</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recommended Posts Section -->
+  <section class="py-16 bg-gray-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-teal-400 mt-12 mb-8">Recommended Posts</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="recommended-card bg-gray-900 p-6 rounded-lg shadow-lg">
+          <a href="cloud_migration.html" target="_blank">
+            <img src="images_3/Cloud_Migration.jpg" alt="Cloud Migration Plan: A Comprehensive Guide" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Cloud Migration Plan: A Comprehensive Guide</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Step-by-step approach to seamless cloud adoption.</p>
+        </div>
+        <div class="recommended-card bg-gray-900 p-6 rounded-lg shadow-lg">
+          <a href="explainable_ai.html" target="_blank">
+            <img src="images_3/explainable_ai_02.JPG" alt="Explainable AI (XAI)" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Explainable AI (XAI)</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Making AI decisions transparent and trustworthy.</p>
+        </div>
+        <div class="recommended-card bg-gray-900 p-6 rounded-lg shadow-lg">
+          <a href="kubernetes.html" target="_blank">
+            <img src="new_image/rsz_kubernetes.jpg" alt="Kubernetes Cluster Architecture" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Kubernetes Cluster Architecture</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Kubernetes is an open-source container-orchestration system for automating computer application...</p>
+        </div>
+        <div class="recommended-card bg-gray-900 p-6 rounded-lg shadow-lg">
+          <a href="docker.html" target="_blank">
+            <img src="images/rsz_docker.jpg" alt="Docker Architecture & containerization?" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold text-orange-500">Docker Architecture & containerization?</h3>
+          </a>
+          <p class="mt-2 text-gray-300">Docker is a set of platform as a service products that use OS-level virtualization...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 py-8">
+    <div class="container mx-auto px-4 text-center">
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="https://www.linkedin.com/in/kumar-dahal/" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fab fa-linkedin text-2xl"></i></a>
+        <a href="https://twitter.com/kumdahal" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fab fa-twitter text-2xl"></i></a>
+        <a href="https://kdahal.github.io/kresume/index.html" target="_blank" class="text-teal-400 hover:text-teal-300 transition"><i class="fas fa-file-alt text-2xl"></i></a>
+      </div>
+      <p class="text-lg">Innovate. Secure. Scale.</p>
+      <p class="text-md mt-2">© 2025 Kumar Dahal. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // GSAP Animations
+    gsap.from('.animate-fade-in', { opacity: 0, y: 50, duration: 1, stagger: 0.2, ease: 'power2.out' });
+
+    // Mobile Menu Toggle
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+
+    // Hero Slider
+    let heroSlideIndex = 0;
+    const heroSlides = document.querySelectorAll('.hero-slider .slide');
+    if (heroSlides.length > 0) {
+      heroSlides[heroSlideIndex].classList.add('active');
+      setInterval(() => {
+        heroSlides[heroSlideIndex].classList.remove('active');
+        heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
+        heroSlides[heroSlideIndex].classList.add('active');
+      }, 5000);
+    }
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      mermaid.run({
+        querySelector: '.mermaid'
+      });
+    });
+  </script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#2DD4BF',
+        secondaryColor: '#F97316',
+        tertiaryColor: '#6B7280',
+        primaryTextColor: '#E5E7EB',
+        secondaryTextColor: '#1F2937',
+        lineColor: '#FFFFFF',
+        noteBkgColor: '#F97316',
+        noteTextColor: '#1F2937'
+      }
+    });
+  </script>
+</body>
+</html>
